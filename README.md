@@ -20,6 +20,8 @@ escalation engine then moves the complaint up the staff hierarchy on demand.
 - [Configuration](#configuration)
 - [Project structure](#project-structure)
 - [Staff hierarchy](#staff-hierarchy)
+- [Improving accuracy](#improving-accuracy)
+- [Measuring accuracy](#measuring-accuracy)
 - [Testing](#testing)
 - [Security notes](#security-notes)
 - [Troubleshooting](#troubleshooting)
@@ -144,6 +146,11 @@ Response:
   "priority": "High Priority",
   "confidence": 93.4,
   "isDirectAgainstBranchManager": false,
+  "needsReview": false,
+  "alternatives": [
+    { "role": "Waiter / Waitress", "probability": 3.0 },
+    { "role": "Head Waiter", "probability": 1.0 }
+  ],
   "escalationHistory": [
     { "step": 1, "action": "Initial AI Triage Assignment", "assignedTo": "Floor Supervisor", "level": 2, "timestamp": "..." }
   ]
@@ -151,7 +158,10 @@ Response:
 ```
 
 - `confidence` is Jev's calibrated confidence (0-100) for the chosen role. The UI flags values under 50% as untrustworthy.
-- `priority` is one of Low / Medium / High / Critical Priority.
+- `priority` is one of Low / Medium / High / Critical Priority. Jev's urgency score is 0-based
+  (0 = Low ... 3 = Critical); the cut-offs are in `mapScoreToPriority`: Critical >= 2.5, High >= 1.7, Medium >= 0.8.
+- `needsReview` is `true` when confidence is below 50%. Treat those results as suggestions for a human to confirm.
+- `alternatives` lists the next two most likely roles according to Jev with their probability (%), useful when `needsReview` is true.
 - Errors: `400` for empty feedback, `502` if the Jev service call fails (bad key, network, rate limit).
 
 Example:
@@ -190,6 +200,65 @@ Response: `escalatedTo`, `escalatedLevel`, `escalationHistory`, `isLimitReached`
 
 The app will not start without an API key (`TYPESAFE_API_KEY`), because the Jev client is only created when a key is configured.
 
+## Improving accuracy
+
+The first version routed only about half of a 19-complaint sample sheet to the expected role (9-10 of 19,
+and one answer changed between runs). The model itself was fine; it was being told too little. These
+changes were made, in order of impact:
+
+1. **Role descriptions rewritten** (`DesignationRegistry`). Jev picks a role mainly by reading its description,
+   and the old ones were generic ("Directly supervises Bartenders and Baristas"). Each is now phrased as what
+   the role *handles*, with concrete examples. For example, Bar Supervisor covers glassware and supply
+   shortages, Head Waiter covers service skills and training, Branch Manager covers overall quality, menu
+   and pricing, and Tenant Admin covers franchise-wide app issues.
+2. **One clear routing rule** (the `Choice` instructions in `TypeSafeJevTriageService`). The old prompt said
+   "a complaint against a person goes to their supervisor", which pushed one-off frontline mistakes up to
+   Floor Supervisor. The rule is now:
+   - a one-off mistake by a frontline employee goes to that frontline role;
+   - systemic issues (standards, supplies, training, hygiene, safety, dispatch systems) go to the responsible Level 2 supervisor/head;
+   - serious misconduct (yelling, shouting, abuse) goes to the person's direct supervisor;
+   - complaints about a supervisor, Assistant Branch Manager or Branch Manager go one step up, ending at Tenant Admin.
+
+   **This rule is an interpretation** of the expected results in the sample sheet. If your business rule
+   differs, edit that instruction text and re-run the evaluation.
+3. **Low-confidence flag and runner-up roles.** The response now has `needsReview` (confidence < 50%) and
+   `alternatives` (Jev's next two choices), so uncertain cases go to a person instead of being trusted.
+4. **Priority scale fixed.** Jev's scores are 0-3, but the code assumed 1-4, so every complaint came out
+   "Low Priority". The cut-offs now match the real scale.
+5. **A repeatable accuracy test** (see below), so each change can be measured.
+
+Results (each complaint sent 3 times):
+
+| Set | Before | After |
+|-----|--------|-------|
+| `eval/sample-complaints.csv` (the 19-row sample sheet) | about 50% (9-10 of 19) | 100% (57/57) |
+| `eval/holdout-complaints.csv` (12 new complaints not used while tuning) | not measured | 83% role (30/36), 92% level (33/36) |
+
+The sample-sheet score is optimistic because the descriptions were written while looking at those exact
+complaints. **The held-out figure is the realistic one.** Its two misses show the remaining weak spots:
+a raw steak was sent to the cook rather than the waiter (arguably a valid answer), and an espresso-machine
+complaint got only 39% confidence, so `needsReview` is `true` for it.
+
+Further ideas: add more held-out complaints from real data, split priority into separate severity and
+urgency questions, and widen role descriptions wherever the evaluation shows repeated misses.
+
+## Measuring accuracy
+
+`scripts/evaluate.py` sends every complaint in a CSV file to the running app and reports role and level accuracy.
+It uses only the Python standard library.
+
+```bash
+# 1. start the app in one terminal
+./mvnw spring-boot:run
+
+# 2. in another terminal
+python scripts/evaluate.py --runs 3                                        # sample sheet
+python scripts/evaluate.py --runs 3 --file eval/holdout-complaints.csv     # held-out set
+```
+
+CSV columns: `id, complaint, expected_role, expected_level`. Add your own rows to grow the test set.
+Each run calls the Jev API (billed per token), so keep `--runs` small. Jev answers can vary slightly between runs.
+
 ## Project structure
 
 ```
@@ -203,6 +272,9 @@ src/main/java/resolvex_triage/
 src/main/resources/
   application.yml                     Configuration
   static/index.html                   Web UI
+scripts/evaluate.py                   Accuracy test against the running app
+eval/sample-complaints.csv            Sample sheet with expected roles
+eval/holdout-complaints.csv           Held-out complaints for honest measurement
 .env.example                          Template for secrets (tracked)
 .env                                  Your real secrets (git-ignored)
 ```
@@ -218,7 +290,7 @@ src/main/resources/
 | 1 | Host / Hostess, Waiter / Waitress, Busser / Table Cleaner, Cashier / POS Operator, Bartender, Barista, Cleaner / Housekeeper, Security Guard, Delivery Rider / Driver, General Chef / Line Cook |
 
 Roles and their descriptions live in `DesignationRegistry`; the descriptions are sent to Jev as the
-meaning of each routing option, so editing them changes routing behaviour.
+meaning of each routing option, so editing them changes routing behaviour. Re-run the evaluation after any edit.
 
 ## Testing
 

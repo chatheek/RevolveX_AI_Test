@@ -25,6 +25,9 @@ public class TypeSafeJevTriageService {
 
     private static final String Q_ROUTE = "assigned_route";
     private static final String Q_PRIORITY = "priority_score";
+    /** Below this Jev confidence (%) the result is flagged for human review. */
+    private static final double REVIEW_THRESHOLD_PERCENT = 50.0;
+
     private static final String Q_DIRECT_BM = "against_branch_manager";
 
     private final DesignationRegistry registry;
@@ -42,15 +45,16 @@ public class TypeSafeJevTriageService {
         log.info("Initiating Jev AI triage analysis for feedback: '{}'", feedback);
 
         Choice.Builder route = Choice.builder().instructions(
-                "Pick the single role best suited to handle this complaint. " +
-                "If the complaint is AGAINST a staff member, route it to that person's direct supervisor, not to the person. " +
-                "Cleaner -> Cleaning Supervisor. Waiter/Waitress -> Floor Supervisor. " +
-                "Security Guard -> Security Supervisor / Chief Security Officer. " +
-                "Head Chef / Kitchen Manager or any Level 2 supervisor -> Assistant Branch Manager. " +
-                "Assistant Branch Manager -> Branch Manager. " +
-                "Branch Manager -> Tenant Admin. " +
-                "If the complaint is about an operational issue rather than a person (e.g. dirty floor, food quality), " +
-                "pick the role that performs that work.");
+                "Pick the single role that owns the problem described. Read each role's description and choose the best match. " +
+                "1) A one-off mistake or poor behaviour by a frontline employee during service (rude host, ignored table, wrong drink, " +
+                "wrong dish, billing error, dirty table) goes to that frontline role itself. " +
+                "2) Systemic problems, standards, supplies, training, hygiene, safety, dispatch systems or repeated failures go to the " +
+                "responsible Level 2 supervisor or head. " +
+                "3) Serious misconduct by a staff member (yelling, shouting, abuse, violence) goes to that person's direct supervisor: " +
+                "cleaner -> Cleaning Supervisor, waiter -> Floor Supervisor, security guard -> Security Supervisor / Chief Security Officer. " +
+                "4) Complaints about a Level 2 supervisor or the Head Chef go to Assistant Branch Manager; about the Assistant Branch Manager " +
+                "go to Branch Manager; about the Branch Manager go to Tenant Admin. " +
+                "5) Overall branch quality, menu and pricing go to Branch Manager; franchise-wide app or platform issues go to Tenant Admin.");
         registry.getAllLevels().values().forEach(list ->
                 list.forEach(d -> route.option(d.getTitle(), d.getDescription())));
 
@@ -79,7 +83,21 @@ public class TypeSafeJevTriageService {
 
         log.info("Jev response ({}): route='{}', confidence={}%, priority={}, againstBranchManager={}",
                 response.model(), routedTitle, confidence, priorityScore, directAgainstBm);
-        return buildTriageResult(routedTitle, priorityScore, confidence, directAgainstBm);
+        Map<String, Object> result = buildTriageResult(routedTitle, priorityScore, confidence, directAgainstBm);
+        result.put("needsReview", confidence < REVIEW_THRESHOLD_PERCENT);
+        result.put("alternatives", runnersUp(response.choice(Q_ROUTE).probabilities(), routedTitle));
+        return result;
+    }
+
+    /** The next most likely roles according to Jev, so a human can pick one when confidence is low. */
+    private List<Map<String, Object>> runnersUp(Map<String, Double> probabilities, String chosen) {
+        return probabilities.entrySet().stream()
+                .filter(e -> !e.getKey().equals(chosen))
+                .sorted(Map.Entry.<String, Double>comparingByValue().reversed())
+                .limit(2)
+                .map(e -> Map.<String, Object>of("role", e.getKey(),
+                        "probability", Math.round(e.getValue() * 1000.0) / 10.0))
+                .toList();
     }
 
     private Map<String, Object> buildTriageResult(String routedTitle, double priorityVal,
