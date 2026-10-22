@@ -1,13 +1,13 @@
 id,complaint,expected_role,expected_level
-101,The cleaner shouted at me when I asked him to mop the spill near our table.,Cleaning Supervisor,2
-102,The waiter yelled at my child and threw the menu on the table.,Floor Supervisor,2
-103,The security guard was extremely rude and argued with me about where I parked.,Security Supervisor / Chief Security Officer,2
+101,The cleaner shouted at me when I asked him to mop the spill near our table.,Cleaner / Housekeeper,1
+102,The waiter yelled at my child and threw the menu on the table.,Waiter / Waitress,1
+103,The security guard was extremely rude and argued with me about where I parked.,Security Guard,1
 104,The branch manager insulted my family and refused to listen to my complaint.,Tenant Admin,5
 105,The assistant branch manager lied to us about a refund and was very dismissive.,Branch Manager,4
 106,The head chef screamed at me in front of other customers when I asked about allergens.,Assistant Branch Manager,3
-107,My server brought me a steak I asked well done and it was completely raw.,Waiter / Waitress,1
+107,My server brought me a steak I asked well done and it was completely raw.,Head Chef / Kitchen Manager,2
 108,Someone at the entrance forgot our reservation and made us wait 40 minutes with no apology.,Host / Hostess,1
 109,Our table had crumbs and a sticky menu left from the earlier party.,Busser / Table Cleaner,1
 110,The espresso machine at the cafe corner was producing bitter and watery coffee all week.,Bar Supervisor,2
 111,Kitchen staff are repeatedly serving undercooked chicken and the hygiene is a food safety risk.,Head Chef / Kitchen Manager,2
-112,The delivery rider was rude and threw the bag at my door.,Delivery Supervisor,2
+112,The delivery rider was rude and threw the bag at my door.,Delivery Rider / Driver,1

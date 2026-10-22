@@ -45,16 +45,17 @@ public class TypeSafeJevTriageService {
         log.info("Initiating Jev AI triage analysis for feedback: '{}'", feedback);
 
         Choice.Builder route = Choice.builder().instructions(
-                "Pick the single role that owns the problem described. Read each role's description and choose the best match. " +
-                "1) A one-off mistake or poor behaviour by a frontline employee during service (rude host, ignored table, wrong drink, " +
-                "wrong dish, billing error, dirty table) goes to that frontline role itself. " +
-                "2) Systemic problems, standards, supplies, training, hygiene, safety, dispatch systems or repeated failures go to the " +
-                "responsible Level 2 supervisor or head. " +
-                "3) Serious misconduct by a staff member (yelling, shouting, abuse, violence) goes to that person's direct supervisor: " +
-                "cleaner -> Cleaning Supervisor, waiter -> Floor Supervisor, security guard -> Security Supervisor / Chief Security Officer. " +
-                "4) Complaints about a Level 2 supervisor or the Head Chef go to Assistant Branch Manager; about the Assistant Branch Manager " +
-                "go to Branch Manager; about the Branch Manager go to Tenant Admin. " +
-                "5) Overall branch quality, menu and pricing go to Branch Manager; franchise-wide app or platform issues go to Tenant Admin.");
+                "Pick the single role that should respond first. Read each role's description and choose the best match. " +
+                "1) If the complaint is about the behaviour or mistake of a specific kind of staff member (a rude host, a waiter who " +
+                "forgot the order, a guard who was aggressive, a bartender with an attitude, a cleaner who blocked the way), route it to " +
+                "that staff role itself, even when the behaviour is rude or aggressive. The escalation process moves it to a supervisor later. " +
+                "2) If the problem is systemic or about standards (supplies, equipment, training, hygiene, safety systems, dispatch or " +
+                "tracking systems, timing of the whole kitchen or dining floor, policies), route it to the Level 2 supervisor or head who owns it. " +
+                "3) If a manager or shift leader on duty failed to act on a complaint, route to Assistant Branch Manager. " +
+                "Complaints about a Level 2 supervisor or the Head Chef go to Assistant Branch Manager, about the Assistant Branch Manager " +
+                "go to Branch Manager, and about the Branch Manager go to Tenant Admin. " +
+                "4) Overall branch quality, menu, prices and staffing go to Branch Manager; franchise-wide app, website or platform " +
+                "issues go to Tenant Admin.");
         registry.getAllLevels().values().forEach(list ->
                 list.forEach(d -> route.option(d.getTitle(), d.getDescription())));
 

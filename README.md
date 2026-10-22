@@ -41,10 +41,10 @@ escalation engine then moves the complaint up the staff hierarchy on demand.
 4. `POST /api/v1/complaints/escalate` walks the complaint up the hierarchy using `EscalationEngine`.
    Tenant Admin (Level 5) is only reachable when the complaint is directly against the Branch Manager.
 
-The routing instructions given to Jev: complaints *against* a person go to that person's supervisor
-(cleaner -> Cleaning Supervisor, waiter -> Floor Supervisor, security guard -> Security Supervisor,
-Level 2 supervisors -> Assistant Branch Manager, Assistant Branch Manager -> Branch Manager,
-Branch Manager -> Tenant Admin). Operational issues go to the role that does that work.
+The routing instruction given to Jev ("who should respond first"): a complaint about the behaviour or mistake of a
+staff role goes to that role; systemic issues go to the Level 2 supervisor who owns them; a manager who failed
+to act goes to Assistant Branch Manager; complaints about a supervisor go one level up, ending at Tenant Admin.
+See [Improving accuracy](#improving-accuracy).
 
 ## Requirements
 
@@ -202,45 +202,71 @@ The app will not start without an API key (`TYPESAFE_API_KEY`), because the Jev 
 
 ## Improving accuracy
 
-The first version routed only about half of a 19-complaint sample sheet to the expected role (9-10 of 19,
-and one answer changed between runs). The model itself was fine; it was being told too little. These
-changes were made, in order of impact:
+Two rounds of improvement have been made. All of it is configuration of what Jev is told; the code
+path is unchanged. The model is called with typed questions (`Choice`, `Score`, `Noul`) and the quality
+of the answers depends mainly on the role descriptions and the routing instruction.
 
-1. **Role descriptions rewritten** (`DesignationRegistry`). Jev picks a role mainly by reading its description,
-   and the old ones were generic ("Directly supervises Bartenders and Baristas"). Each is now phrased as what
-   the role *handles*, with concrete examples. For example, Bar Supervisor covers glassware and supply
-   shortages, Head Waiter covers service skills and training, Branch Manager covers overall quality, menu
-   and pricing, and Tenant Admin covers franchise-wide app issues.
-2. **One clear routing rule** (the `Choice` instructions in `TypeSafeJevTriageService`). The old prompt said
-   "a complaint against a person goes to their supervisor", which pushed one-off frontline mistakes up to
-   Floor Supervisor. The rule is now:
-   - a one-off mistake by a frontline employee goes to that frontline role;
-   - systemic issues (standards, supplies, training, hygiene, safety, dispatch systems) go to the responsible Level 2 supervisor/head;
-   - serious misconduct (yelling, shouting, abuse) goes to the person's direct supervisor;
-   - complaints about a supervisor, Assistant Branch Manager or Branch Manager go one step up, ending at Tenant Admin.
+### Round 1 - from a 19-row sample sheet
 
-   **This rule is an interpretation** of the expected results in the sample sheet. If your business rule
-   differs, edit that instruction text and re-run the evaluation.
-3. **Low-confidence flag and runner-up roles.** The response now has `needsReview` (confidence < 50%) and
-   `alternatives` (Jev's next two choices), so uncertain cases go to a person instead of being trusted.
-4. **Priority scale fixed.** Jev's scores are 0-3, but the code assumed 1-4, so every complaint came out
-   "Low Priority". The cut-offs now match the real scale.
-5. **A repeatable accuracy test** (see below), so each change can be measured.
+The first version routed only about half of a 19-complaint sample sheet to the expected role. Changes:
 
-Results (each complaint sent 3 times):
+1. Role descriptions were rewritten to say what each role *handles*, with examples (`DesignationRegistry`).
+2. One clear routing instruction replaced the vague "go to the supervisor" prompt.
+3. `needsReview` (confidence under 50%) and `alternatives` (Jev's next two choices) were added to the response.
+4. The priority scale was fixed: Jev's scores are 0-3, but the code assumed 1-4, so everything showed "Low".
+5. A repeatable accuracy test (`scripts/evaluate.py`) was added.
 
-| Set | Before | After |
-|-----|--------|-------|
-| `eval/sample-complaints.csv` (the 19-row sample sheet) | about 50% (9-10 of 19) | 100% (57/57) |
-| `eval/holdout-complaints.csv` (12 new complaints not used while tuning) | not measured | 83% role (30/36), 92% level (33/36) |
+### Round 2 - from a 100-complaint test file
 
-The sample-sheet score is optimistic because the descriptions were written while looking at those exact
-complaints. **The held-out figure is the realistic one.** Its two misses show the remaining weak spots:
-a raw steak was sent to the cook rather than the waiter (arguably a valid answer), and an espresso-machine
-complaint got only 39% confidence, so `needsReview` is `true` for it.
+Testing on `100_restaurant_complaints_test_data.csv` scored **74%** role accuracy. The errors came in clear groups:
+security guards, head waiters, kitchen-wide problems, managers who failed to act, and the pacing of courses.
+Changes:
 
-Further ideas: add more held-out complaints from real data, split priority into separate severity and
-urgency questions, and widen role descriptions wherever the evaluation shows repeated misses.
+1. **Routing rule changed to "who should respond first".** Round 1 sent staff misconduct to the supervisor.
+   The 100-row data expects the frontline role itself (a rude guard goes to Security Guard, a rude
+   waitress to Waiter / Waitress). The new rule is:
+   - a complaint about the behaviour or mistake of a staff role goes to that role; escalation moves it up later;
+   - systemic issues (supplies, equipment, training, hygiene, safety systems, dispatch systems, whole-kitchen or
+     whole-floor timing, policies) go to the Level 2 supervisor or head who owns it;
+   - a manager or shift leader on duty who failed to act goes to Assistant Branch Manager;
+   - complaints about a supervisor go one step up, ending at Tenant Admin.
+2. **Role descriptions rewritten again**, e.g. Head Waiter now covers "head/senior waiter conduct and service-skill
+   lapses", Head Chef covers allergen failures, food safety, plating and kitchen delays, Floor Supervisor covers
+   table assignment and course pacing, Branch Manager covers unanswered complaints and staffing.
+
+> **Rule change to be aware of.** The original prototype said "cleaner yelled -> Cleaning Supervisor". The 100-row
+> test data says the opposite (frontline conduct goes to the frontline role). Round 2 follows the 100-row data.
+> If the business really wants misconduct routed to supervisors, change instruction 1 in
+> `TypeSafeJevTriageService` and the labels in the test CSVs.
+
+### Results
+
+| Test set | Before round 2 | After round 2 |
+|----------|----------------|---------------|
+| `eval/fresh-complaints.csv` - 34 new complaints written *before* the change (unbiased) | 79.4% (54/68) | **97.1%** (66/68) |
+| `eval/restaurant-100-complaints.csv` - the 100-row file | 74% | **92-93%** |
+| `eval/sample-complaints.csv` - the original 19 rows | 100% | 100% |
+| `eval/holdout-complaints.csv` - 12 older test rows (5 labels re-aligned to the 100-row convention) | 83% | 83% |
+
+How to read this:
+
+- The **fresh set** is the most trustworthy number. It was written and scored before round 2, then re-scored after.
+  It is not perfectly independent, because the types of mistake were known by then.
+- The **100-row** score is optimistic because round 2 was designed after seeing which kinds of complaint failed there.
+  The rules are written as general patterns, not per-row patches, but treat 92-93% as an upper estimate.
+- Runs vary by a point or two because Jev's answers are not perfectly repeatable.
+- The remaining misses are mostly contradictory or ambiguous expected results. For example, the test file sends a
+  complaint *about* the Delivery Supervisor to the Delivery Supervisor, whereas the hierarchy sends complaints about a
+  supervisor up to the Assistant Branch Manager. Review these with the business before tuning further, to avoid
+  memorising the test data.
+- Results under 50% confidence are flagged `needsReview`. With the improved prompts only about 1 in 100 results is
+  flagged, and results with 80%+ confidence were right 97% of the time.
+
+A full Excel report of the 100-complaint test (expected vs actual, charts, per-role and per-level accuracy,
+confidence analysis, failed cases, before vs after) was generated as `ResolveX_Test_Report_v2_100_Complaints.xlsx`.
+
+Further ideas: write more fresh complaints from real data, separate severity and urgency in the priority question,
+and agree the correct answer for the ambiguous cases with the business.
 
 ## Measuring accuracy
 
@@ -252,8 +278,10 @@ It uses only the Python standard library.
 ./mvnw spring-boot:run
 
 # 2. in another terminal
-python scripts/evaluate.py --runs 3                                        # sample sheet
-python scripts/evaluate.py --runs 3 --file eval/holdout-complaints.csv     # held-out set
+python scripts/evaluate.py --runs 3                                              # original 19-row sample
+python scripts/evaluate.py --runs 1 --file eval/restaurant-100-complaints.csv    # 100-row file
+python scripts/evaluate.py --runs 2 --file eval/fresh-complaints.csv             # unbiased check
+python scripts/evaluate.py --runs 2 --file eval/holdout-complaints.csv           # older held-out set
 ```
 
 CSV columns: `id, complaint, expected_role, expected_level`. Add your own rows to grow the test set.
@@ -275,6 +303,8 @@ src/main/resources/
 scripts/evaluate.py                   Accuracy test against the running app
 eval/sample-complaints.csv            Sample sheet with expected roles
 eval/holdout-complaints.csv           Held-out complaints for honest measurement
+eval/restaurant-100-complaints.csv    100-row test file with expected roles
+eval/fresh-complaints.csv             34 new complaints for an unbiased check
 .env.example                          Template for secrets (tracked)
 .env                                  Your real secrets (git-ignored)
 ```
