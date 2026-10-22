@@ -245,10 +245,20 @@ Changes:
 |----------|----------------|---------------|
 | `eval/fresh-complaints.csv` - 34 new complaints written *before* the change (unbiased) | 79.4% (54/68) | **97.1%** (66/68) |
 | `eval/restaurant-100-complaints.csv` - the 100-row file | 74% | **92-93%** |
+| `eval/restaurant-250-complaints.csv` - 250 complaints not used for tuning (final check) | - | **77.6%** role (194/250), 82.4% level |
 | `eval/sample-complaints.csv` - the original 19 rows | 100% | 100% |
 | `eval/holdout-complaints.csv` - 12 older test rows (5 labels re-aligned to the 100-row convention) | 83% | 83% |
 
 How to read this:
+
+- **The 250-row result (77.6%) is the realistic estimate.** None of those complaints were used while tuning and nothing was
+  changed after seeing them. The higher scores above were measured on data that influenced the changes.
+  On the 250 rows, results with 80%+ confidence were right 86% of the time, and the under-50% review flag caught
+  27% of the errors, so it should not be the only safeguard.
+- The biggest source of 250-row misses is a business rule, not the model: when a complaint is *about* a supervisor or head
+  (e.g. "the supervisor hung up on me"), the test data expects that same supervisor, while the app sends it up to the
+  Assistant Branch Manager. Complaints that only say "they" also cannot tell Jev that a head waiter or security
+  head was involved. Decide the rule first; capturing the staff member at intake would help more than more prompt tuning.
 
 - The **fresh set** is the most trustworthy number. It was written and scored before round 2, then re-scored after.
   It is not perfectly independent, because the types of mistake were known by then.
@@ -280,6 +290,7 @@ It uses only the Python standard library.
 # 2. in another terminal
 python scripts/evaluate.py --runs 3                                              # original 19-row sample
 python scripts/evaluate.py --runs 1 --file eval/restaurant-100-complaints.csv    # 100-row file
+python scripts/evaluate.py --runs 1 --file eval/restaurant-250-complaints.csv    # 250-row file (final check)
 python scripts/evaluate.py --runs 2 --file eval/fresh-complaints.csv             # unbiased check
 python scripts/evaluate.py --runs 2 --file eval/holdout-complaints.csv           # older held-out set
 ```
@@ -304,6 +315,7 @@ scripts/evaluate.py                   Accuracy test against the running app
 eval/sample-complaints.csv            Sample sheet with expected roles
 eval/holdout-complaints.csv           Held-out complaints for honest measurement
 eval/restaurant-100-complaints.csv    100-row test file with expected roles
+eval/restaurant-250-complaints.csv    250-row test file with expected roles
 eval/fresh-complaints.csv             34 new complaints for an unbiased check
 .env.example                          Template for secrets (tracked)
 .env                                  Your real secrets (git-ignored)
