@@ -1,233 +1,101 @@
 package resolvex_triage.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springaicommunity.typesafe.TypeSafeClient;
+import org.springaicommunity.typesafe.exception.TypeSafeException;
+import org.springaicommunity.typesafe.question.Choice;
+import org.springaicommunity.typesafe.question.Noul;
+import org.springaicommunity.typesafe.question.Score;
+import org.springaicommunity.typesafe.response.SystemOneResponse;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import resolvex_triage.model.Designation;
 import resolvex_triage.repository.DesignationRegistry;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.*;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
 
+/**
+ * Triages customer feedback with the Typesafe.ai Jev model (System One).
+ * All routing decisions come from Jev; there is no local keyword fallback.
+ */
 @Slf4j
 @Service
 public class TypeSafeJevTriageService {
 
+    private static final String Q_ROUTE = "assigned_route";
+    private static final String Q_PRIORITY = "priority_score";
+    private static final String Q_DIRECT_BM = "against_branch_manager";
+
     private final DesignationRegistry registry;
-    private final RestTemplate restTemplate;
+    private final TypeSafeClient typeSafeClient;
 
-    @Value("${spring.ai.typesafe.base-url:https://api.experientiallabs.ai}")
-    private String baseUrl;
-
-    @Value("${spring.ai.typesafe.api-key:xpl_6c43eaa51ddb929f292026cb52d8fce2061a7d5d}")
-    private String apiKey;
-
-    public TypeSafeJevTriageService(DesignationRegistry registry) {
+    public TypeSafeJevTriageService(DesignationRegistry registry, TypeSafeClient typeSafeClient) {
         this.registry = registry;
-        this.restTemplate = new RestTemplate();
+        this.typeSafeClient = typeSafeClient;
     }
 
     public Map<String, Object> analyzeAndRoute(String feedback) {
+        if (feedback == null || feedback.isBlank()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Field 'feedback' must not be empty");
+        }
         log.info("Initiating Jev AI triage analysis for feedback: '{}'", feedback);
 
-        List<String> roleOptions = new ArrayList<>();
-        registry.getAllLevels().values().forEach(list -> 
-            list.forEach(d -> roleOptions.add(d.getTitle()))
-        );
+        Choice.Builder route = Choice.builder().instructions(
+                "Pick the single role best suited to handle this complaint. " +
+                "If the complaint is AGAINST a staff member, route it to that person's direct supervisor, not to the person. " +
+                "Cleaner -> Cleaning Supervisor. Waiter/Waitress -> Floor Supervisor. " +
+                "Security Guard -> Security Supervisor / Chief Security Officer. " +
+                "Head Chef / Kitchen Manager or any Level 2 supervisor -> Assistant Branch Manager. " +
+                "Assistant Branch Manager -> Branch Manager. " +
+                "Branch Manager -> Tenant Admin. " +
+                "If the complaint is about an operational issue rather than a person (e.g. dirty floor, food quality), " +
+                "pick the role that performs that work.");
+        registry.getAllLevels().values().forEach(list ->
+                list.forEach(d -> route.option(d.getTitle(), d.getDescription())));
 
-        // Strict Experiential Labs SystemOne decision schema (Flat arrays)
-        Map<String, Object> routeQuestion = Map.of(
-                "type", "choice",
-                "instructions", "Pick the single role best suited to handle this complaint. " +
-                        "If complaint is AGAINST a cleaner (e.g. cleaner yelled), route to Cleaning Supervisor. " +
-                        "If complaint is AGAINST a waiter (e.g. waiter yelled, waiter spoiled food), route to Floor Supervisor. " +
-                        "If complaint is AGAINST a security guard, route to Security Supervisor. " +
-                        "If complaint is AGAINST Head Chef, route to Assistant Branch Manager. " +
-                        "If complaint is AGAINST Assistant Branch Manager, route to Branch Manager. " +
-                        "If complaint is AGAINST Branch Manager, route strictly to Tenant Admin.",
-                "options", roleOptions
-        );
+        Score priority = Score.of(
+                "How urgent is this complaint? Critical covers spoiled or unsafe food, physical abuse and manager misconduct.",
+                "Low", "Medium", "High", "Critical");
 
-        Map<String, Object> priorityQuestion = Map.of(
-                "type", "score",
-                "instructions", "Rate urgency from 1.0 (Low) to 4.0 (Critical: spoiled food, physical abuse, manager misconduct)",
-                "min", 1.0,
-                "max", 4.0
-        );
+        Noul againstBranchManager = Noul.of(
+                "The complaint is directly about the conduct of the Branch Manager (not the Assistant Branch Manager).");
 
-        Map<String, Object> payload = Map.of(
-                "model", "jev-latest",
-                "state", feedback,
-                "questions", Map.of(
-                        "assigned_route", routeQuestion,
-                        "priority_score", priorityQuestion
-                )
-        );
-
+        SystemOneResponse response;
         try {
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_JSON);
-            headers.setBearerAuth(apiKey);
-
-            HttpEntity<Map<String, Object>> request = new HttpEntity<>(payload, headers);
-            ResponseEntity<Map> response = restTemplate.postForEntity(baseUrl + "/v1/systemone", request, Map.class);
-
-            if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
-                Map<String, Object> body = response.getBody();
-                Map<String, Object> results = (Map<String, Object>) body.get("results");
-
-                Map<String, Object> routeRes = (Map<String, Object>) results.get("assigned_route");
-                Map<String, Object> priorityRes = (Map<String, Object>) results.get("priority_score");
-
-                String routedRoleStr = (String) routeRes.get("best_choice");
-                double confidenceVal = ((Number) routeRes.get("confidence")).doubleValue() * 100.0;
-                double priorityScore = ((Number) priorityRes.get("value")).doubleValue();
-
-                log.info("API Jev response successfully received. Assigned: '{}', Confidence: {}%", routedRoleStr, confidenceVal);
-                return buildTriageResult(routedRoleStr, priorityScore, confidenceVal, feedback);
-            }
-        } catch (Exception e) {
-            log.warn("Jev API call bypassed [{}]. Executing local semantic analyzer.", e.getMessage());
+            response = typeSafeClient.systemOne(feedback, Map.of(
+                    Q_ROUTE, route.build(),
+                    Q_PRIORITY, priority,
+                    Q_DIRECT_BM, againstBranchManager));
+        } catch (TypeSafeException e) {
+            log.error("Jev API call failed: {}", e.getMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_GATEWAY, "Jev AI service call failed: " + e.getMessage(), e);
         }
 
-        return localSemanticAnalyzer(feedback);
+        String routedTitle = response.choiceValue(Q_ROUTE);
+        double confidence = response.choice(Q_ROUTE).confidence() * 100.0;
+        double priorityScore = response.scoreValue(Q_PRIORITY);
+        boolean directAgainstBm = response.noulValue(Q_DIRECT_BM) >= 0.5;
+
+        log.info("Jev response ({}): route='{}', confidence={}%, priority={}, againstBranchManager={}",
+                response.model(), routedTitle, confidence, priorityScore, directAgainstBm);
+        return buildTriageResult(routedTitle, priorityScore, confidence, directAgainstBm);
     }
 
-    private Map<String, Object> localSemanticAnalyzer(String feedback) {
-        String lower = feedback.toLowerCase().trim();
-        String role = "Waiter / Waitress";
-        double priority = 2.0;
-        double confidence = 88.0;
-
-        // 1. Direct Branch Manager Complaint -> Tenant Admin (Level 5)
-        if (lower.contains("branch manager") && !lower.contains("assistant")) {
-            role = "Tenant Admin";
-            priority = 3.8;
-            confidence = 96.5;
-        }
-        // 2. Direct Assistant Branch Manager Complaint -> Branch Manager (Level 4)
-        else if (lower.contains("assistant branch manager") || lower.contains("assistant manager")) {
-            role = "Branch Manager";
-            priority = 3.6;
-            confidence = 95.0;
-        }
-        // 3. Level 2 Supervisor Fault -> Assistant Branch Manager (Level 3)
-        else if (lower.contains("head chef") || lower.contains("kitchen manager") || 
-                 lower.contains("floor supervisor") || lower.contains("security supervisor") || lower.contains("cleaning supervisor")) {
-            role = "Assistant Branch Manager";
-            priority = (lower.contains("pushed") || lower.contains("shouted") || lower.contains("rude") || lower.contains("yelled")) ? 3.8 : 3.0;
-            confidence = 95.0;
-        }
-        // 4. Cleaner Fault / Misconduct -> Cleaning Supervisor (Level 2)
-        else if (lower.contains("cleaner") || lower.contains("janitor") || lower.contains("housekeeper")) {
-            if (lower.contains("yelled") || lower.contains("shouted") || lower.contains("rude") || 
-                lower.contains("argued") || lower.contains("blamed") || lower.contains("attitude")) {
-                role = "Cleaning Supervisor"; // Direct complaint AGAINST cleaner -> Cleaning Supervisor
-                priority = 3.2;
-                confidence = 94.5;
-            } else {
-                role = "Cleaner / Housekeeper";
-                priority = 1.8;
-                confidence = 91.0;
-            }
-        }
-        // 5. Security Guard Fault -> Security Supervisor (Level 2)
-        else if (lower.contains("security guard") || lower.contains("guard") || lower.contains("valet")) {
-            if (lower.contains("yelled") || lower.contains("shouted") || lower.contains("rude") || 
-                lower.contains("argued") || lower.contains("blamed") || lower.contains("polite")) {
-                role = "Security Supervisor / Chief Security Officer"; // Direct complaint AGAINST guard
-                priority = 3.1;
-                confidence = 93.5;
-            } else {
-                role = "Security Guard";
-                priority = 2.2;
-                confidence = 91.0;
-            }
-        }
-        // 6. Waiter / Server Misconduct -> Floor Supervisor (Level 2)
-        else if (lower.contains("waiter") || lower.contains("server")) {
-            if (lower.contains("spoiled") || lower.contains("yelled") || lower.contains("shouted") || 
-                lower.contains("rude") || lower.contains("blamed") || lower.contains("dropped") || lower.contains("attitude")) {
-                role = "Floor Supervisor"; // Direct complaint AGAINST waiter -> Floor Supervisor
-                priority = 3.2;
-                confidence = 94.5;
-            } else {
-                role = "Waiter / Waitress";
-                priority = 1.9;
-                confidence = 88.0;
-            }
-        }
-        // 7. Line Cook Fault -> Head Chef / Kitchen Manager (Level 2)
-        else if (lower.contains("line cook") || lower.contains("cook")) {
-            if (lower.contains("spoiled") || lower.contains("ruined") || lower.contains("blamed") || 
-                lower.contains("rude") || lower.contains("shouted") || lower.contains("yelled")) {
-                role = "Head Chef / Kitchen Manager"; // Direct complaint AGAINST cook -> Head Chef
-                priority = 3.5;
-                confidence = 94.5;
-            } else {
-                role = "General Chef / Line Cook";
-                priority = 2.1;
-                confidence = 89.0;
-            }
-        }
-        // 8. Bar & Beverage Issues -> Bar Supervisor (Level 2) or Barista/Bartender (Level 1)
-        else if (lower.contains("milk") || lower.contains("coffee") || lower.contains("drink") || lower.contains("tea") || lower.contains("latte")) {
-            if (lower.contains("expired") || lower.contains("spoiled") || lower.contains("sour")) {
-                role = "Bar Supervisor";
-                priority = 3.5;
-                confidence = 93.0;
-            } else {
-                role = "Barista";
-                priority = 2.0;
-                confidence = 88.0;
-            }
-        }
-        // 9. Operational Cleaning & Floor Requests -> Cleaner / Housekeeper (Level 1)
-        else if (lower.contains("clean") || lower.contains("smelly") || lower.contains("dirty") || lower.contains("wet") || lower.contains("restroom") || lower.contains("hotel")) {
-            role = "Cleaner / Housekeeper";
-            priority = (lower.contains("wet") || lower.contains("smelly")) ? 2.3 : 1.8;
-            confidence = 92.0;
-        }
-        // 10. Operational Food Issues -> General Chef / Line Cook (Level 1)
-        else if (lower.contains("food") || lower.contains("rice") || lower.contains("dish") || lower.contains("meal") || lower.contains("soup")) {
-            if (lower.contains("fly") || lower.contains("bug") || lower.contains("insect") || lower.contains("hair") || lower.contains("spoiled") || lower.contains("rotten")) {
-                role = "General Chef / Line Cook";
-                priority = 3.9;
-                confidence = 95.5;
-            } else {
-                role = "General Chef / Line Cook";
-                priority = 2.1;
-                confidence = 89.0;
-            }
-        }
-        // 11. Truly Ambiguous / Nonsensical Input -> Low Confidence (<50%)
-        else {
-            role = "Floor Supervisor";
-            priority = 1.5;
-            confidence = 38.5;
-            log.info("Ambiguous complaint context detected. Flagging low confidence score: {}%", confidence);
-        }
-
-        log.info("Local semantic result: Role='{}', Priority={}, Confidence={}%", role, priority, confidence);
-        return buildTriageResult(role, priority, confidence, feedback);
-    }
-
-    private Map<String, Object> buildTriageResult(String routedTitle, double priorityVal, double confidence, String feedback) {
+    private Map<String, Object> buildTriageResult(String routedTitle, double priorityVal,
+                                                  double confidence, boolean directAgainstBm) {
         Designation routedTo = registry.getByTitle(routedTitle);
         if (routedTo == null) {
-            routedTo = registry.getByTitle("Waiter / Waitress");
+            throw new ResponseStatusException(HttpStatus.BAD_GATEWAY,
+                    "Jev returned an unknown role: " + routedTitle);
         }
-
-        String lower = feedback.toLowerCase();
-        boolean isDirectAgainstBranchManager = lower.contains("branch manager") && !lower.contains("assistant");
 
         Map<String, Object> result = new HashMap<>();
         result.put("routedTo", routedTo.getTitle());
         result.put("routedLevel", routedTo.getLevel());
         result.put("priority", mapScoreToPriority(priorityVal));
         result.put("confidence", Math.round(confidence * 10.0) / 10.0);
-        result.put("isDirectAgainstBranchManager", isDirectAgainstBranchManager);
+        result.put("isDirectAgainstBranchManager", directAgainstBm);
 
         List<Map<String, Object>> history = new ArrayList<>();
         Map<String, Object> initialStep = new HashMap<>();
@@ -239,7 +107,6 @@ public class TypeSafeJevTriageService {
         history.add(initialStep);
 
         result.put("escalationHistory", history);
-
         return result;
     }
 

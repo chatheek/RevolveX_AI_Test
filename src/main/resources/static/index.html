@@ -38,9 +38,10 @@
                         body: JSON.stringify({ feedback })
                     });
                     const data = await res.json();
+                    if (!res.ok) throw new Error(data.message || data.error || "Request failed");
                     setTriage(data);
                 } catch (err) {
-                    alert("Error analyzing feedback");
+                    alert("Error analyzing feedback: " + err.message);
                 } finally {
                     setLoading(false);
                 }

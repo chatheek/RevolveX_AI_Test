@@ -1,9 +1,16 @@
 server:
   port: 8080
+  error:
+    include-message: always
 
 spring:
+  application:
+    name: triage
+  config:
+    # Loads TYPESAFE_API_KEY from a local .env file (git-ignored) if present.
+    # A real OS environment variable of the same name works too.
+    import: optional:file:.env[.properties]
   ai:
     typesafe:
-      base-url: https://api.experientiallabs.ai
+      api-key: ${TYPESAFE_API_KEY}
       model: jev-latest
-      api-key: ${EXPERIENTIAL_API_KEY:${TYPESAFE_API_KEY:xpl_6c43eaa51ddb929f292026cb52d8fce2061a7d5d}}
