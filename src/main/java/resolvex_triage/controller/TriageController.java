@@ -1,11 +1,13 @@
 package resolvex_triage.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import resolvex_triage.model.Designation;
 import resolvex_triage.repository.DesignationRegistry;
 import resolvex_triage.service.EscalationEngine;
 import resolvex_triage.service.TypeSafeJevTriageService;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -14,6 +16,9 @@ import java.util.*;
 @RequestMapping("/api/v1")
 @CrossOrigin(origins = "*")
 public class TriageController {
+
+    /** Below this Jev confidence (%) a decision is flagged for human review. */
+    private static final double REVIEW_THRESHOLD_PERCENT = 50.0;
 
     private final DesignationRegistry registry;
     private final TypeSafeJevTriageService triageService;
@@ -38,20 +43,37 @@ public class TriageController {
     }
 
     @PostMapping("/complaints/escalate")
+    @SuppressWarnings("unchecked")
     public Map<String, Object> escalateComplaint(@RequestBody Map<String, Object> payload) {
         String currentRole = (String) payload.get("currentRole");
-        boolean isDirectAgainstBranchManager = Boolean.parseBoolean(payload.getOrDefault("isDirectAgainstBranchManager", "false").toString());
-        List<Map<String, Object>> history = (List<Map<String, Object>>) payload.getOrDefault("history", new ArrayList<>());
+        if (currentRole == null || currentRole.isBlank()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Field 'currentRole' must not be empty");
+        }
+        String feedback = (String) payload.get("feedback");
+        boolean isDirectAgainstBranchManager = Boolean.parseBoolean(String.valueOf(payload.getOrDefault("isDirectAgainstBranchManager", "false")));
+        List<Map<String, Object>> history = new ArrayList<>(
+                (List<Map<String, Object>>) payload.getOrDefault("history", new ArrayList<>()));
+        List<String> previousTitles = history.stream()
+                .map(step -> String.valueOf(step.get("assignedTo"))).toList();
 
         log.info("REST Endpoint: Received escalation request from '{}'", currentRole);
 
-        Designation escalated = escalationEngine.escalate(currentRole, isDirectAgainstBranchManager);
+        EscalationEngine.Decision decision =
+                escalationEngine.escalate(feedback, currentRole, isDirectAgainstBranchManager, previousTitles);
+        Designation escalated = decision.target();
 
-        boolean limitReached = currentRole.equals(escalated.getTitle());
+        String action;
+        if (decision.limitReached()) {
+            action = "Maximum Escalation Limit Reached";
+        } else if (decision.aiDecided()) {
+            action = "AI Escalation (Jev, " + decision.confidence() + "% confidence)";
+        } else {
+            action = "Escalation (only one allowed target)";
+        }
 
         Map<String, Object> newStep = new HashMap<>();
         newStep.put("step", history.size() + 1);
-        newStep.put("action", limitReached ? "Maximum Escalation Limit Reached" : "Manual/SLA Escalation");
+        newStep.put("action", action);
         newStep.put("assignedTo", escalated.getTitle());
         newStep.put("level", escalated.getLevel());
         newStep.put("timestamp", new Date().toString());
@@ -61,8 +83,11 @@ public class TriageController {
         response.put("escalatedTo", escalated.getTitle());
         response.put("escalatedLevel", escalated.getLevel());
         response.put("escalationHistory", history);
-        response.put("isLimitReached", limitReached);
-
+        response.put("isLimitReached", decision.limitReached());
+        response.put("decidedBy", decision.aiDecided() ? "Jev AI" : "Hierarchy rule");
+        response.put("confidence", decision.confidence());
+        response.put("needsReview", decision.confidence() != null && decision.confidence() < REVIEW_THRESHOLD_PERCENT);
+        response.put("alternatives", decision.alternatives());
         return response;
     }
 }

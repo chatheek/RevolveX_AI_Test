@@ -1,11 +1,12 @@
 server:
   port: 8080
-  error:
-    include-message: always
 
 spring:
   application:
     name: triage
+  web:
+    error:
+      include-message: always
   config:
     # Loads TYPESAFE_API_KEY from a local .env file (git-ignored) if present.
     # A real OS environment variable of the same name works too.

@@ -18,6 +18,7 @@
             const [hierarchy, setHierarchy] = useState({});
             const [feedback, setFeedback] = useState("");
             const [loading, setLoading] = useState(false);
+            const [escalating, setEscalating] = useState(false);
             const [triage, setTriage] = useState(null);
 
             useEffect(() => {
@@ -39,7 +40,7 @@
                     });
                     const data = await res.json();
                     if (!res.ok) throw new Error(data.message || data.error || "Request failed");
-                    setTriage(data);
+                    setTriage({ ...data, feedback });
                 } catch (err) {
                     alert("Error analyzing feedback: " + err.message);
                 } finally {
@@ -48,26 +49,32 @@
             };
 
             const handleEscalate = async () => {
-                if (!triage) return;
+                if (!triage || escalating) return;
+                setEscalating(true);
                 try {
                     const res = await fetch("/api/v1/complaints/escalate", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ 
+                        body: JSON.stringify({
+                            feedback: triage.feedback,
                             currentRole: triage.routedTo,
                             isDirectAgainstBranchManager: triage.isDirectAgainstBranchManager,
                             history: triage.escalationHistory
                         })
                     });
                     const data = await res.json();
+                    if (!res.ok) throw new Error(data.message || data.error || "Request failed");
                     setTriage({
                         ...triage,
                         routedTo: data.escalatedTo,
                         routedLevel: data.escalatedLevel,
-                        escalationHistory: data.escalationHistory
+                        escalationHistory: data.escalationHistory,
+                        confidence: data.confidence != null ? data.confidence : triage.confidence
                     });
                 } catch (err) {
-                    alert("Escalation failed");
+                    alert("Escalation failed: " + err.message);
+                } finally {
+                    setEscalating(false);
                 }
             };
 
@@ -141,14 +148,14 @@
                             {triage && (
                                 <button
                                     onClick={handleEscalate}
-                                    disabled={isEscalationDisabled()}
+                                    disabled={isEscalationDisabled() || escalating}
                                     className={`w-full mt-4 py-3 font-bold rounded-lg transition ${
                                         isEscalationDisabled()
                                             ? "bg-slate-700 text-slate-500 cursor-not-allowed border border-slate-600"
                                             : "bg-rose-600 hover:bg-rose-500 text-white"
                                     }`}
                                 >
-                                    {isEscalationDisabled() ? "Maximum Escalation Level Reached 🔒" : "Escalate Complaint ⬆"}
+                                    {isEscalationDisabled() ? "Maximum Escalation Level Reached 🔒" : escalating ? "Jev AI Escalating..." : "Escalate Complaint ⬆ (AI)"}
                                 </button>
                             )}
                         </div>

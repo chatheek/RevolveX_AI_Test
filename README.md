@@ -3,12 +3,12 @@
 AI-powered complaint triage prototype for a restaurant/hotel branch. A customer complaint is sent to the
 **Jev** model from [Typesafe.ai](https://typesafe.ai/) (through the
 [Spring AI Typesafe](https://spring-ai-community.github.io/spring-ai-typesafe/latest-snapshot/) library).
-Jev decides which staff role should handle it, how urgent it is, and how confident it is. A small
-escalation engine then moves the complaint up the staff hierarchy on demand.
+Jev decides which staff role should handle it, how urgent it is, and how confident it is. When the
+**Escalate** button is pressed, Jev also decides which higher role should take the complaint next.
 
-> **All routing decisions are made by the Jev AI model.** The earlier local keyword-matching analyzer
-> and the hand-written REST call have been removed completely. If the AI service is unreachable, the
-> API returns an error (HTTP 502) instead of guessing with keywords.
+> **All routing and escalation decisions are made by the Jev AI model.** The earlier local keyword-matching
+> analyzer, the fixed escalation ladder and the hand-written REST call have been removed. If the AI service is
+> unreachable, the API returns an error (HTTP 502) instead of guessing.
 
 ## Contents
 
@@ -38,8 +38,18 @@ escalation engine then moves the complaint up the staff hierarchy on demand.
    | `against_branch_manager` | `Noul`   | 0-1 probability that the complaint targets the Branch Manager personally. |
 
 3. The service converts Jev's answers into the triage result (role, level, priority, confidence %).
-4. `POST /api/v1/complaints/escalate` walks the complaint up the hierarchy using `EscalationEngine`.
-   Tenant Admin (Level 5) is only reachable when the complaint is directly against the Branch Manager.
+4. `POST /api/v1/complaints/escalate` asks Jev who should take the complaint next (`EscalationEngine`). Jev gets the
+   complaint text, the role it is currently with and the roles it has already been with, and answers one `Choice`
+   question (`escalate_to`). Hierarchy guardrails decide *which options Jev may choose from*, so the AI can never move
+   a complaint down or pick a nonsensical role:
+   - only roles **above** the current level are offered;
+   - **Tenant Admin** is offered only when the complaint is about the Branch Manager (`isDirectAgainstBranchManager`);
+   - if there is **no** higher role, the limit is reached and Jev is not called;
+   - if there is **only one** allowed role (e.g. Assistant Branch Manager -> Branch Manager), it is used without calling Jev.
+
+   Jev is told to prefer the lowest-level role that owns the problem (for example the Bar Supervisor for a bartender
+   complaint) and to skip straight to a manager only for serious misconduct, safety or legal risk, an unresolved
+   complaint, or a complaint about the current role's own supervisor.
 
 The routing instruction given to Jev ("who should respond first"): a complaint about the behaviour or mistake of a
 staff role goes to that role; systemic issues go to the Level 2 supervisor who owns them; a manager who failed
@@ -178,13 +188,38 @@ Request:
 
 ```json
 {
-  "currentRole": "Floor Supervisor",
+  "feedback": "The bartender ignored me for 20 minutes and was rude.",
+  "currentRole": "Bartender",
   "isDirectAgainstBranchManager": false,
-  "history": []
+  "history": [ { "step": 1, "assignedTo": "Bartender", "level": 1 } ]
 }
 ```
 
-Response: `escalatedTo`, `escalatedLevel`, `escalationHistory`, `isLimitReached`.
+`feedback` is the original complaint text (the web page sends it automatically) and is required whenever Jev has
+to choose. `history` is the `escalationHistory` returned by the previous call.
+
+Response:
+
+```json
+{
+  "escalatedTo": "Bar Supervisor",
+  "escalatedLevel": 2,
+  "isLimitReached": false,
+  "decidedBy": "Jev AI",
+  "confidence": 88.0,
+  "needsReview": false,
+  "alternatives": [ { "role": "Assistant Branch Manager", "probability": 11.0 } ],
+  "escalationHistory": [ "...previous steps...", { "step": 2, "action": "AI Escalation (Jev, 88.0% confidence)", "assignedTo": "Bar Supervisor", "level": 2 } ]
+}
+```
+
+- `decidedBy` is `Jev AI` when Jev picked among several roles, or `Hierarchy rule` when there was only one allowed
+  role or the limit was reached (`confidence` is then `null`).
+- `needsReview` is `true` when Jev's confidence is under 50%.
+- Errors: `400` for an unknown role or missing `feedback`, `502` if the Jev call fails or returns a role that is not allowed.
+
+Typical live results: Bartender -> Bar Supervisor -> Assistant Branch Manager -> Branch Manager; a complaint about the
+Branch Manager is triaged straight to Tenant Admin and stays there.
 
 ## Configuration
 
@@ -197,6 +232,7 @@ Response: `escalatedTo`, `escalatedLevel`, `escalationHistory`, `isLimitReached`
 | `spring.ai.typesafe.model`  | `jev-latest`                       | Jev model name or alias.                            |
 | `spring.ai.typesafe.base-url`| `https://api.typesafe.ai` (library default) | API root; normally leave unset.            |
 | `spring.ai.typesafe.retry.*`| library defaults (2 retries, backoff) | Retry behaviour for transient failures.          |
+| `spring.web.error.include-message` | `always`                    | Shows the error text in API error responses (Spring Boot 4 name; it was `server.error.*` in Boot 3). |
 
 The app will not start without an API key (`TYPESAFE_API_KEY`), because the Jev client is only created when a key is configured.
 
@@ -305,7 +341,7 @@ src/main/java/resolvex_triage/
   TriageApplication.java              Spring Boot entry point
   controller/TriageController.java    REST endpoints
   service/TypeSafeJevTriageService.java   Jev AI triage (Typesafe client)
-  service/EscalationEngine.java       Hierarchy escalation rules
+  service/EscalationEngine.java       AI escalation (Jev) with hierarchy guardrails
   repository/DesignationRegistry.java In-memory staff roles
   model/Designation.java              Role model
 src/main/resources/
@@ -340,7 +376,10 @@ meaning of each routing option, so editing them changes routing behaviour. Re-ru
 ./mvnw test
 ```
 
-The context-load test uses a dummy API key and makes no network calls.
+The tests use a dummy API key or a mocked Jev client and make no network calls. `EscalationEngineTest` checks the
+escalation guardrails: the ceiling at Tenant Admin and Branch Manager, no AI call when only one target exists,
+that Jev is only offered roles above the current level, that Tenant Admin is offered only for Branch Manager
+complaints, and that a role Jev returns outside the allowed list is rejected.
 
 ## Security notes
 
