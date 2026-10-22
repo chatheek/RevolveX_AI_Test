@@ -110,10 +110,11 @@ public class TypeSafeJevTriageService {
         return result;
     }
 
+    /** Jev score answers are 0-based: 0=Low, 1=Medium, 2=High, 3=Critical (continuous in between). */
     private String mapScoreToPriority(double score) {
-        if (score >= 3.5) return "Critical Priority";
-        if (score >= 2.7) return "High Priority";
-        if (score >= 1.8) return "Medium Priority";
+        if (score >= 2.5) return "Critical Priority";
+        if (score >= 1.7) return "High Priority";
+        if (score >= 0.8) return "Medium Priority";
         return "Low Priority";
     }
 }
