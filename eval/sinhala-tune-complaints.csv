@@ -1,41 +1,41 @@
-id,complaint,expected_role,expected_level
-1,ජංගම යෙදුම (mobile app) එක ගෙවීම් තිරයේදී නිතරම හිර වෙනවා.,Tenant Admin,5
-2,මගේ පක්ෂපාතීත්ව (loyalty) ලකුණු පද්ධතිය යාවත්කාලීන කිරීමෙන් පසු අතුරුදහන් වුණා.,Tenant Admin,5
-3,මෙම අවන්හලේ සේවක සංඛ්‍යාව ඉතා අඩුයි; සෑම වතාවකම අපට බොහෝ වේලාවක් බලා සිටීමට සිදුවෙනවා.,Branch Manager,4
-4,මිල ඉහළ ගියත් කෑම කොටස්වල ප්‍රමාණය කුඩා වෙලා.,Branch Manager,4
-5,මම පැමිණිල්ලක් කළාම ෂිෆ්ට් කළමනාකරු එය තකා නොබලා සිටියා.,Assistant Branch Manager,3
-6,සංගීතය ඉතා ඝෝෂාකාරී වුණා; කළමනාකරු එය අඩු කිරීම ප්‍රතික්ෂේප කළා.,Assistant Branch Manager,3
-7,අපේ මේසයට කෑම ලැබුණේ පැය දෙකකට පසුවයි.,Head Chef / Kitchen Manager,2
-8,ඇලර්ජියක් ගැන කීවත් කුස්සියෙන් ඒ අමුද්‍රව්‍යය දමා කෑම එවා තිබුණා.,Head Chef / Kitchen Manager,2
-9,ආහාර ශාලාවේ කිසිවෙකු භාරව නොසිටි නිසා ශාලාව අවුල් සහගතව තිබුණා.,Floor Supervisor,2
-10,සේවාදායකයෙකු අපට පවරා ගැනීමට මිනිත්තු විස්සක් බලා සිටීමට සිදු වුණා.,Floor Supervisor,2
-11,ජ්‍යෙෂ්ඨ වේටර්වරයා වයින් ගැන ඇසූ විට ඉතා උඩඟු ලෙස හැසිරුණා.,Head Waiter,2
-12,ප්‍රධාන වේටර් අපව ඉක්මනින් කෑම ඉවර කරවීමට තදින් බල කළා.,Head Waiter,2
-13,බාර් එකේ පිරිසිදු වීදුරු ඉතිරි නොවී තිබුණා.,Bar Supervisor,2
-14,කොක්ටේල් සෑදීමට අවශ්‍ය අමුද්‍රව්‍ය නොමැති නිසා ඒවා ලබාගත නොහැකි වුණා.,Bar Supervisor,2
-15,ඩිලිවරි ට්‍රැකින් පද්ධතිය සම්පූර්ණයෙන් නරක් වී වැරදි තත්ත්වයක් පෙන්වනවා.,Delivery Supervisor,2
-16,ඩිස්පැච් අංශය මගේ ඇණවුම වැරදි දිශාවට යවා තිබුණා.,Delivery Supervisor,2
-17,ආහාර ශාලාවේ කැරපොත්තෙකු දුටුවා; සනීපාරක්ෂාව ඉතා අඩුයි.,Cleaning Supervisor,2
-18,ආහාර ශාලාවේ බිම ඉතා ලිස්සන සුළු නිසා භයානක වුණා.,Cleaning Supervisor,2
-19,වාහන නැවතුම් පළේ විදුලි පහන් නොමැති නිසා ආරක්ෂිත නැහැ.,Security Supervisor / Chief Security Officer,2
-20,ආරක්ෂක කැමරා කඩා වැටී ඇති අතර ආරක්ෂක ක්‍රමවේද කිසිවක් නැහැ.,Security Supervisor / Chief Security Officer,2
-21,පිළිගන්නා කාන්තාව අප ඇතුල් වෙද්දී අපව නොසලකා හැරියා.,Host / Hostess,1
-22,අපේ වෙන්කිරීම නැති වුණා; සමාවක් ඉල්ලුවේත් නැහැ.,Host / Hostess,1
-23,වේටර් අපේ ඇණවුම සම්පූර්ණයෙන්ම අමතක කළා.,Waiter / Waitress,1
-24,වේටර් අපට ඉතා නරක ආකල්පයකින් කතා කළා.,Waiter / Waitress,1
-25,මේසය කලින් පාරිභෝගිකයන්ගේ සිරප් ගෑවී ඇලෙන සුළුව තිබුණා.,Busser / Table Cleaner,1
-26,මේසය පිරිසිදු කරන්නා අප කමින් සිටිද්දී පිඟන් ඉවත් කළා.,Busser / Table Cleaner,1
-27,කැෂියර් අපෙන් ඇණවුම් නොකළ දේවල් සඳහා වැඩි මුදලක් අය කළා.,Cashier / POS Operator,1
-28,ගෙවීම් යන්ත්‍රය භාවිතා කරන්නා වැරදි වට්ටම් කේතයක් යෙදුවා.,Cashier / POS Operator,1
-29,බාර්ටෙන්ඩර් මිනිත්තු විස්සක් මා නොසලකා හැරියා.,Bartender,1
-30,මගේ කොක්ටේල් එකේ මත්පැන් කිසිවක් නොතිබුණා; ඉතා නරක ලෙස සාදා තිබුණා.,Bartender,1
-31,කපුචිනෝ එක උණුසුම් නැති අතර කිරි පිළිස්සී තිබුණා.,Barista,1
-32,කෝපි කෝප්පය කැඩී කුණු වී තිබුණා.,Barista,1
-33,වැසිකිළියේ ටොයිලට් පේපර් සහ සබන් ඉතිරි නැහැ.,Cleaner / Housekeeper,1
-34,වැසිකිළියේ කුණු බඳුන් පිරී බිම වැටී තිබුණා.,Cleaner / Housekeeper,1
-35,ආරක්ෂක නිලධාරියා දොරකඩදී අපේ අමුත්තන්ට ඉතා අසභ්‍ය ලෙස හැසිරුණා.,Security Guard,1
-36,ආරක්ෂකයා පිටත දොර අසල පුටුවක නිදාගෙන සිටියා.,Security Guard,1
-37,රයිඩර් මගේ කෑම වැරදි ස්ථානයකට දමා ගියා.,Delivery Rider / Driver,1
-38,පීසා එක පෙට්ටියේ එක් පැත්තකට තැළී විනාශ වී තිබුණා.,Delivery Rider / Driver,1
-39,බර්ගර් එකේ පැටි අමු වී තිබුණා.,General Chef / Line Cook,1
-40,මගේ පාස්ටා එකේ කෙස් ගහක් තිබුණා.,General Chef / Line Cook,1
+id,complaint,expected_role,expected_level,old_expected_role,uncertain
+1,ජංගම යෙදුම (mobile app) එක ගෙවීම් තිරයේදී නිතරම හිර වෙනවා.,Tenant Admin,5,Tenant Admin,
+2,මගේ පක්ෂපාතීත්ව (loyalty) ලකුණු පද්ධතිය යාවත්කාලීන කිරීමෙන් පසු අතුරුදහන් වුණා.,Tenant Admin,5,Tenant Admin,
+3,මෙම අවන්හලේ සේවක සංඛ්‍යාව ඉතා අඩුයි; සෑම වතාවකම අපට බොහෝ වේලාවක් බලා සිටීමට සිදුවෙනවා.,Branch Manager,4,Branch Manager,
+4,මිල ඉහළ ගියත් කෑම කොටස්වල ප්‍රමාණය කුඩා වෙලා.,Branch Manager,4,Branch Manager,
+5,මම පැමිණිල්ලක් කළාම ෂිෆ්ට් කළමනාකරු එය තකා නොබලා සිටියා.,Branch Manager,4,Assistant Branch Manager,
+6,සංගීතය ඉතා ඝෝෂාකාරී වුණා; කළමනාකරු එය අඩු කිරීම ප්‍රතික්ෂේප කළා.,Branch Manager,4,Assistant Branch Manager,
+7,අපේ මේසයට කෑම ලැබුණේ පැය දෙකකට පසුවයි.,Head Chef / Kitchen Manager,2,Head Chef / Kitchen Manager,
+8,ඇලර්ජියක් ගැන කීවත් කුස්සියෙන් ඒ අමුද්‍රව්‍යය දමා කෑම එවා තිබුණා.,Head Chef / Kitchen Manager,2,Head Chef / Kitchen Manager,
+9,ආහාර ශාලාවේ කිසිවෙකු භාරව නොසිටි නිසා ශාලාව අවුල් සහගතව තිබුණා.,Floor Supervisor,2,Floor Supervisor,
+10,සේවාදායකයෙකු අපට පවරා ගැනීමට මිනිත්තු විස්සක් බලා සිටීමට සිදු වුණා.,Floor Supervisor,2,Floor Supervisor,
+11,ජ්‍යෙෂ්ඨ වේටර්වරයා වයින් ගැන ඇසූ විට ඉතා උඩඟු ලෙස හැසිරුණා.,Assistant Branch Manager,3,Head Waiter,
+12,ප්‍රධාන වේටර් අපව ඉක්මනින් කෑම ඉවර කරවීමට තදින් බල කළා.,Assistant Branch Manager,3,Head Waiter,
+13,බාර් එකේ පිරිසිදු වීදුරු ඉතිරි නොවී තිබුණා.,Bar Supervisor,2,Bar Supervisor,
+14,කොක්ටේල් සෑදීමට අවශ්‍ය අමුද්‍රව්‍ය නොමැති නිසා ඒවා ලබාගත නොහැකි වුණා.,Bar Supervisor,2,Bar Supervisor,
+15,ඩිලිවරි ට්‍රැකින් පද්ධතිය සම්පූර්ණයෙන් නරක් වී වැරදි තත්ත්වයක් පෙන්වනවා.,Delivery Supervisor,2,Delivery Supervisor,
+16,ඩිස්පැච් අංශය මගේ ඇණවුම වැරදි දිශාවට යවා තිබුණා.,Delivery Supervisor,2,Delivery Supervisor,
+17,ආහාර ශාලාවේ කැරපොත්තෙකු දුටුවා; සනීපාරක්ෂාව ඉතා අඩුයි.,Cleaning Supervisor,2,Cleaning Supervisor,
+18,ආහාර ශාලාවේ බිම ඉතා ලිස්සන සුළු නිසා භයානක වුණා.,Cleaning Supervisor,2,Cleaning Supervisor,
+19,වාහන නැවතුම් පළේ විදුලි පහන් නොමැති නිසා ආරක්ෂිත නැහැ.,Security Supervisor / Chief Security Officer,2,Security Supervisor / Chief Security Officer,
+20,ආරක්ෂක කැමරා කඩා වැටී ඇති අතර ආරක්ෂක ක්‍රමවේද කිසිවක් නැහැ.,Security Supervisor / Chief Security Officer,2,Security Supervisor / Chief Security Officer,
+21,පිළිගන්නා කාන්තාව අප ඇතුල් වෙද්දී අපව නොසලකා හැරියා.,Floor Supervisor,2,Host / Hostess,
+22,අපේ වෙන්කිරීම නැති වුණා; සමාවක් ඉල්ලුවේත් නැහැ.,Host / Hostess,1,Host / Hostess,
+23,වේටර් අපේ ඇණවුම සම්පූර්ණයෙන්ම අමතක කළා.,Waiter / Waitress,1,Waiter / Waitress,
+24,වේටර් අපට ඉතා නරක ආකල්පයකින් කතා කළා.,Floor Supervisor,2,Waiter / Waitress,
+25,මේසය කලින් පාරිභෝගිකයන්ගේ සිරප් ගෑවී ඇලෙන සුළුව තිබුණා.,Busser / Table Cleaner,1,Busser / Table Cleaner,
+26,මේසය පිරිසිදු කරන්නා අප කමින් සිටිද්දී පිඟන් ඉවත් කළා.,Busser / Table Cleaner,1,Busser / Table Cleaner,
+27,කැෂියර් අපෙන් ඇණවුම් නොකළ දේවල් සඳහා වැඩි මුදලක් අය කළා.,Cashier / POS Operator,1,Cashier / POS Operator,
+28,ගෙවීම් යන්ත්‍රය භාවිතා කරන්නා වැරදි වට්ටම් කේතයක් යෙදුවා.,Cashier / POS Operator,1,Cashier / POS Operator,
+29,බාර්ටෙන්ඩර් මිනිත්තු විස්සක් මා නොසලකා හැරියා.,Bar Supervisor,2,Bartender,
+30,මගේ කොක්ටේල් එකේ මත්පැන් කිසිවක් නොතිබුණා; ඉතා නරක ලෙස සාදා තිබුණා.,Bartender,1,Bartender,
+31,කපුචිනෝ එක උණුසුම් නැති අතර කිරි පිළිස්සී තිබුණා.,Barista,1,Barista,
+32,කෝපි කෝප්පය කැඩී කුණු වී තිබුණා.,Barista,1,Barista,
+33,වැසිකිළියේ ටොයිලට් පේපර් සහ සබන් ඉතිරි නැහැ.,Cleaner / Housekeeper,1,Cleaner / Housekeeper,
+34,වැසිකිළියේ කුණු බඳුන් පිරී බිම වැටී තිබුණා.,Cleaner / Housekeeper,1,Cleaner / Housekeeper,
+35,ආරක්ෂක නිලධාරියා දොරකඩදී අපේ අමුත්තන්ට ඉතා අසභ්‍ය ලෙස හැසිරුණා.,Security Supervisor / Chief Security Officer,2,Security Guard,
+36,ආරක්ෂකයා පිටත දොර අසල පුටුවක නිදාගෙන සිටියා.,Security Supervisor / Chief Security Officer,2,Security Guard,
+37,රයිඩර් මගේ කෑම වැරදි ස්ථානයකට දමා ගියා.,Delivery Rider / Driver,1,Delivery Rider / Driver,
+38,පීසා එක පෙට්ටියේ එක් පැත්තකට තැළී විනාශ වී තිබුණා.,Delivery Rider / Driver,1,Delivery Rider / Driver,
+39,බර්ගර් එකේ පැටි අමු වී තිබුණා.,General Chef / Line Cook,1,General Chef / Line Cook,
+40,මගේ පාස්ටා එකේ කෙස් ගහක් තිබුණා.,General Chef / Line Cook,1,General Chef / Line Cook,

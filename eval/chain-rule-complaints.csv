@@ -1,0 +1,42 @@
+id,complaint,expected_role,expected_level
+401,The hostess sneered at us and told us to stop complaining about the wait.,Floor Supervisor,2
+402,Our waiter was openly rude and rolled his eyes at my mother.,Floor Supervisor,2
+403,The busser shouted at us to hurry up and leave the table.,Floor Supervisor,2
+404,The cashier laughed at me when my card was declined.,Floor Supervisor,2
+405,The bartender swore at me when I asked for a refill.,Bar Supervisor,2
+406,The barista mocked my accent while taking my order.,Bar Supervisor,2
+407,The cleaner shouted at a child for using the restroom while he was mopping.,Cleaning Supervisor,2
+408,The security guard pushed my father and swore at him at the entrance.,Security Supervisor / Chief Security Officer,2
+409,The delivery rider was abusive and threatened me when I complained about the cold food.,Delivery Supervisor,2
+410,The line cook came out of the kitchen and shouted at us about our complaint.,Head Chef / Kitchen Manager,2
+411,The host wrote our name down wrongly and gave our table to another party.,Host / Hostess,1
+412,The waiter brought a prawn dish even though we ordered chicken.,Waiter / Waitress,1
+413,The table was cleared but left covered in wet crumbs.,Busser / Table Cleaner,1
+414,The cashier added an extra item to our bill by mistake.,Cashier / POS Operator,1
+415,The bartender made my gin and tonic with way too little gin.,Bartender,1
+416,The barista made my latte with full-fat milk instead of oat milk.,Barista,1
+417,The restroom floor was wet and the soap dispenser was empty.,Cleaner / Housekeeper,1
+418,The guard at the gate forgot to check my ticket and waved everyone through.,Security Guard,1
+419,The rider delivered my order to the neighbouring building.,Delivery Rider / Driver,1
+420,My omelette was overcooked and the eggs were rubbery.,General Chef / Line Cook,1
+421,The head waiter humiliated a young waitress in front of our table.,Assistant Branch Manager,3
+422,The floor supervisor ignored our complaint and walked away while we were talking.,Assistant Branch Manager,3
+423,The bar supervisor shouted at us for asking about the drink prices.,Assistant Branch Manager,3
+424,The cleaning supervisor argued rudely with a customer about a spill.,Assistant Branch Manager,3
+425,The chief security officer threatened to throw us out for taking photos.,Assistant Branch Manager,3
+426,The delivery supervisor insulted me on the phone when I asked for a refund.,Assistant Branch Manager,3
+427,The head chef swore at a customer who sent back a dish.,Assistant Branch Manager,3
+428,The assistant branch manager lied to us about a refund and was very dismissive.,Branch Manager,4
+429,The shift manager shouted at a waiter in front of everyone and ignored our complaint.,Branch Manager,4
+430,The branch manager insulted my family and refused to listen.,Tenant Admin,5
+431,The general manager threatened to call the police when I asked for a refund.,Tenant Admin,5
+432,The bar has had no clean glasses all week.,Bar Supervisor,2
+433,The delivery tracking page shows the wrong status for every order.,Delivery Supervisor,2
+434,The kitchen is taking over an hour to send out every order.,Head Chef / Kitchen Manager,2
+435,There are cockroaches in the dining area and the kitchen entrance.,Cleaning Supervisor,2
+436,The car park has no lighting and the security cameras are not working.,Security Supervisor / Chief Security Officer,2
+437,Nobody seems to be in charge of the dining room; tables are left unattended.,Floor Supervisor,2
+438,Prices here are far higher than at your other branches and portions are tiny.,Branch Manager,4
+439,The restaurant is permanently understaffed and the menu keeps changing.,Branch Manager,4
+440,The mobile app crashes every time I try to pay and my loyalty points disappeared.,Tenant Admin,5
+441,Gift cards bought online do not work at any of your locations.,Tenant Admin,5

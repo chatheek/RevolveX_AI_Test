@@ -1,251 +1,251 @@
-id,complaint,expected_role,expected_level
-1,The corporate website keeps crashing when I try to update my account.,Tenant Admin,5
-2,Franchise promotions advertised on national TV aren't honored in the system.,Tenant Admin,5
-3,The rewards points multiplier didn't apply during the weekend promo.,Tenant Admin,5
-4,Account deletion requests through the main portal are completely ignored.,Tenant Admin,5
-5,The mobile app logs me out every time I try to finalize an order.,Tenant Admin,5
-6,Push notifications for the app are broken and spamming my phone.,Tenant Admin,5
-7,The global gift card I bought online shows a zero balance.,Tenant Admin,5
-8,System-wide pricing on the app doesn't match the in-store pricing.,Tenant Admin,5
-9,The feedback form on the main corporate site returns a 404 error.,Tenant Admin,5
-10,My VIP membership status was inexplicably downgraded after the patch.,Tenant Admin,5
-11,The franchising contact email has been bouncing for weeks.,Tenant Admin,5
-12,Integration with third-party delivery apps is constantly failing on your end.,Tenant Admin,5
-13,The loyalty program terms were changed without any email notification.,Tenant Admin,5
-14,The quality of ingredients at this specific branch is noticeably worse than others.,Branch Manager,4
-15,The restaurant was severely understaffed on a busy holiday weekend.,Branch Manager,4
-16,The new decor feels cheap and ruins the ambiance of the restaurant.,Branch Manager,4
-17,There's no consistency; the menu changes every month without warning.,Branch Manager,4
-18,Management ignored my email regarding a severe allergy incident.,Branch Manager,4
-19,"The branch hours online say open until 11 PM, but doors locked at 9:30 PM.",Branch Manager,4
-20,Prices at this location are 20% higher than the branch two towns over.,Branch Manager,4
-21,The overall hygiene of the dining area has degraded over the last year.,Branch Manager,4
-22,Community events held at this location are poorly organized.,Branch Manager,4
-23,The parking validation policy was changed but no signs were put up.,Branch Manager,4
-24,The local branch social media account is posting inappropriate content.,Branch Manager,4
-25,"Management allows large, rowdy parties to ruin the experience for regular diners.",Branch Manager,4
-26,I requested to speak to the GM and was told they never come in on weekends.,Branch Manager,4
-27,The shift manager was completely unapologetic when our table collapsed.,Assistant Branch Manager,3
-28,I called to complain about the noise level and the manager hung up on me.,Assistant Branch Manager,3
-29,The AC was broken and the shift manager made zero effort to provide fans.,Assistant Branch Manager,3
-30,The manager was visibly yelling at a junior staff member in front of guests.,Assistant Branch Manager,3
-31,They refused to comp a meal that had a literal piece of glass in it.,Assistant Branch Manager,3
-32,The assistant manager blamed the kitchen instead of fixing the issue.,Assistant Branch Manager,3
-33,"When we pointed out the dirty table, the manager just gave us a dirty look.",Assistant Branch Manager,3
-34,The shift leader allowed someone to vape inside the restaurant.,Assistant Branch Manager,3
-35,I asked for a refund for a terrible meal and the manager threatened to call the cops.,Assistant Branch Manager,3
-36,The manager was chatting with friends while the queue went out the door.,Assistant Branch Manager,3
-37,They gave our reserved table away because we were 2 minutes late.,Assistant Branch Manager,3
-38,The assistant manager seemed completely untrained on how to process a refund.,Assistant Branch Manager,3
-39,"When I raised a concern about raw food, the manager argued with me.",Assistant Branch Manager,3
-40,Our entire table's food came out at completely different times.,Head Chef / Kitchen Manager,2
-41,The kitchen ran out of chicken by 7 PM on a Saturday.,Head Chef / Kitchen Manager,2
-42,My steak was served on a freezing cold plate.,Head Chef / Kitchen Manager,2
-43,We could hear the kitchen staff screaming profanities at each other.,Head Chef / Kitchen Manager,2
-44,The vegan dish was accidentally garnished with bacon bits.,Head Chef / Kitchen Manager,2
-45,The food took over two hours to arrive after ordering.,Head Chef / Kitchen Manager,2
-46,The plating was a disaster; sauce was smeared all over the edge of the bowl.,Head Chef / Kitchen Manager,2
-47,The kitchen sent out the wrong side dishes for our entire party.,Head Chef / Kitchen Manager,2
-48,The fish was terribly overcooked and smelled like ammonia.,Head Chef / Kitchen Manager,2
-49,Every dish we ordered was overwhelmingly salted.,Head Chef / Kitchen Manager,2
-50,The head chef refused to accommodate a simple garlic allergy.,Head Chef / Kitchen Manager,2
-51,The quality control is awful; my burger bun was completely moldy.,Head Chef / Kitchen Manager,2
-52,The kitchen alarm kept beeping loudly for 30 minutes straight.,Head Chef / Kitchen Manager,2
-53,"No one was directing the servers, leaving half the room ignored.",Floor Supervisor,2
-54,The host stand was empty for 15 minutes while supervisors did nothing.,Floor Supervisor,2
-55,Waitstaff were arguing over tables right in front of us.,Floor Supervisor,2
-56,The floor plan was crammed so tight we couldn't push our chairs back.,Floor Supervisor,2
-57,Nobody checked on us after the food was dropped off.,Floor Supervisor,2
-58,The flow of the restaurant is chaotic; staff keep bumping into guests.,Floor Supervisor,2
-59,Empty glasses and plates piled up everywhere with no one managing the bussers.,Floor Supervisor,2
-60,The supervisor was on their phone leaning against a wall.,Floor Supervisor,2
-61,We were seated in a closed section and completely forgotten about.,Floor Supervisor,2
-62,Staff rotation is terrible; we had 4 different servers in one hour.,Floor Supervisor,2
-63,The dining area was freezing but the supervisor refused to adjust the thermostat.,Floor Supervisor,2
-64,A spill in the main aisle was left unmopped for 20 minutes.,Floor Supervisor,2
-65,The supervisor rudely told us we had to leave because of a time limit we weren't warned about.,Floor Supervisor,2
-66,The senior server mocked my pronunciation of a wine on the menu.,Head Waiter,2
-67,The head waiter rushed us through our meal to turn the table.,Head Waiter,2
-68,They dropped a tray of drinks near us and didn't even apologize.,Head Waiter,2
-69,The senior staff member had terrible body odor.,Head Waiter,2
-70,They completely ignored the women at the table and only spoke to my husband.,Head Waiter,2
-71,The head waiter recommended a dish and then admitted they'd never tried it.,Head Waiter,2
-72,They forgot to put in our appetizers and lied saying the kitchen was backed up.,Head Waiter,2
-73,The head waiter was incredibly condescending when we asked for ketchup.,Head Waiter,2
-74,They rolled their eyes when we asked to split the bill.,Head Waiter,2
-75,The senior waiter kept up-selling aggressively after we said no three times.,Head Waiter,2
-76,They brought the wrong vintage of wine and tried to pass it off as what we ordered.,Head Waiter,2
-77,The head waiter was visibly intoxicated during service.,Head Waiter,2
-78,They hovered over us uncomfortably while we were paying the tip.,Head Waiter,2
-79,The bar area was completely out of clean glasses by 9 PM.,Bar Supervisor,2
-80,The draft beer selection was mostly tapped out.,Bar Supervisor,2
-81,The bar supervisor was taking shots with patrons behind the bar.,Bar Supervisor,2
-82,The signature cocktails were all unavailable due to 'missing prep'.,Bar Supervisor,2
-83,The bar floor was covered in spilled alcohol and extremely sticky.,Bar Supervisor,2
-84,They ran out of ice and tried to serve warm white wine.,Bar Supervisor,2
-85,The bar manager refused to honor happy hour pricing at 5:55 PM.,Bar Supervisor,2
-86,"The garnishes looked old, bruised, and unsanitary.",Bar Supervisor,2
-87,The music in the bar area was distorted and deafening.,Bar Supervisor,2
-88,The bar supervisor was rude when I asked for a water pitcher.,Bar Supervisor,2
-89,The blender was broken so no frozen drinks were available.,Bar Supervisor,2
-90,They allowed grossly over-intoxicated guests to keep ordering.,Bar Supervisor,2
-91,"The supervisor didn't know how to change the keg, causing a 30-minute delay.",Bar Supervisor,2
-92,The dispatch manager sent my order to a driver going the opposite direction.,Delivery Supervisor,2
-93,"When I called about a missing item, dispatch told me it wasn't their problem.",Delivery Supervisor,2
-94,The delivery tracker app is completely broken and shows the wrong status.,Delivery Supervisor,2
-95,Delivery times are consistently double what the website estimates.,Delivery Supervisor,2
-96,The supervisor hung up on me when I asked for a refund for a cold pizza.,Delivery Supervisor,2
-97,They bundle too many orders together so the last person gets cold food.,Delivery Supervisor,2
-98,Dispatch sent a bicycle courier for a massive catering order.,Delivery Supervisor,2
-99,The supervisor refused to contact the driver who was lost.,Delivery Supervisor,2
-100,Delivery packaging is flimsy and constantly breaks in transit.,Delivery Supervisor,2
-101,They changed my delivery to pickup without notifying me.,Delivery Supervisor,2
-102,The supervisor yelled at me for living 'too far away' despite being in zone.,Delivery Supervisor,2
-103,Dispatch marked the order as delivered 45 minutes before it arrived.,Delivery Supervisor,2
-104,They failed to provide the driver with the gate code I explicitly wrote down.,Delivery Supervisor,2
-105,The main dining room smelled strongly of harsh chemical cleaners.,Cleaning Supervisor,2
-106,There were fruit flies swarming around the host stand.,Cleaning Supervisor,2
-107,The carpet in the back room is heavily stained and smells like mildew.,Cleaning Supervisor,2
-108,The windows were completely covered in greasy handprints.,Cleaning Supervisor,2
-109,The cleaning crew left a wet floor sign in the middle of a dark hallway.,Cleaning Supervisor,2
-110,We saw a rat scurry out from under the banquette seating.,Cleaning Supervisor,2
-111,The air vents above our table were caked in thick black dust.,Cleaning Supervisor,2
-112,The outside patio was covered in bird droppings and un-swept leaves.,Cleaning Supervisor,2
-113,The trash cans near the exit were overflowing and smelled rancid.,Cleaning Supervisor,2
-114,"The cleaning staff was using a dirty, foul-smelling mop near our table.",Cleaning Supervisor,2
-115,"Sanitization standards are zero; they wiped the table with a dry, dirty cloth.",Cleaning Supervisor,2
-116,There were cobwebs in all the corners of the dining room ceiling.,Cleaning Supervisor,2
-117,The high chairs provided for toddlers were sticky and covered in crumbs.,Cleaning Supervisor,2
-118,Security protocols are a joke; anyone can wander into the back of house.,Security Supervisor / Chief Security Officer,2
-119,The head of security refused to review footage when my purse was stolen.,Security Supervisor / Chief Security Officer,2
-120,The security staff was nowhere to be found during a physical altercation.,Security Supervisor / Chief Security Officer,2
-121,The emergency exits were chained shut from the inside.,Security Supervisor / Chief Security Officer,2
-122,The parking lot surveillance cameras are all pointed at the ground.,Security Supervisor / Chief Security Officer,2
-123,Security supervisors were drinking on the job.,Security Supervisor / Chief Security Officer,2
-124,They implemented a discriminatory dress code that targets specific groups.,Security Supervisor / Chief Security Officer,2
-125,The security head was aggressive and escalated a minor noise complaint into a fight.,Security Supervisor / Chief Security Officer,2
-126,There was no bag check for a major event night despite it being advertised.,Security Supervisor / Chief Security Officer,2
-127,Security ignored repeated complaints about harassment from another table.,Security Supervisor / Chief Security Officer,2
-128,"The VIP area wasn't secured, so random people kept taking our seats.",Security Supervisor / Chief Security Officer,2
-129,The head guard confiscated my prescription medication at the door.,Security Supervisor / Chief Security Officer,2
-130,Security blindingly shined flashlights in people's faces for no reason.,Security Supervisor / Chief Security Officer,2
-131,The hostess completely ignored us when we walked in.,Host / Hostess,1
-132,We had a reservation but the host told us it would still be a 40-minute wait.,Host / Hostess,1
-133,The host was incredibly rude and told us to wait outside in the rain.,Host / Hostess,1
-134,They seated us at a tiny table right next to the bathroom door.,Host / Hostess,1
-135,The hostess lost our pager and then blamed us for not checking in.,Host / Hostess,1
-136,The host was busy filming a TikTok instead of seating guests.,Host / Hostess,1
-137,They sat a party of two at a booth for six while large groups waited.,Host / Hostess,1
-138,The host rolled their eyes when I asked if they had high chairs.,Host / Hostess,1
-139,"They told us the kitchen was closed, but seated the group behind us.",Host / Hostess,1
-140,The hostess mispronounced my name incredibly offensively and laughed.,Host / Hostess,1
-141,They dragged the menus across the floor before handing them to us.,Host / Hostess,1
-142,The host stand looked like a disaster area with papers everywhere.,Host / Hostess,1
-143,Our server disappeared for 40 minutes after dropping off the food.,Waiter / Waitress,1
-144,The waitress spilled hot soup on my lap and just walked away.,Waiter / Waitress,1
-145,The waiter completely forgot to put in my wife's order.,Waiter / Waitress,1
-146,Our server had a massive attitude when we asked for extra napkins.,Waiter / Waitress,1
-147,The waitress brought out dairy milk instead of almond milk.,Waiter / Waitress,1
-148,The server kept calling my elderly mother 'sweetheart' condescendingly.,Waiter / Waitress,1
-149,Our waiter sneezed into his hands before carrying our plates.,Waiter / Waitress,1
-150,The server dropped my credit card on the floor and left it there.,Waiter / Waitress,1
-151,They cleared my plate while I was literally still chewing.,Waiter / Waitress,1
-152,Our waitress loudly complained about her tips to another table.,Waiter / Waitress,1
-153,The waiter brought the wrong check and overcharged us by $50.,Waiter / Waitress,1
-154,They never offered a dessert menu or asked if we wanted coffee.,Waiter / Waitress,1
-155,The busser aggressively slammed dishes into the tub next to our table.,Busser / Table Cleaner,1
-156,They used a disgustingly dirty rag to 'clean' our table.,Busser / Table Cleaner,1
-157,The busboy swept dirt directly onto my shoes.,Busser / Table Cleaner,1
-158,They dropped a glass that shattered everywhere and left the shards.,Busser / Table Cleaner,1
-159,The table cleaner reached over my food to grab an empty glass.,Busser / Table Cleaner,1
-160,They left half the dirty plates on our table to make room for dessert.,Busser / Table Cleaner,1
-161,The busser smelled strongly of stale cigarette smoke.,Busser / Table Cleaner,1
-162,They knocked over my water glass and didn't offer to replace it.,Busser / Table Cleaner,1
-163,The table was still covered in sticky syrup from the previous guests.,Busser / Table Cleaner,1
-164,The busser kept staring at us uncomfortably while we ate.,Busser / Table Cleaner,1
-165,They left a huge puddle of sanitizer on the table.,Busser / Table Cleaner,1
-166,The busboy was eating french fries off a dirty plate on the way to the kitchen.,Busser / Table Cleaner,1
-167,The cashier charged my card three times for the same meal.,Cashier / POS Operator,1
-168,They didn't know how to process a simple split check.,Cashier / POS Operator,1
-169,The cashier gave me incorrect change and accused me of lying.,Cashier / POS Operator,1
-170,They completely ignored me while talking to their coworker.,Cashier / POS Operator,1
-171,The POS operator refused to accept my valid corporate discount.,Cashier / POS Operator,1
-172,They handed me my receipt crumpled up in a ball.,Cashier / POS Operator,1
-173,The cashier was chewing gum loudly with their mouth open.,Cashier / POS Operator,1
-174,They didn't apply the happy hour pricing despite it being 5 PM.,Cashier / POS Operator,1
-175,The POS operator didn't know how to void an accidental item.,Cashier / POS Operator,1
-176,The cashier tried to force me to leave a 25% tip on a takeout order.,Cashier / POS Operator,1
-177,They told me the credit card machine was broken after I already ate.,Cashier / POS Operator,1
-178,The cashier printed the receipt with no ink so I couldn't read it.,Cashier / POS Operator,1
-179,"The bartender made a mojito with wilted, brown mint leaves.",Bartender,1
-180,They ignored me for 20 minutes to flirt with some customers.,Bartender,1
-181,My drink was 90% ice and tasted incredibly watered down.,Bartender,1
-182,The bartender used the wrong liquor and argued with me about it.,Bartender,1
-183,They free-poured and made a drink that was essentially straight vodka.,Bartender,1
-184,The bartender handled cash and then grabbed ice with their bare hands.,Bartender,1
-185,They made fun of my drink order loudly to another patron.,Bartender,1
-186,My beer glass had lipstick stains from a previous customer.,Bartender,1
-187,The bartender forgot my order three times in 10 minutes.,Bartender,1
-188,They refused to make a blended drink because it was 'too much work'.,Bartender,1
-189,The bartender was doing shots and acting incredibly unprofessional.,Bartender,1
-190,They slammed my drink down so hard it spilled on my shirt.,Bartender,1
-191,The barista burnt the milk for my latte so badly it tasted like ash.,Barista,1
-192,My coffee was lukewarm and the cup was only three-quarters full.,Barista,1
-193,They completely ignored my request for decaf.,Barista,1
-194,The barista had a terrible attitude when I asked for a dash of cinnamon.,Barista,1
-195,My iced coffee had zero ice and was room temperature.,Barista,1
-196,The espresso machine looked filthy and covered in old milk crust.,Barista,1
-197,The barista called out the wrong name and gave my drink away.,Barista,1
-198,"They served my tea with torn tea bags, leaving leaves everywhere.",Barista,1
-199,The frappe was completely separated and tasted expired.,Barista,1
-200,The barista rolled their eyes when I ordered a complicated drink.,Barista,1
-201,"They didn't stir the syrup at all, so it was all at the bottom.",Barista,1
-202,The barista was on a personal phone call while steaming milk.,Barista,1
-203,The restrooms were completely out of toilet paper and paper towels.,Cleaner / Housekeeper,1
-204,The bathroom floor was flooded and extremely dangerous.,Cleaner / Housekeeper,1
-205,The toilets hadn't been flushed or cleaned in hours.,Cleaner / Housekeeper,1
-206,The trash cans in the restroom were overflowing onto the floor.,Cleaner / Housekeeper,1
-207,The cleaner aggressively mopped under my feet while I was washing hands.,Cleaner / Housekeeper,1
-208,The soap dispensers were filled with water instead of soap.,Cleaner / Housekeeper,1
-209,The baby changing table was broken and covered in grime.,Cleaner / Housekeeper,1
-210,The restroom smelled violently of urine and cheap perfume.,Cleaner / Housekeeper,1
-211,The mirrors were completely smeared with a dirty towel.,Cleaner / Housekeeper,1
-212,The housekeeper locked the bathrooms for an hour during peak dinner rush.,Cleaner / Housekeeper,1
-213,There were no sanitary bins in the women's restroom stalls.,Cleaner / Housekeeper,1
-214,The cleaner was resting in the restroom stalls playing music loudly.,Cleaner / Housekeeper,1
-215,The security guard profiled my friends and wouldn't let them in.,Security Guard,1
-216,The bouncer was overly aggressive and shoved someone for no reason.,Security Guard,1
-217,They let a group of clearly underage kids into the bar.,Security Guard,1
-218,The security guard fell asleep in a chair by the back exit.,Security Guard,1
-219,They falsely accused me of stealing a glass and searched my bag.,Security Guard,1
-220,The guard was inappropriately hitting on women waiting in line.,Security Guard,1
-221,"They refused entry because of my sneakers, but let others in with the same shoes.",Security Guard,1
-222,The security guard was smoking right next to the entrance door.,Security Guard,1
-223,They stood uncomfortably close to our table staring at us all night.,Security Guard,1
-224,The guard did nothing when a drunk patron started harassing our table.,Security Guard,1
-225,They yelled profanities at guests who were walking too slowly.,Security Guard,1
-226,The security personnel looked completely unkempt and unprofessional.,Security Guard,1
-227,The driver left my food at the wrong house and refused to go back.,Delivery Rider / Driver,1
-228,My pizza was delivered vertically and completely ruined.,Delivery Rider / Driver,1
-229,The delivery rider ate some of my fries on the way over.,Delivery Rider / Driver,1
-230,They aggressively banged on my door and woke up my baby.,Delivery Rider / Driver,1
-231,The driver refused to come up to my apartment and made me walk down.,Delivery Rider / Driver,1
-232,My food arrived freezing cold over an hour late.,Delivery Rider / Driver,1
-233,The driver was blasting loud offensive music in my driveway.,Delivery Rider / Driver,1
-234,They didn't use a thermal bag so everything was soggy.,Delivery Rider / Driver,1
-235,The delivery rider demanded a cash tip before handing over the bag.,Delivery Rider / Driver,1
-236,They left the food right in front of my outward-opening screen door.,Delivery Rider / Driver,1
-237,The driver got lost and yelled at me on the phone for bad directions.,Delivery Rider / Driver,1
-238,The delivery bag smelled strongly of weed.,Delivery Rider / Driver,1
-239,My burger patty was completely raw in the middle.,General Chef / Line Cook,1
-240,The line cook forgot to take the plastic off the sliced cheese.,General Chef / Line Cook,1
-241,My fries were burnt to a crisp and completely inedible.,General Chef / Line Cook,1
-242,The chef drowned my salad in so much dressing it was soup.,General Chef / Line Cook,1
-243,I found a long black hair cooked into my scrambled eggs.,General Chef / Line Cook,1
-244,The chicken was rubbery and clearly microwaved.,General Chef / Line Cook,1
-245,The line cook completely ignored the 'no onions' modification.,General Chef / Line Cook,1
-246,The pasta was incredibly mushy and overcooked.,General Chef / Line Cook,1
-247,The soup was cold and had a thick skin formed on top.,General Chef / Line Cook,1
-248,My steak was 90% fat and gristle with no actual meat.,General Chef / Line Cook,1
-249,The cook seasoned the fish with entirely too much salt.,General Chef / Line Cook,1
-250,They served a dessert that was completely frozen solid in the center.,General Chef / Line Cook,1
+id,complaint,expected_role,expected_level,old_expected_role,uncertain
+1,The corporate website keeps crashing when I try to update my account.,Tenant Admin,5,Tenant Admin,
+2,Franchise promotions advertised on national TV aren't honored in the system.,Tenant Admin,5,Tenant Admin,
+3,The rewards points multiplier didn't apply during the weekend promo.,Tenant Admin,5,Tenant Admin,
+4,Account deletion requests through the main portal are completely ignored.,Tenant Admin,5,Tenant Admin,
+5,The mobile app logs me out every time I try to finalize an order.,Tenant Admin,5,Tenant Admin,
+6,Push notifications for the app are broken and spamming my phone.,Tenant Admin,5,Tenant Admin,
+7,The global gift card I bought online shows a zero balance.,Tenant Admin,5,Tenant Admin,
+8,System-wide pricing on the app doesn't match the in-store pricing.,Tenant Admin,5,Tenant Admin,
+9,The feedback form on the main corporate site returns a 404 error.,Tenant Admin,5,Tenant Admin,
+10,My VIP membership status was inexplicably downgraded after the patch.,Tenant Admin,5,Tenant Admin,
+11,The franchising contact email has been bouncing for weeks.,Tenant Admin,5,Tenant Admin,
+12,Integration with third-party delivery apps is constantly failing on your end.,Tenant Admin,5,Tenant Admin,
+13,The loyalty program terms were changed without any email notification.,Tenant Admin,5,Tenant Admin,
+14,The quality of ingredients at this specific branch is noticeably worse than others.,Branch Manager,4,Branch Manager,
+15,The restaurant was severely understaffed on a busy holiday weekend.,Branch Manager,4,Branch Manager,
+16,The new decor feels cheap and ruins the ambiance of the restaurant.,Branch Manager,4,Branch Manager,
+17,There's no consistency; the menu changes every month without warning.,Branch Manager,4,Branch Manager,
+18,Management ignored my email regarding a severe allergy incident.,Branch Manager,4,Branch Manager,yes
+19,"The branch hours online say open until 11 PM, but doors locked at 9:30 PM.",Branch Manager,4,Branch Manager,
+20,Prices at this location are 20% higher than the branch two towns over.,Branch Manager,4,Branch Manager,
+21,The overall hygiene of the dining area has degraded over the last year.,Branch Manager,4,Branch Manager,
+22,Community events held at this location are poorly organized.,Branch Manager,4,Branch Manager,
+23,The parking validation policy was changed but no signs were put up.,Branch Manager,4,Branch Manager,
+24,The local branch social media account is posting inappropriate content.,Branch Manager,4,Branch Manager,
+25,"Management allows large, rowdy parties to ruin the experience for regular diners.",Branch Manager,4,Branch Manager,yes
+26,I requested to speak to the GM and was told they never come in on weekends.,Tenant Admin,5,Branch Manager,yes
+27,The shift manager was completely unapologetic when our table collapsed.,Branch Manager,4,Assistant Branch Manager,
+28,I called to complain about the noise level and the manager hung up on me.,Branch Manager,4,Assistant Branch Manager,
+29,The AC was broken and the shift manager made zero effort to provide fans.,Branch Manager,4,Assistant Branch Manager,
+30,The manager was visibly yelling at a junior staff member in front of guests.,Branch Manager,4,Assistant Branch Manager,
+31,They refused to comp a meal that had a literal piece of glass in it.,Branch Manager,4,Assistant Branch Manager,yes
+32,The assistant manager blamed the kitchen instead of fixing the issue.,Branch Manager,4,Assistant Branch Manager,
+33,"When we pointed out the dirty table, the manager just gave us a dirty look.",Branch Manager,4,Assistant Branch Manager,
+34,The shift leader allowed someone to vape inside the restaurant.,Branch Manager,4,Assistant Branch Manager,yes
+35,I asked for a refund for a terrible meal and the manager threatened to call the cops.,Branch Manager,4,Assistant Branch Manager,
+36,The manager was chatting with friends while the queue went out the door.,Branch Manager,4,Assistant Branch Manager,
+37,They gave our reserved table away because we were 2 minutes late.,Host / Hostess,1,Assistant Branch Manager,yes
+38,The assistant manager seemed completely untrained on how to process a refund.,Branch Manager,4,Assistant Branch Manager,
+39,"When I raised a concern about raw food, the manager argued with me.",Branch Manager,4,Assistant Branch Manager,
+40,Our entire table's food came out at completely different times.,Head Chef / Kitchen Manager,2,Head Chef / Kitchen Manager,
+41,The kitchen ran out of chicken by 7 PM on a Saturday.,Head Chef / Kitchen Manager,2,Head Chef / Kitchen Manager,
+42,My steak was served on a freezing cold plate.,General Chef / Line Cook,1,Head Chef / Kitchen Manager,
+43,We could hear the kitchen staff screaming profanities at each other.,Head Chef / Kitchen Manager,2,Head Chef / Kitchen Manager,
+44,The vegan dish was accidentally garnished with bacon bits.,General Chef / Line Cook,1,Head Chef / Kitchen Manager,
+45,The food took over two hours to arrive after ordering.,Head Chef / Kitchen Manager,2,Head Chef / Kitchen Manager,
+46,The plating was a disaster; sauce was smeared all over the edge of the bowl.,General Chef / Line Cook,1,Head Chef / Kitchen Manager,
+47,The kitchen sent out the wrong side dishes for our entire party.,General Chef / Line Cook,1,Head Chef / Kitchen Manager,yes
+48,The fish was terribly overcooked and smelled like ammonia.,Head Chef / Kitchen Manager,2,Head Chef / Kitchen Manager,yes
+49,Every dish we ordered was overwhelmingly salted.,General Chef / Line Cook,1,Head Chef / Kitchen Manager,yes
+50,The head chef refused to accommodate a simple garlic allergy.,Assistant Branch Manager,3,Head Chef / Kitchen Manager,
+51,The quality control is awful; my burger bun was completely moldy.,Head Chef / Kitchen Manager,2,Head Chef / Kitchen Manager,
+52,The kitchen alarm kept beeping loudly for 30 minutes straight.,Head Chef / Kitchen Manager,2,Head Chef / Kitchen Manager,
+53,"No one was directing the servers, leaving half the room ignored.",Floor Supervisor,2,Floor Supervisor,
+54,The host stand was empty for 15 minutes while supervisors did nothing.,Assistant Branch Manager,3,Floor Supervisor,
+55,Waitstaff were arguing over tables right in front of us.,Floor Supervisor,2,Floor Supervisor,
+56,The floor plan was crammed so tight we couldn't push our chairs back.,Floor Supervisor,2,Floor Supervisor,
+57,Nobody checked on us after the food was dropped off.,Floor Supervisor,2,Floor Supervisor,yes
+58,The flow of the restaurant is chaotic; staff keep bumping into guests.,Floor Supervisor,2,Floor Supervisor,
+59,Empty glasses and plates piled up everywhere with no one managing the bussers.,Floor Supervisor,2,Floor Supervisor,
+60,The supervisor was on their phone leaning against a wall.,Assistant Branch Manager,3,Floor Supervisor,
+61,We were seated in a closed section and completely forgotten about.,Floor Supervisor,2,Floor Supervisor,
+62,Staff rotation is terrible; we had 4 different servers in one hour.,Floor Supervisor,2,Floor Supervisor,
+63,The dining area was freezing but the supervisor refused to adjust the thermostat.,Assistant Branch Manager,3,Floor Supervisor,
+64,A spill in the main aisle was left unmopped for 20 minutes.,Cleaner / Housekeeper,1,Floor Supervisor,yes
+65,The supervisor rudely told us we had to leave because of a time limit we weren't warned about.,Assistant Branch Manager,3,Floor Supervisor,
+66,The senior server mocked my pronunciation of a wine on the menu.,Assistant Branch Manager,3,Head Waiter,
+67,The head waiter rushed us through our meal to turn the table.,Assistant Branch Manager,3,Head Waiter,
+68,They dropped a tray of drinks near us and didn't even apologize.,Waiter / Waitress,1,Head Waiter,yes
+69,The senior staff member had terrible body odor.,Assistant Branch Manager,3,Head Waiter,
+70,They completely ignored the women at the table and only spoke to my husband.,Floor Supervisor,2,Head Waiter,yes
+71,The head waiter recommended a dish and then admitted they'd never tried it.,Head Waiter,2,Head Waiter,yes
+72,They forgot to put in our appetizers and lied saying the kitchen was backed up.,Floor Supervisor,2,Head Waiter,
+73,The head waiter was incredibly condescending when we asked for ketchup.,Assistant Branch Manager,3,Head Waiter,
+74,They rolled their eyes when we asked to split the bill.,Floor Supervisor,2,Head Waiter,
+75,The senior waiter kept up-selling aggressively after we said no three times.,Assistant Branch Manager,3,Head Waiter,
+76,They brought the wrong vintage of wine and tried to pass it off as what we ordered.,Floor Supervisor,2,Head Waiter,
+77,The head waiter was visibly intoxicated during service.,Assistant Branch Manager,3,Head Waiter,
+78,They hovered over us uncomfortably while we were paying the tip.,Floor Supervisor,2,Head Waiter,
+79,The bar area was completely out of clean glasses by 9 PM.,Bar Supervisor,2,Bar Supervisor,
+80,The draft beer selection was mostly tapped out.,Bar Supervisor,2,Bar Supervisor,
+81,The bar supervisor was taking shots with patrons behind the bar.,Assistant Branch Manager,3,Bar Supervisor,
+82,The signature cocktails were all unavailable due to 'missing prep'.,Bar Supervisor,2,Bar Supervisor,
+83,The bar floor was covered in spilled alcohol and extremely sticky.,Bar Supervisor,2,Bar Supervisor,yes
+84,They ran out of ice and tried to serve warm white wine.,Bar Supervisor,2,Bar Supervisor,
+85,The bar manager refused to honor happy hour pricing at 5:55 PM.,Assistant Branch Manager,3,Bar Supervisor,
+86,"The garnishes looked old, bruised, and unsanitary.",Bar Supervisor,2,Bar Supervisor,
+87,The music in the bar area was distorted and deafening.,Bar Supervisor,2,Bar Supervisor,yes
+88,The bar supervisor was rude when I asked for a water pitcher.,Assistant Branch Manager,3,Bar Supervisor,
+89,The blender was broken so no frozen drinks were available.,Bar Supervisor,2,Bar Supervisor,
+90,They allowed grossly over-intoxicated guests to keep ordering.,Bar Supervisor,2,Bar Supervisor,
+91,"The supervisor didn't know how to change the keg, causing a 30-minute delay.",Bar Supervisor,2,Bar Supervisor,yes
+92,The dispatch manager sent my order to a driver going the opposite direction.,Delivery Supervisor,2,Delivery Supervisor,
+93,"When I called about a missing item, dispatch told me it wasn't their problem.",Delivery Supervisor,2,Delivery Supervisor,yes
+94,The delivery tracker app is completely broken and shows the wrong status.,Delivery Supervisor,2,Delivery Supervisor,
+95,Delivery times are consistently double what the website estimates.,Delivery Supervisor,2,Delivery Supervisor,
+96,The supervisor hung up on me when I asked for a refund for a cold pizza.,Assistant Branch Manager,3,Delivery Supervisor,
+97,They bundle too many orders together so the last person gets cold food.,Delivery Supervisor,2,Delivery Supervisor,
+98,Dispatch sent a bicycle courier for a massive catering order.,Delivery Supervisor,2,Delivery Supervisor,
+99,The supervisor refused to contact the driver who was lost.,Assistant Branch Manager,3,Delivery Supervisor,
+100,Delivery packaging is flimsy and constantly breaks in transit.,Delivery Supervisor,2,Delivery Supervisor,
+101,They changed my delivery to pickup without notifying me.,Delivery Supervisor,2,Delivery Supervisor,
+102,The supervisor yelled at me for living 'too far away' despite being in zone.,Assistant Branch Manager,3,Delivery Supervisor,
+103,Dispatch marked the order as delivered 45 minutes before it arrived.,Delivery Supervisor,2,Delivery Supervisor,
+104,They failed to provide the driver with the gate code I explicitly wrote down.,Delivery Supervisor,2,Delivery Supervisor,
+105,The main dining room smelled strongly of harsh chemical cleaners.,Cleaning Supervisor,2,Cleaning Supervisor,
+106,There were fruit flies swarming around the host stand.,Cleaning Supervisor,2,Cleaning Supervisor,
+107,The carpet in the back room is heavily stained and smells like mildew.,Cleaning Supervisor,2,Cleaning Supervisor,
+108,The windows were completely covered in greasy handprints.,Cleaner / Housekeeper,1,Cleaning Supervisor,yes
+109,The cleaning crew left a wet floor sign in the middle of a dark hallway.,Cleaner / Housekeeper,1,Cleaning Supervisor,yes
+110,We saw a rat scurry out from under the banquette seating.,Cleaning Supervisor,2,Cleaning Supervisor,
+111,The air vents above our table were caked in thick black dust.,Cleaning Supervisor,2,Cleaning Supervisor,
+112,The outside patio was covered in bird droppings and un-swept leaves.,Cleaner / Housekeeper,1,Cleaning Supervisor,yes
+113,The trash cans near the exit were overflowing and smelled rancid.,Cleaner / Housekeeper,1,Cleaning Supervisor,
+114,"The cleaning staff was using a dirty, foul-smelling mop near our table.",Cleaning Supervisor,2,Cleaning Supervisor,yes
+115,"Sanitization standards are zero; they wiped the table with a dry, dirty cloth.",Cleaning Supervisor,2,Cleaning Supervisor,
+116,There were cobwebs in all the corners of the dining room ceiling.,Cleaning Supervisor,2,Cleaning Supervisor,
+117,The high chairs provided for toddlers were sticky and covered in crumbs.,Busser / Table Cleaner,1,Cleaning Supervisor,yes
+118,Security protocols are a joke; anyone can wander into the back of house.,Security Supervisor / Chief Security Officer,2,Security Supervisor / Chief Security Officer,
+119,The head of security refused to review footage when my purse was stolen.,Assistant Branch Manager,3,Security Supervisor / Chief Security Officer,
+120,The security staff was nowhere to be found during a physical altercation.,Security Supervisor / Chief Security Officer,2,Security Supervisor / Chief Security Officer,
+121,The emergency exits were chained shut from the inside.,Security Supervisor / Chief Security Officer,2,Security Supervisor / Chief Security Officer,
+122,The parking lot surveillance cameras are all pointed at the ground.,Security Supervisor / Chief Security Officer,2,Security Supervisor / Chief Security Officer,
+123,Security supervisors were drinking on the job.,Assistant Branch Manager,3,Security Supervisor / Chief Security Officer,
+124,They implemented a discriminatory dress code that targets specific groups.,Assistant Branch Manager,3,Security Supervisor / Chief Security Officer,yes
+125,The security head was aggressive and escalated a minor noise complaint into a fight.,Assistant Branch Manager,3,Security Supervisor / Chief Security Officer,
+126,There was no bag check for a major event night despite it being advertised.,Security Supervisor / Chief Security Officer,2,Security Supervisor / Chief Security Officer,
+127,Security ignored repeated complaints about harassment from another table.,Security Supervisor / Chief Security Officer,2,Security Supervisor / Chief Security Officer,
+128,"The VIP area wasn't secured, so random people kept taking our seats.",Security Supervisor / Chief Security Officer,2,Security Supervisor / Chief Security Officer,
+129,The head guard confiscated my prescription medication at the door.,Assistant Branch Manager,3,Security Supervisor / Chief Security Officer,
+130,Security blindingly shined flashlights in people's faces for no reason.,Security Supervisor / Chief Security Officer,2,Security Supervisor / Chief Security Officer,
+131,The hostess completely ignored us when we walked in.,Floor Supervisor,2,Host / Hostess,
+132,We had a reservation but the host told us it would still be a 40-minute wait.,Host / Hostess,1,Host / Hostess,
+133,The host was incredibly rude and told us to wait outside in the rain.,Floor Supervisor,2,Host / Hostess,
+134,They seated us at a tiny table right next to the bathroom door.,Host / Hostess,1,Host / Hostess,
+135,The hostess lost our pager and then blamed us for not checking in.,Floor Supervisor,2,Host / Hostess,yes
+136,The host was busy filming a TikTok instead of seating guests.,Floor Supervisor,2,Host / Hostess,
+137,They sat a party of two at a booth for six while large groups waited.,Host / Hostess,1,Host / Hostess,
+138,The host rolled their eyes when I asked if they had high chairs.,Floor Supervisor,2,Host / Hostess,
+139,"They told us the kitchen was closed, but seated the group behind us.",Host / Hostess,1,Host / Hostess,yes
+140,The hostess mispronounced my name incredibly offensively and laughed.,Floor Supervisor,2,Host / Hostess,
+141,They dragged the menus across the floor before handing them to us.,Host / Hostess,1,Host / Hostess,yes
+142,The host stand looked like a disaster area with papers everywhere.,Host / Hostess,1,Host / Hostess,
+143,Our server disappeared for 40 minutes after dropping off the food.,Waiter / Waitress,1,Waiter / Waitress,
+144,The waitress spilled hot soup on my lap and just walked away.,Floor Supervisor,2,Waiter / Waitress,yes
+145,The waiter completely forgot to put in my wife's order.,Waiter / Waitress,1,Waiter / Waitress,
+146,Our server had a massive attitude when we asked for extra napkins.,Floor Supervisor,2,Waiter / Waitress,
+147,The waitress brought out dairy milk instead of almond milk.,Waiter / Waitress,1,Waiter / Waitress,
+148,The server kept calling my elderly mother 'sweetheart' condescendingly.,Floor Supervisor,2,Waiter / Waitress,
+149,Our waiter sneezed into his hands before carrying our plates.,Floor Supervisor,2,Waiter / Waitress,
+150,The server dropped my credit card on the floor and left it there.,Waiter / Waitress,1,Waiter / Waitress,
+151,They cleared my plate while I was literally still chewing.,Waiter / Waitress,1,Waiter / Waitress,
+152,Our waitress loudly complained about her tips to another table.,Floor Supervisor,2,Waiter / Waitress,
+153,The waiter brought the wrong check and overcharged us by $50.,Waiter / Waitress,1,Waiter / Waitress,
+154,They never offered a dessert menu or asked if we wanted coffee.,Waiter / Waitress,1,Waiter / Waitress,
+155,The busser aggressively slammed dishes into the tub next to our table.,Floor Supervisor,2,Busser / Table Cleaner,
+156,They used a disgustingly dirty rag to 'clean' our table.,Busser / Table Cleaner,1,Busser / Table Cleaner,
+157,The busboy swept dirt directly onto my shoes.,Busser / Table Cleaner,1,Busser / Table Cleaner,
+158,They dropped a glass that shattered everywhere and left the shards.,Busser / Table Cleaner,1,Busser / Table Cleaner,
+159,The table cleaner reached over my food to grab an empty glass.,Busser / Table Cleaner,1,Busser / Table Cleaner,
+160,They left half the dirty plates on our table to make room for dessert.,Busser / Table Cleaner,1,Busser / Table Cleaner,
+161,The busser smelled strongly of stale cigarette smoke.,Floor Supervisor,2,Busser / Table Cleaner,
+162,They knocked over my water glass and didn't offer to replace it.,Busser / Table Cleaner,1,Busser / Table Cleaner,
+163,The table was still covered in sticky syrup from the previous guests.,Busser / Table Cleaner,1,Busser / Table Cleaner,
+164,The busser kept staring at us uncomfortably while we ate.,Floor Supervisor,2,Busser / Table Cleaner,
+165,They left a huge puddle of sanitizer on the table.,Busser / Table Cleaner,1,Busser / Table Cleaner,
+166,The busboy was eating french fries off a dirty plate on the way to the kitchen.,Floor Supervisor,2,Busser / Table Cleaner,
+167,The cashier charged my card three times for the same meal.,Cashier / POS Operator,1,Cashier / POS Operator,
+168,They didn't know how to process a simple split check.,Cashier / POS Operator,1,Cashier / POS Operator,
+169,The cashier gave me incorrect change and accused me of lying.,Floor Supervisor,2,Cashier / POS Operator,
+170,They completely ignored me while talking to their coworker.,Floor Supervisor,2,Cashier / POS Operator,
+171,The POS operator refused to accept my valid corporate discount.,Cashier / POS Operator,1,Cashier / POS Operator,
+172,They handed me my receipt crumpled up in a ball.,Cashier / POS Operator,1,Cashier / POS Operator,
+173,The cashier was chewing gum loudly with their mouth open.,Floor Supervisor,2,Cashier / POS Operator,
+174,They didn't apply the happy hour pricing despite it being 5 PM.,Cashier / POS Operator,1,Cashier / POS Operator,
+175,The POS operator didn't know how to void an accidental item.,Cashier / POS Operator,1,Cashier / POS Operator,
+176,The cashier tried to force me to leave a 25% tip on a takeout order.,Floor Supervisor,2,Cashier / POS Operator,
+177,They told me the credit card machine was broken after I already ate.,Cashier / POS Operator,1,Cashier / POS Operator,
+178,The cashier printed the receipt with no ink so I couldn't read it.,Cashier / POS Operator,1,Cashier / POS Operator,
+179,"The bartender made a mojito with wilted, brown mint leaves.",Bartender,1,Bartender,
+180,They ignored me for 20 minutes to flirt with some customers.,Bar Supervisor,2,Bartender,
+181,My drink was 90% ice and tasted incredibly watered down.,Bartender,1,Bartender,
+182,The bartender used the wrong liquor and argued with me about it.,Bar Supervisor,2,Bartender,
+183,They free-poured and made a drink that was essentially straight vodka.,Bartender,1,Bartender,
+184,The bartender handled cash and then grabbed ice with their bare hands.,Bartender,1,Bartender,
+185,They made fun of my drink order loudly to another patron.,Bar Supervisor,2,Bartender,
+186,My beer glass had lipstick stains from a previous customer.,Bartender,1,Bartender,
+187,The bartender forgot my order three times in 10 minutes.,Bartender,1,Bartender,
+188,They refused to make a blended drink because it was 'too much work'.,Bar Supervisor,2,Bartender,
+189,The bartender was doing shots and acting incredibly unprofessional.,Bar Supervisor,2,Bartender,
+190,They slammed my drink down so hard it spilled on my shirt.,Bar Supervisor,2,Bartender,
+191,The barista burnt the milk for my latte so badly it tasted like ash.,Barista,1,Barista,
+192,My coffee was lukewarm and the cup was only three-quarters full.,Barista,1,Barista,
+193,They completely ignored my request for decaf.,Barista,1,Barista,
+194,The barista had a terrible attitude when I asked for a dash of cinnamon.,Bar Supervisor,2,Barista,
+195,My iced coffee had zero ice and was room temperature.,Barista,1,Barista,
+196,The espresso machine looked filthy and covered in old milk crust.,Barista,1,Barista,yes
+197,The barista called out the wrong name and gave my drink away.,Barista,1,Barista,
+198,"They served my tea with torn tea bags, leaving leaves everywhere.",Barista,1,Barista,
+199,The frappe was completely separated and tasted expired.,Barista,1,Barista,
+200,The barista rolled their eyes when I ordered a complicated drink.,Bar Supervisor,2,Barista,
+201,"They didn't stir the syrup at all, so it was all at the bottom.",Barista,1,Barista,
+202,The barista was on a personal phone call while steaming milk.,Bar Supervisor,2,Barista,
+203,The restrooms were completely out of toilet paper and paper towels.,Cleaner / Housekeeper,1,Cleaner / Housekeeper,
+204,The bathroom floor was flooded and extremely dangerous.,Cleaner / Housekeeper,1,Cleaner / Housekeeper,
+205,The toilets hadn't been flushed or cleaned in hours.,Cleaner / Housekeeper,1,Cleaner / Housekeeper,
+206,The trash cans in the restroom were overflowing onto the floor.,Cleaner / Housekeeper,1,Cleaner / Housekeeper,
+207,The cleaner aggressively mopped under my feet while I was washing hands.,Cleaning Supervisor,2,Cleaner / Housekeeper,
+208,The soap dispensers were filled with water instead of soap.,Cleaner / Housekeeper,1,Cleaner / Housekeeper,
+209,The baby changing table was broken and covered in grime.,Cleaner / Housekeeper,1,Cleaner / Housekeeper,
+210,The restroom smelled violently of urine and cheap perfume.,Cleaner / Housekeeper,1,Cleaner / Housekeeper,
+211,The mirrors were completely smeared with a dirty towel.,Cleaner / Housekeeper,1,Cleaner / Housekeeper,
+212,The housekeeper locked the bathrooms for an hour during peak dinner rush.,Cleaner / Housekeeper,1,Cleaner / Housekeeper,
+213,There were no sanitary bins in the women's restroom stalls.,Cleaner / Housekeeper,1,Cleaner / Housekeeper,
+214,The cleaner was resting in the restroom stalls playing music loudly.,Cleaning Supervisor,2,Cleaner / Housekeeper,
+215,The security guard profiled my friends and wouldn't let them in.,Security Supervisor / Chief Security Officer,2,Security Guard,
+216,The bouncer was overly aggressive and shoved someone for no reason.,Security Supervisor / Chief Security Officer,2,Security Guard,
+217,They let a group of clearly underage kids into the bar.,Security Guard,1,Security Guard,
+218,The security guard fell asleep in a chair by the back exit.,Security Supervisor / Chief Security Officer,2,Security Guard,
+219,They falsely accused me of stealing a glass and searched my bag.,Security Supervisor / Chief Security Officer,2,Security Guard,
+220,The guard was inappropriately hitting on women waiting in line.,Security Supervisor / Chief Security Officer,2,Security Guard,
+221,"They refused entry because of my sneakers, but let others in with the same shoes.",Security Supervisor / Chief Security Officer,2,Security Guard,yes
+222,The security guard was smoking right next to the entrance door.,Security Supervisor / Chief Security Officer,2,Security Guard,
+223,They stood uncomfortably close to our table staring at us all night.,Security Supervisor / Chief Security Officer,2,Security Guard,
+224,The guard did nothing when a drunk patron started harassing our table.,Security Supervisor / Chief Security Officer,2,Security Guard,
+225,They yelled profanities at guests who were walking too slowly.,Security Supervisor / Chief Security Officer,2,Security Guard,
+226,The security personnel looked completely unkempt and unprofessional.,Security Supervisor / Chief Security Officer,2,Security Guard,
+227,The driver left my food at the wrong house and refused to go back.,Delivery Supervisor,2,Delivery Rider / Driver,yes
+228,My pizza was delivered vertically and completely ruined.,Delivery Rider / Driver,1,Delivery Rider / Driver,
+229,The delivery rider ate some of my fries on the way over.,Delivery Supervisor,2,Delivery Rider / Driver,
+230,They aggressively banged on my door and woke up my baby.,Delivery Supervisor,2,Delivery Rider / Driver,
+231,The driver refused to come up to my apartment and made me walk down.,Delivery Supervisor,2,Delivery Rider / Driver,
+232,My food arrived freezing cold over an hour late.,Delivery Rider / Driver,1,Delivery Rider / Driver,
+233,The driver was blasting loud offensive music in my driveway.,Delivery Supervisor,2,Delivery Rider / Driver,
+234,They didn't use a thermal bag so everything was soggy.,Delivery Rider / Driver,1,Delivery Rider / Driver,
+235,The delivery rider demanded a cash tip before handing over the bag.,Delivery Supervisor,2,Delivery Rider / Driver,
+236,They left the food right in front of my outward-opening screen door.,Delivery Rider / Driver,1,Delivery Rider / Driver,
+237,The driver got lost and yelled at me on the phone for bad directions.,Delivery Supervisor,2,Delivery Rider / Driver,
+238,The delivery bag smelled strongly of weed.,Delivery Supervisor,2,Delivery Rider / Driver,
+239,My burger patty was completely raw in the middle.,General Chef / Line Cook,1,General Chef / Line Cook,
+240,The line cook forgot to take the plastic off the sliced cheese.,General Chef / Line Cook,1,General Chef / Line Cook,
+241,My fries were burnt to a crisp and completely inedible.,General Chef / Line Cook,1,General Chef / Line Cook,
+242,The chef drowned my salad in so much dressing it was soup.,General Chef / Line Cook,1,General Chef / Line Cook,
+243,I found a long black hair cooked into my scrambled eggs.,General Chef / Line Cook,1,General Chef / Line Cook,
+244,The chicken was rubbery and clearly microwaved.,General Chef / Line Cook,1,General Chef / Line Cook,
+245,The line cook completely ignored the 'no onions' modification.,General Chef / Line Cook,1,General Chef / Line Cook,
+246,The pasta was incredibly mushy and overcooked.,General Chef / Line Cook,1,General Chef / Line Cook,
+247,The soup was cold and had a thick skin formed on top.,General Chef / Line Cook,1,General Chef / Line Cook,
+248,My steak was 90% fat and gristle with no actual meat.,General Chef / Line Cook,1,General Chef / Line Cook,
+249,The cook seasoned the fish with entirely too much salt.,General Chef / Line Cook,1,General Chef / Line Cook,
+250,They served a dessert that was completely frozen solid in the center.,General Chef / Line Cook,1,General Chef / Line Cook,

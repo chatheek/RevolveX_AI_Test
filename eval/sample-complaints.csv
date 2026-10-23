@@ -1,20 +1,20 @@
-id,complaint,expected_role,expected_level
-1,"The franchise loyalty app crashed completely, and my global membership points were rejected at this specific location.",Tenant Admin,5
-2,"The overall quality of this location has tanked over the last six months. The menu is uninspired, and prices are unjustified.",Branch Manager,4
-3,"The restaurant was freezing cold and the music was deafening. I complained to the shift leader, but nothing was adjusted.",Assistant Branch Manager,3
-4,"The kitchen took over an hour and a half to get our main courses out, and half the table got their food late.",Head Chef / Kitchen Manager,2
-5,"Our section was pure chaos. Servers were visibly arguing with each other, and no one was managing the dining area.",Floor Supervisor,2
-6,The waiters clearly lack basic training. Ours didn't know how to open a wine bottle properly and dropped cutlery on the floor.,Head Waiter,2
-7,We were told we couldn't order draft beer because the bar area had completely run out of clean glassware for the evening.,Bar Supervisor,2
-8,"The delivery tracking system failed, and dispatch was incredibly unhelpful when I called to ask where my food was.",Delivery Supervisor,2
-9,We saw a cockroach crawling near the skirting board by the restrooms. Disgusting sanitation standards.,Cleaning Supervisor,2
-10,The person greeting guests at the door rolled their eyes at us and gave a massive attitude when we asked about the wait time.,Host / Hostess,1
-11,Our server took our order and then completely ignored us for 45 minutes. We never even got water refills.,Waiter / Waitress,1
-12,"We were seated at a table that was still covered in dirty plates, sticky syrup, and used napkins from the previous guests.",Busser / Table Cleaner,1
-13,"I ordered a strictly vegetarian pasta, but found pieces of chicken cooked into the sauce.",General Chef / Line Cook,1
-14,The person at the register overcharged me for two extra drinks and it took 15 minutes to figure out how to void the items.,Cashier / POS Operator,1
-15,"My cocktail tasted like pure sugar syrup. There was absolutely no alcohol in it, and it was missing the garnish.",Bartender,1
-16,"The cappuccino I ordered was lukewarm, the milk was burnt, and it tasted extremely stale.",Barista,1
-17,"The restrooms were in a horrible state. Trash cans were overflowing, floors were wet, and there was no toilet paper left.",Cleaner / Housekeeper,1
-19,"My delivery order arrived completely cold, and the drinks had tipped over and spilled inside the plastic bag.",Delivery Rider / Driver,1
-20,"The parking lot felt incredibly unsafe, poorly lit, and there was no staff monitoring the premises like there usually is.",Security Supervisor / Chief Security Officer,2
+id,complaint,expected_role,expected_level,old_expected_role,uncertain
+1,"The franchise loyalty app crashed completely, and my global membership points were rejected at this specific location.",Tenant Admin,5,Tenant Admin,
+2,"The overall quality of this location has tanked over the last six months. The menu is uninspired, and prices are unjustified.",Branch Manager,4,Branch Manager,
+3,"The restaurant was freezing cold and the music was deafening. I complained to the shift leader, but nothing was adjusted.",Branch Manager,4,Assistant Branch Manager,
+4,"The kitchen took over an hour and a half to get our main courses out, and half the table got their food late.",Head Chef / Kitchen Manager,2,Head Chef / Kitchen Manager,
+5,"Our section was pure chaos. Servers were visibly arguing with each other, and no one was managing the dining area.",Floor Supervisor,2,Floor Supervisor,
+6,The waiters clearly lack basic training. Ours didn't know how to open a wine bottle properly and dropped cutlery on the floor.,Head Waiter,2,Head Waiter,
+7,We were told we couldn't order draft beer because the bar area had completely run out of clean glassware for the evening.,Bar Supervisor,2,Bar Supervisor,
+8,"The delivery tracking system failed, and dispatch was incredibly unhelpful when I called to ask where my food was.",Delivery Supervisor,2,Delivery Supervisor,
+9,We saw a cockroach crawling near the skirting board by the restrooms. Disgusting sanitation standards.,Cleaning Supervisor,2,Cleaning Supervisor,
+10,The person greeting guests at the door rolled their eyes at us and gave a massive attitude when we asked about the wait time.,Floor Supervisor,2,Host / Hostess,
+11,Our server took our order and then completely ignored us for 45 minutes. We never even got water refills.,Waiter / Waitress,1,Waiter / Waitress,
+12,"We were seated at a table that was still covered in dirty plates, sticky syrup, and used napkins from the previous guests.",Busser / Table Cleaner,1,Busser / Table Cleaner,
+13,"I ordered a strictly vegetarian pasta, but found pieces of chicken cooked into the sauce.",General Chef / Line Cook,1,General Chef / Line Cook,
+14,The person at the register overcharged me for two extra drinks and it took 15 minutes to figure out how to void the items.,Cashier / POS Operator,1,Cashier / POS Operator,
+15,"My cocktail tasted like pure sugar syrup. There was absolutely no alcohol in it, and it was missing the garnish.",Bartender,1,Bartender,
+16,"The cappuccino I ordered was lukewarm, the milk was burnt, and it tasted extremely stale.",Barista,1,Barista,
+17,"The restrooms were in a horrible state. Trash cans were overflowing, floors were wet, and there was no toilet paper left.",Cleaner / Housekeeper,1,Cleaner / Housekeeper,
+19,"My delivery order arrived completely cold, and the drinks had tipped over and spilled inside the plastic bag.",Delivery Rider / Driver,1,Delivery Rider / Driver,
+20,"The parking lot felt incredibly unsafe, poorly lit, and there was no staff monitoring the premises like there usually is.",Security Supervisor / Chief Security Officer,2,Security Supervisor / Chief Security Officer,

@@ -54,10 +54,21 @@ Jev decides which staff role should handle it, how urgent it is, and how confide
    complaint) and to skip straight to a manager only for serious misconduct, safety or legal risk, an unresolved
    complaint, or a complaint about the current role's own supervisor.
 
-The routing instruction given to Jev ("who should respond first"): a complaint about the behaviour or mistake of a
-staff role goes to that role; systemic issues go to the Level 2 supervisor who owns them; a manager who failed
-to act goes to Assistant Branch Manager; complaints about a supervisor go one level up, ending at Tenant Admin.
-See [Improving accuracy](#improving-accuracy).
+**The routing rule (the "supervisor chain")**, given to Jev in the routing instruction:
+
+| The complaint is about... | It goes to |
+|---------------------------|------------|
+| A person's **conduct** (rude, aggressive, dismissive, lying, ignoring a complaint...) | **One level above that person** |
+| &nbsp;&nbsp;a Level 1 person (host, waiter, busser, cashier / bartender, barista / cleaner / guard / rider / cook) | their Level 2 supervisor (Floor / Bar / Cleaning / Security / Delivery Supervisor / Head Chef) |
+| &nbsp;&nbsp;a Level 2 person (head waiter, any supervisor, Head Chef) | Assistant Branch Manager (Level 3) |
+| &nbsp;&nbsp;a Level 3 person (assistant / shift / duty manager) | Branch Manager (Level 4) |
+| &nbsp;&nbsp;a Level 4 person (branch / general manager) | Tenant Admin (Level 5) |
+| A **mistake** or minor / routine problem (wrong order, cold coffee, dirty table, empty soap) | The Level 1 role that does the work |
+| A problem with **no person** (broken tracker, no clean glasses, pests, kitchen delays) | The owning Level 2 supervisor |
+| Branch-wide matters (prices, menu, understaffing) / app and platform problems | Branch Manager / Tenant Admin |
+
+After the first assignment, **Escalate** moves the complaint up again (see step 4 above), so for example a rude bartender
+goes to Bar Supervisor, then Assistant Branch Manager, then Branch Manager. See [Improving accuracy](#improving-accuracy).
 
 ## Requirements
 
@@ -262,7 +273,33 @@ and it will not start without `APP_USERNAME` and a strong `APP_PASSWORD`.
 
 ## Improving accuracy
 
-Two rounds of improvement have been made. All of it is configuration of what Jev is told; the code
+> **Round 3 changed the routing rule itself.** The earlier rounds (below) sent a complaint about a staff member to that
+> same person's role. The business rule is the opposite: a complaint about a person goes one level **above** them, and only
+> minor mistakes stay at Level 1 (see [How it works](#how-it-works)). Because the old expected results followed the old
+> convention, **they were relabeled** with the new rule (102 of the 250 rows, 33 of the 100). Original labels are kept in the
+> `old_expected_role` column of each `eval/*.csv`, and unsure rows are marked in the `uncertain` column. Accuracy numbers from
+> rounds 1 and 2 were measured against the old labels and are **not comparable** with round 3.
+>
+> **Round 3 results** (each complaint sent once; role accuracy against the relabeled expected results):
+>
+> | Test set | Old prompt | New prompt |
+> |----------|-----------|------------|
+> | `eval/restaurant-250-complaints.csv` (the main file) | 52.0% | **86.8%** (level 89.2%) |
+> | `eval/restaurant-100-complaints.csv` | 67.0% | **90.0%** |
+> | `eval/chain-rule-complaints.csv` (41 new, written before the change) | 58.5% | **100%** |
+> | `eval/chain-rule-2-complaints.csv` (30 new, tricky cases, written before the second refinement) | 86.7% | **96.7%** |
+> | `eval/fresh-complaints.csv` | 73.5% | **97.1%** |
+> | Sinhala held-out / Singlish | - | 87.5% / 100% |
+>
+> What changed: the routing instruction and all 20 role descriptions. Level 1 descriptions now cover mistakes only; each
+> Level 2 supervisor's description says it receives conduct complaints about its Level 1 roles; Level 3, 4 and 5 descriptions
+> cover conduct complaints about the level below. The instruction defines conduct versus mistake, lists which job titles are
+> Level 2 / 3 / 4 (for example "the manager on duty" is Level 3), and treats routine tasks (empty soap, full bin) as Level 1.
+> The remaining misses are mostly boundary cases (cleaner versus cleaning supervisor, complaints that only say "they").
+> Tuning the 250-row result is optimistic because it was used to refine the wording; the two "chain-rule" sets were written
+> first and are the fairer check.
+
+Two earlier rounds of improvement were made (their numbers use the old labels). All of it is configuration of what Jev is told; the code
 path is unchanged. The model is called with typed questions (`Choice`, `Score`, `Noul`) and the quality
 of the answers depends mainly on the role descriptions and the routing instruction.
 
@@ -386,6 +423,8 @@ It uses only the Python standard library.
 python scripts/evaluate.py --runs 3                                              # original 19-row sample
 python scripts/evaluate.py --runs 1 --file eval/restaurant-100-complaints.csv    # 100-row file
 python scripts/evaluate.py --runs 1 --file eval/restaurant-250-complaints.csv    # 250-row file (final check)
+python scripts/evaluate.py --runs 1 --file eval/chain-rule-complaints.csv          # supervisor-chain rule, unseen set
+python scripts/evaluate.py --runs 1 --file eval/chain-rule-2-complaints.csv        # tricky cases, unseen set
 python scripts/evaluate.py --runs 2 --file eval/fresh-complaints.csv             # unbiased check
 python scripts/evaluate.py --runs 2 --file eval/holdout-complaints.csv           # older held-out set
 python scripts/evaluate.py --runs 2 --file eval/sinhala-heldout-complaints.csv   # Sinhala (use PYTHONIOENCODING=utf-8 on Windows)
@@ -419,6 +458,7 @@ eval/holdout-complaints.csv           Held-out complaints for honest measurement
 eval/restaurant-100-complaints.csv    100-row test file with expected roles
 eval/restaurant-250-complaints.csv    250-row test file with expected roles
 eval/fresh-complaints.csv             34 new complaints for an unbiased check
+eval/chain-rule*.csv                  Unseen sets for the supervisor-chain rule (41 + 30 complaints)
 eval/sinhala-*.csv, singlish-*.csv    Sinhala and Singlish test sets
 .env.example                          Template for secrets (tracked)
 .env                                  Your real secrets (git-ignored)

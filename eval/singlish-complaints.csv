@@ -1,21 +1,21 @@
-id,complaint,expected_role,expected_level
-301,app eka payment screen eke hang wenawa; order eka karanna baha.,Tenant Admin,5
-302,me branch eke mila godak wadi; portion eka podi wela.,Branch Manager,4
-303,complaint ekak kalata shift manager eka kisima deyak karanne naha.,Assistant Branch Manager,3
-304,kema ewwe pae 2kata passe; kitchen eka godak slow.,Head Chef / Kitchen Manager,2
-305,dining area eka chaos; kawruth balagaththe naha.,Floor Supervisor,2
-306,head waiter godak udagu widiyata katha kala api wine ekak ahuwama.,Head Waiter,2
-307,bar eke clean glasses naththe; cocktail hadanna ingredients naha.,Bar Supervisor,2
-308,delivery tracking eka wedak naha; wrong status pennanawa.,Delivery Supervisor,2
-309,restaurant eke cockroach ekak dunna; hygiene eka hari kharai.,Cleaning Supervisor,2
-310,parking eke lights naha; security patrol eka kisima ekak naha.,Security Supervisor / Chief Security Officer,2
-311,hostess aya api awama ignore karala giya.,Host / Hostess,1
-312,waiter mage order eka hari amathaka kala.,Waiter / Waitress,1
-313,table eka kalin ayage syrup walin sticky wela thibuna.,Busser / Table Cleaner,1
-314,cashier aya order nokala deval walata wadi gaana gaththa.,Cashier / POS Operator,1
-315,bartender mata minutes 20k ignore kala.,Bartender,1
-316,cappuccino eka udusum naha; kiri purunu wela.,Barista,1
-317,washroom eke toilet paper saha soap naha.,Cleaner / Housekeeper,1
-318,security guard eka gate eke nidagena inna.,Security Guard,1
-319,rider mage kema wrong hamuwe thiyala gihin.,Delivery Rider / Driver,1
-320,burger eke patty eka amu wela thibuna.,General Chef / Line Cook,1
+id,complaint,expected_role,expected_level,old_expected_role,uncertain
+301,app eka payment screen eke hang wenawa; order eka karanna baha.,Tenant Admin,5,Tenant Admin,
+302,me branch eke mila godak wadi; portion eka podi wela.,Branch Manager,4,Branch Manager,
+303,complaint ekak kalata shift manager eka kisima deyak karanne naha.,Branch Manager,4,Assistant Branch Manager,
+304,kema ewwe pae 2kata passe; kitchen eka godak slow.,Head Chef / Kitchen Manager,2,Head Chef / Kitchen Manager,
+305,dining area eka chaos; kawruth balagaththe naha.,Floor Supervisor,2,Floor Supervisor,
+306,head waiter godak udagu widiyata katha kala api wine ekak ahuwama.,Assistant Branch Manager,3,Head Waiter,
+307,bar eke clean glasses naththe; cocktail hadanna ingredients naha.,Bar Supervisor,2,Bar Supervisor,
+308,delivery tracking eka wedak naha; wrong status pennanawa.,Delivery Supervisor,2,Delivery Supervisor,
+309,restaurant eke cockroach ekak dunna; hygiene eka hari kharai.,Cleaning Supervisor,2,Cleaning Supervisor,
+310,parking eke lights naha; security patrol eka kisima ekak naha.,Security Supervisor / Chief Security Officer,2,Security Supervisor / Chief Security Officer,
+311,hostess aya api awama ignore karala giya.,Floor Supervisor,2,Host / Hostess,
+312,waiter mage order eka hari amathaka kala.,Waiter / Waitress,1,Waiter / Waitress,
+313,table eka kalin ayage syrup walin sticky wela thibuna.,Busser / Table Cleaner,1,Busser / Table Cleaner,
+314,cashier aya order nokala deval walata wadi gaana gaththa.,Cashier / POS Operator,1,Cashier / POS Operator,
+315,bartender mata minutes 20k ignore kala.,Bar Supervisor,2,Bartender,
+316,cappuccino eka udusum naha; kiri purunu wela.,Barista,1,Barista,
+317,washroom eke toilet paper saha soap naha.,Cleaner / Housekeeper,1,Cleaner / Housekeeper,
+318,security guard eka gate eke nidagena inna.,Security Supervisor / Chief Security Officer,2,Security Guard,
+319,rider mage kema wrong hamuwe thiyala gihin.,Delivery Rider / Driver,1,Delivery Rider / Driver,
+320,burger eke patty eka amu wela thibuna.,General Chef / Line Cook,1,General Chef / Line Cook,

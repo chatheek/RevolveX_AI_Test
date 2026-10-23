@@ -1,0 +1,31 @@
+id,complaint,expected_role,expected_level
+501,The restroom had no toilet paper when we visited.,Cleaner / Housekeeper,1
+502,The bin next to our table was overflowing.,Cleaner / Housekeeper,1
+503,There was a puddle of water on the restroom floor.,Cleaner / Housekeeper,1
+504,The table next to ours was left dirty for half an hour.,Busser / Table Cleaner,1
+505,My glass was empty for the whole meal and nobody refilled it.,Waiter / Waitress,1
+506,They gave us the wrong dessert.,Waiter / Waitress,1
+507,They forgot my extra shot of espresso.,Barista,1
+508,They handed me the receipt for someone else's order.,Cashier / POS Operator,1
+509,They forgot to wipe the table before seating us.,Busser / Table Cleaner,1
+510,They delivered it to the wrong floor of my building.,Delivery Rider / Driver,1
+511,They were really rude when I asked for the bill.,Floor Supervisor,2
+512,They rolled their eyes when I ordered a cocktail at the bar.,Bar Supervisor,2
+513,They shouted at my kid for running in the restaurant.,Floor Supervisor,2
+514,The bar manager was extremely rude to us.,Assistant Branch Manager,3
+515,The kitchen manager screamed at a customer.,Assistant Branch Manager,3
+516,The dispatch manager hung up on me twice.,Assistant Branch Manager,3
+517,The head of security grabbed my arm and pushed me out.,Assistant Branch Manager,3
+518,The supervisor ignored my complaint and laughed.,Assistant Branch Manager,3
+519,The manager on duty refused to help me with my refund.,Branch Manager,4
+520,The assistant manager was dismissive and arrogant.,Branch Manager,4
+521,The manager on duty shouted at us for complaining.,Branch Manager,4
+522,The owner treated my family with contempt.,Tenant Admin,5
+523,The general manager never answered my letter.,Tenant Admin,5
+524,They sent three orders on one bike so mine arrived cold.,Delivery Supervisor,2
+525,The driver was never given my building's gate code.,Delivery Supervisor,2
+526,The bartender was very rude and argued with me about the price.,Bar Supervisor,2
+527,The cashier gave me the wrong change.,Cashier / POS Operator,1
+528,The cleaner insulted a customer in the restroom.,Cleaning Supervisor,2
+529,The guard grabbed a woman by the arm for no reason.,Security Supervisor / Chief Security Officer,2
+530,The waiter told us to stop wasting his time.,Floor Supervisor,2

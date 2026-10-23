@@ -1,41 +1,41 @@
-id,complaint,expected_role,expected_level
-101,සමාගමේ වෙබ් අඩවියේ මගේ ගිණුම යාවත්කාලීන කිරීමට බැහැ; නිතරම දෝෂයක් පෙන්වනවා.,Tenant Admin,5
-102,මාර්ගගතව මිලදී ගත් උපහාර කාඩ්පතේ ශේෂය බිංදුවක් පෙන්වනවා.,Tenant Admin,5
-103,මෙම ශාඛාවේ ආහාරවල තත්ත්වය අනෙක් ශාඛාවලට වඩා පහත වැටී ඇත.,Branch Manager,4
-104,මම කළමනාකාරිත්වයට ඊමේල් එකක් එව්වා; ඒකට කිසිම පිළිතුරක් ලැබුණේ නැහැ.,Branch Manager,4
-105,වායු සමීකරණය කැඩී ගියත් ෂිෆ්ට් කළමනාකරු කිසිවක් කළේ නැහැ.,Assistant Branch Manager,3
-106,කළමනාකරු පාරිභෝගිකයන් ඉදිරියේ තරුණ සේවකයෙකුට බැණ වැදුණා.,Assistant Branch Manager,3
-107,අපේ ඇණවුමේ කෑම මිනිත්තු හතළිහකට පසුවයි ආවේ; සමහරක් කලින් ලැබුණා.,Head Chef / Kitchen Manager,2
-108,කෑම පිඟාන ලස්සනට සකස් කර තිබුණේ නැහැ; සෝස් පිඟානේ ඉවුරු පුරා ගැවසී තිබුණා.,Head Chef / Kitchen Manager,2
-109,සේවකයින් අපේ ඉදිරියේම මේස ගැන තර්ක කරමින් සිටියා; ශාලාව බලාගත්තේ කිසිවෙකු නැහැ.,Floor Supervisor,2
-110,අපව වසා තිබූ කොටසක වාඩි කරවා සම්පූර්ණයෙන්ම අමතක කළා.,Floor Supervisor,2
-111,ප්‍රධාන වේටර් අප ඇණවුම් කරද්දී අසතුටුදායක ලෙස නැවත නැවතත් වැඩිපුර විකිණීමට උත්සාහ කළා.,Head Waiter,2
-112,ප්‍රධාන වේටර් අපේ කතාබහට නැවත නැවතත් අනවශ්‍ය ලෙස බාධා කළා.,Head Waiter,2
-113,බාර් එකේ අයිස් ඉවර වී ගිය නිසා උණුසුම් වයින් ලබා දුන්නා.,Bar Supervisor,2
-114,බාර් අධීක්ෂක මත්වී සිටි අයට තවමත් බීම ලබා දෙන්න ඉඩ දුන්නා.,Bar Supervisor,2
-115,ඩිලිවරි කාලය වෙබ් අඩවියේ සඳහන් කාලයට වඩා දෙගුණයක් වෙනවා.,Delivery Supervisor,2
-116,මුදල් ආපසු ඉල්ලූ විට ඩිලිවරි අධීක්ෂක දුරකථනය තබා දැමුවා.,Delivery Supervisor,2
-117,ආහාර ශාලාවේ කුඩා මැස්සන් පියාසර කරමින් සිටියා.,Cleaning Supervisor,2
-118,පසුබිම කාමරයේ කාපට් එකේ පුස් ගඳක් හමනවා.,Cleaning Supervisor,2
-119,මගේ බෑග් එක සොරකම් වුණාට පසු ආරක්ෂක ප්‍රධානියා කැමරා දර්ශන බැලීම ප්‍රතික්ෂේප කළා.,Security Supervisor / Chief Security Officer,2
-120,හදිසි පිටවීමේ දොරවල් ඇතුළතින් දම්වැලකින් වසා තිබුණා.,Security Supervisor / Chief Security Officer,2
-121,විනාඩි දහයක් කීවත් අපට පැයක් බලා සිටීමට සිදු වුණා.,Host / Hostess,1
-122,පිළිගන්නා කාන්තාව අප බූත් එකක් ඉල්ලූ විට ඇස් කරකවා පෙන්වුවා.,Host / Hostess,1
-123,වේටර් මා තවමත් කමින් සිටිද්දී මගේ පිඟාන ඉවත් කළා.,Waiter / Waitress,1
-124,වේටර් කෑම දුන්නාට පසු විනාඩි හතළිහක් අතුරුදහන් වුණා.,Waiter / Waitress,1
-125,මේසය පිරිසිදු කළේ ඉතා අපිරිසිදු රෙදි කඩකින්.,Busser / Table Cleaner,1
-126,මේසය පිරිසිදු කරන්නා වීදුරුවක් කඩා බිඳී කැබලි ඉවත් නොකර ගියා.,Busser / Table Cleaner,1
-127,කැෂියර් එකම කෑමට අපේ කාඩ්පතෙන් තුන් වතාවක් අය කළා.,Cashier / POS Operator,1
-128,කැෂියර් වැරදි ඉතිරි මුදල ලබා දී මා බොරු කියනවා යැයි චෝදනා කළා.,Cashier / POS Operator,1
-129,බාර්ටෙන්ඩර් වැරදි මත්පැන් වර්ගයක් භාවිතා කර ඒ ගැන මා සමඟ තර්ක කළා.,Bartender,1
-130,මගේ බීම 90% ක්ම අයිස් වූ අතර වතුර සහිතව තිබුණා.,Bartender,1
-131,බාරිස්ටා කිරි පිළිස්සූ නිසා ලැට්ටේ එකෙන් අළු රසයක් ආවා.,Barista,1
-132,මම ඉල්ලූ ඩිකැෆ් කෝපි ඉල්ලීම ඔහු සම්පූර්ණයෙන්ම නොසලකා හැරියා.,Barista,1
-133,වැසිකිළියේ බිම වතුරෙන් පිරී ඉතා භයානක විය.,Cleaner / Housekeeper,1
-134,වැසිකිළි කණ්ණාඩි ඉතා අපිරිසිදු වී ඉරි වැටී තිබුණා.,Cleaner / Housekeeper,1
-135,ආරක්ෂකයා වයස අඩු දරුවන් කීප දෙනෙකු හඳුනාගැනීමක් නොමැතිව බාර් එකට ඇතුල් කළා.,Security Guard,1
-136,ආරක්ෂකයා දුරකථනයෙන් ක්‍රීඩාවක් නරඹමින් දොර බලා සිටියේ නැහැ.,Security Guard,1
-137,ඩිලිවරි රයිඩර් මගේ දොරට තදින් තට්ටු කර මගේ දරුවා ඇහැරවා.,Delivery Rider / Driver,1
-138,කෑම ඇසුරුම සිගරැට් ගඳක් හමමින් තිබුණා.,Delivery Rider / Driver,1
-139,චිප්ස් සම්පූර්ණයෙන්ම පිළිස්සී කෑමට නොගත හැකි තත්ත්වයක තිබුණා.,General Chef / Line Cook,1
-140,සුප් එක සීතල වී උඩින් තට්ටුවක් හටගෙන තිබුණා.,General Chef / Line Cook,1
+id,complaint,expected_role,expected_level,old_expected_role,uncertain
+101,සමාගමේ වෙබ් අඩවියේ මගේ ගිණුම යාවත්කාලීන කිරීමට බැහැ; නිතරම දෝෂයක් පෙන්වනවා.,Tenant Admin,5,Tenant Admin,
+102,මාර්ගගතව මිලදී ගත් උපහාර කාඩ්පතේ ශේෂය බිංදුවක් පෙන්වනවා.,Tenant Admin,5,Tenant Admin,
+103,මෙම ශාඛාවේ ආහාරවල තත්ත්වය අනෙක් ශාඛාවලට වඩා පහත වැටී ඇත.,Branch Manager,4,Branch Manager,
+104,මම කළමනාකාරිත්වයට ඊමේල් එකක් එව්වා; ඒකට කිසිම පිළිතුරක් ලැබුණේ නැහැ.,Branch Manager,4,Branch Manager,
+105,වායු සමීකරණය කැඩී ගියත් ෂිෆ්ට් කළමනාකරු කිසිවක් කළේ නැහැ.,Branch Manager,4,Assistant Branch Manager,
+106,කළමනාකරු පාරිභෝගිකයන් ඉදිරියේ තරුණ සේවකයෙකුට බැණ වැදුණා.,Branch Manager,4,Assistant Branch Manager,
+107,අපේ ඇණවුමේ කෑම මිනිත්තු හතළිහකට පසුවයි ආවේ; සමහරක් කලින් ලැබුණා.,Head Chef / Kitchen Manager,2,Head Chef / Kitchen Manager,
+108,කෑම පිඟාන ලස්සනට සකස් කර තිබුණේ නැහැ; සෝස් පිඟානේ ඉවුරු පුරා ගැවසී තිබුණා.,General Chef / Line Cook,1,Head Chef / Kitchen Manager,
+109,සේවකයින් අපේ ඉදිරියේම මේස ගැන තර්ක කරමින් සිටියා; ශාලාව බලාගත්තේ කිසිවෙකු නැහැ.,Floor Supervisor,2,Floor Supervisor,
+110,අපව වසා තිබූ කොටසක වාඩි කරවා සම්පූර්ණයෙන්ම අමතක කළා.,Floor Supervisor,2,Floor Supervisor,
+111,ප්‍රධාන වේටර් අප ඇණවුම් කරද්දී අසතුටුදායක ලෙස නැවත නැවතත් වැඩිපුර විකිණීමට උත්සාහ කළා.,Assistant Branch Manager,3,Head Waiter,
+112,ප්‍රධාන වේටර් අපේ කතාබහට නැවත නැවතත් අනවශ්‍ය ලෙස බාධා කළා.,Assistant Branch Manager,3,Head Waiter,
+113,බාර් එකේ අයිස් ඉවර වී ගිය නිසා උණුසුම් වයින් ලබා දුන්නා.,Bar Supervisor,2,Bar Supervisor,
+114,බාර් අධීක්ෂක මත්වී සිටි අයට තවමත් බීම ලබා දෙන්න ඉඩ දුන්නා.,Assistant Branch Manager,3,Bar Supervisor,
+115,ඩිලිවරි කාලය වෙබ් අඩවියේ සඳහන් කාලයට වඩා දෙගුණයක් වෙනවා.,Delivery Supervisor,2,Delivery Supervisor,
+116,මුදල් ආපසු ඉල්ලූ විට ඩිලිවරි අධීක්ෂක දුරකථනය තබා දැමුවා.,Assistant Branch Manager,3,Delivery Supervisor,
+117,ආහාර ශාලාවේ කුඩා මැස්සන් පියාසර කරමින් සිටියා.,Cleaning Supervisor,2,Cleaning Supervisor,
+118,පසුබිම කාමරයේ කාපට් එකේ පුස් ගඳක් හමනවා.,Cleaning Supervisor,2,Cleaning Supervisor,
+119,මගේ බෑග් එක සොරකම් වුණාට පසු ආරක්ෂක ප්‍රධානියා කැමරා දර්ශන බැලීම ප්‍රතික්ෂේප කළා.,Assistant Branch Manager,3,Security Supervisor / Chief Security Officer,
+120,හදිසි පිටවීමේ දොරවල් ඇතුළතින් දම්වැලකින් වසා තිබුණා.,Security Supervisor / Chief Security Officer,2,Security Supervisor / Chief Security Officer,
+121,විනාඩි දහයක් කීවත් අපට පැයක් බලා සිටීමට සිදු වුණා.,Host / Hostess,1,Host / Hostess,
+122,පිළිගන්නා කාන්තාව අප බූත් එකක් ඉල්ලූ විට ඇස් කරකවා පෙන්වුවා.,Floor Supervisor,2,Host / Hostess,
+123,වේටර් මා තවමත් කමින් සිටිද්දී මගේ පිඟාන ඉවත් කළා.,Waiter / Waitress,1,Waiter / Waitress,
+124,වේටර් කෑම දුන්නාට පසු විනාඩි හතළිහක් අතුරුදහන් වුණා.,Waiter / Waitress,1,Waiter / Waitress,
+125,මේසය පිරිසිදු කළේ ඉතා අපිරිසිදු රෙදි කඩකින්.,Busser / Table Cleaner,1,Busser / Table Cleaner,
+126,මේසය පිරිසිදු කරන්නා වීදුරුවක් කඩා බිඳී කැබලි ඉවත් නොකර ගියා.,Busser / Table Cleaner,1,Busser / Table Cleaner,
+127,කැෂියර් එකම කෑමට අපේ කාඩ්පතෙන් තුන් වතාවක් අය කළා.,Cashier / POS Operator,1,Cashier / POS Operator,
+128,කැෂියර් වැරදි ඉතිරි මුදල ලබා දී මා බොරු කියනවා යැයි චෝදනා කළා.,Floor Supervisor,2,Cashier / POS Operator,
+129,බාර්ටෙන්ඩර් වැරදි මත්පැන් වර්ගයක් භාවිතා කර ඒ ගැන මා සමඟ තර්ක කළා.,Bar Supervisor,2,Bartender,
+130,මගේ බීම 90% ක්ම අයිස් වූ අතර වතුර සහිතව තිබුණා.,Bartender,1,Bartender,
+131,බාරිස්ටා කිරි පිළිස්සූ නිසා ලැට්ටේ එකෙන් අළු රසයක් ආවා.,Barista,1,Barista,
+132,මම ඉල්ලූ ඩිකැෆ් කෝපි ඉල්ලීම ඔහු සම්පූර්ණයෙන්ම නොසලකා හැරියා.,Barista,1,Barista,
+133,වැසිකිළියේ බිම වතුරෙන් පිරී ඉතා භයානක විය.,Cleaner / Housekeeper,1,Cleaner / Housekeeper,
+134,වැසිකිළි කණ්ණාඩි ඉතා අපිරිසිදු වී ඉරි වැටී තිබුණා.,Cleaner / Housekeeper,1,Cleaner / Housekeeper,
+135,ආරක්ෂකයා වයස අඩු දරුවන් කීප දෙනෙකු හඳුනාගැනීමක් නොමැතිව බාර් එකට ඇතුල් කළා.,Security Guard,1,Security Guard,
+136,ආරක්ෂකයා දුරකථනයෙන් ක්‍රීඩාවක් නරඹමින් දොර බලා සිටියේ නැහැ.,Security Supervisor / Chief Security Officer,2,Security Guard,
+137,ඩිලිවරි රයිඩර් මගේ දොරට තදින් තට්ටු කර මගේ දරුවා ඇහැරවා.,Delivery Supervisor,2,Delivery Rider / Driver,
+138,කෑම ඇසුරුම සිගරැට් ගඳක් හමමින් තිබුණා.,Delivery Supervisor,2,Delivery Rider / Driver,
+139,චිප්ස් සම්පූර්ණයෙන්ම පිළිස්සී කෑමට නොගත හැකි තත්ත්වයක තිබුණා.,General Chef / Line Cook,1,General Chef / Line Cook,
+140,සුප් එක සීතල වී උඩින් තට්ටුවක් හටගෙන තිබුණා.,General Chef / Line Cook,1,General Chef / Line Cook,

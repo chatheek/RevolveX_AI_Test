@@ -47,17 +47,30 @@ public class TypeSafeJevTriageService {
         Choice.Builder route = Choice.builder().instructions(
                 "The complaint may be written in English, Sinhala (සිංහල), Singlish (Sinhala typed in English letters) or a mix. " +
                 "Understand its meaning in any of them, then apply the same rules. " +
-                "Pick the single role that should respond first. Read each role's description and choose the best match. " +
-                "1) If the complaint is about the behaviour or mistake of a specific kind of staff member (a rude host, a waiter who " +
-                "forgot the order, a guard who was aggressive, a bartender with an attitude, a cleaner who blocked the way), route it to " +
-                "that staff role itself, even when the behaviour is rude or aggressive. The escalation process moves it to a supervisor later. " +
-                "2) If the problem is systemic or about standards (supplies, equipment, training, hygiene, safety systems, dispatch or " +
-                "tracking systems, timing of the whole kitchen or dining floor, policies), route it to the Level 2 supervisor or head who owns it. " +
-                "3) If a manager or shift leader on duty failed to act on a complaint, route to Assistant Branch Manager. " +
-                "Complaints about a Level 2 supervisor or the Head Chef go to Assistant Branch Manager, about the Assistant Branch Manager " +
-                "go to Branch Manager, and about the Branch Manager go to Tenant Admin. " +
-                "4) Overall branch quality, menu, prices and staffing go to Branch Manager; franchise-wide app, website or platform " +
-                "issues go to Tenant Admin.");
+                "Pick the single role that should receive this complaint FIRST. Follow these steps in order. " +
+                "1) CONDUCT complaints go ONE LEVEL ABOVE the person they are about. Conduct means attitude or behaviour: rude, insulting, " +
+                "aggressive, mocking, dismissive, arrogant, shouting, swearing, lying, harassing, refusing to help, ignoring guests, " +
+                "failing to act on a complaint, breaking rules, or unprofessional or unhygienic behaviour. Who is above whom: " +
+                "host, waiter, busser or cashier -> Floor Supervisor; bartender or barista -> Bar Supervisor; cleaner -> Cleaning Supervisor; " +
+                "security guard or bouncer -> Security Supervisor / Chief Security Officer; delivery rider or driver -> Delivery Supervisor; " +
+                "line cook or kitchen staff -> Head Chef / Kitchen Manager. " +
+                "Level 2 people (head waiter, senior waiter, any supervisor, the bar manager, kitchen manager, dispatch manager, head of security, " +
+                "security head, head guard, chief security officer, the Head Chef) -> Assistant Branch Manager. " +
+                "Level 3 people (assistant branch manager, assistant manager, shift manager, duty manager, shift leader, or simply 'the manager' / " +
+                "'the manager on duty') -> Branch Manager. " +
+                "Level 4 people (branch manager, general manager, GM, owner) -> Tenant Admin. " +
+                "If conduct is described but no one is named (for example 'they were rude'), assume the frontline employee who does that work " +
+                "and send it to that person's supervisor. " +
+                "2) A MISTAKE or poor QUALITY of someone's work is not conduct. A mistake is an error or carelessness (forgot, wrong item, wrong bill, " +
+                "spilled, dropped, cleared too early, handed over crumpled, did not offer, left dirty, drink or dish made badly). It stays with the Level 1 " +
+                "role that does that work, even when written with 'they'. Routine one-off tasks also stay at Level 1 even if no person is named " +
+                "(empty soap or toilet paper, full bin, wet floor, dirty table, empty glass, a smell, a flooded restroom). " +
+                "3) Problems that are area-wide, recurring or about systems go to the Level 2 supervisor or head who owns that area: pests and hygiene " +
+                "standards, shortages (no clean glasses, ran out of ingredients), broken equipment, cameras or lighting, safety, kitchen or floor timing, " +
+                "nobody in charge, and delivery tracking and dispatch decisions (bundling orders, routing, assigning drivers, gate codes), which belong to the " +
+                "Delivery Supervisor and not to the rider. " +
+                "4) Branch-wide matters (overall quality, menu, prices, portions, understaffing, decor, opening hours, unanswered messages to management) " +
+                "go to Branch Manager. App, website, loyalty points, gift cards and other franchise-wide platform problems go to Tenant Admin.");
         registry.getAllLevels().values().forEach(list ->
                 list.forEach(d -> route.option(d.getTitle(), d.getDescription())));
 
