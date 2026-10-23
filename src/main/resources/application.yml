@@ -4,6 +4,9 @@ server:
   # Set to "framework" or "native" when running behind a trusted reverse proxy (Render, Nginx, aaPanel) so the app
   # sees the real client address and https. Leave as "none" when clients connect directly.
   forward-headers-strategy: ${FORWARD_HEADERS_STRATEGY:none}
+  tomcat:
+    # Redirects stay relative, so a browser on https is never sent to an http:// address by the container.
+    use-relative-redirects: true
   servlet:
     session:
       timeout: 30m

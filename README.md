@@ -451,8 +451,18 @@ Checklist for any host (Render, an aaPanel VPS, etc.):
 3. Set `COOKIE_SECURE=true`.
 4. Behind a reverse proxy (Render, Nginx, aaPanel), set `FORWARD_HEADERS_STRATEGY=native` so the app sees the real client address
    (for the lockout) and the https scheme. Only do this when a trusted proxy is really in front; otherwise a client could fake the header.
-5. Do not expose port 8080 directly on a VPS; let the proxy on 80/443 reach it (bind or firewall it to localhost).
-6. Rotate the passwords and the Jev key if they are ever shared or leaked, and keep `.env` out of the repository and out of Docker images.
+   Some platforms (SnapDeploy was observed) pass the request to the container as plain http without a usable "this was https"
+   signal. The app copes: redirects are relative (`server.tomcat.use-relative-redirects`), so a browser on https stays on https,
+   and the CSRF cookie is marked `Secure` whenever `COOKIE_SECURE=true`.
+5. **Always open the `https://` address.** If the platform also serves the same site over plain `http://`, signing in there fails with
+   a 403 on purpose: the `Secure` cookies are never sent over http, so a password cannot be submitted in the clear.
+6. After deploying, check the container log. The first page requests log a `Proxy check` line (scheme, client address and the usual
+   proxy headers; never passwords or cookies), and every rejected request logs an `Access denied (403)` line saying whether the CSRF
+   cookie, header and form field were present. These show immediately why a sign-in was refused.
+   If `remote=` in the `Proxy check` lines is always the same address, every visitor shares one lockout counter (5 wrong passwords
+   from anyone block everyone for 15 minutes).
+7. Do not expose port 8080 directly on a VPS; let the proxy on 80/443 reach it (bind or firewall it to localhost).
+8. Rotate the passwords and the Jev key if they are ever shared or leaked, and keep `.env` out of the repository and out of Docker images.
 
 ## Security notes
 
@@ -475,4 +485,5 @@ Checklist for any host (Render, an aaPanel VPS, etc.):
 | `401` from the API or script | Not signed in or wrong login. Use `curl -u user:password`, or set `APP_USERNAME` / `APP_PASSWORD` for `scripts/evaluate.py`. |
 | `429 Too many failed sign-in attempts` | Five wrong passwords from your address. Wait 15 minutes, or restart the app. |
 | `403` when posting from the page | The CSRF cookie is missing or expired. Reload the page (sign in again if asked). |
-| After deploying, login works but you are logged out at once, or redirects go to `http://` | Set `COOKIE_SECURE=true` only over https, and `FORWARD_HEADERS_STRATEGY=native` behind the proxy. |
+| After deploying, login works but you are logged out at once | `COOKIE_SECURE=true` is set but you are on `http://`. Use the `https://` address. |
+| `403 Forbidden` (Whitelabel page) when pressing Sign in | The CSRF cookie did not reach the app. Most often you are on `http://` instead of `https://`, or the page was open a long time / came from the back button: reload `/login` and try again. The server log line `Access denied (403) ... xsrfCookie=false` confirms a missing cookie. |

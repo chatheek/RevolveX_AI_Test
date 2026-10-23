@@ -66,7 +66,16 @@ public class SecurityConfig {
     }
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http, LoginAttemptFilter loginAttemptFilter) throws Exception {
+    SecurityFilterChain securityFilterChain(HttpSecurity http, LoginAttemptFilter loginAttemptFilter,
+                                            LoggingAccessDeniedHandler accessDeniedHandler,
+                                            @Value("${server.servlet.session.cookie.secure:false}") boolean secureCookies) throws Exception {
+        CookieCsrfTokenRepository csrfRepository = CookieCsrfTokenRepository.withHttpOnlyFalse();
+        csrfRepository.setCookieCustomizer(cookie -> {
+            if (secureCookies) {
+                cookie.secure(true); // do not depend on the proxy telling the app the request was https
+            }
+            cookie.sameSite("Lax");
+        });
         RequestMatcher api = request -> request.getRequestURI().startsWith("/api/");
         RequestMatcher basicAuthHeader = SecurityConfig::hasBasicAuthHeader;
 
@@ -80,11 +89,13 @@ public class SecurityConfig {
                 .formLogin(form -> form.defaultSuccessUrl("/", true))
                 .httpBasic(basic -> basic.authenticationEntryPoint(unauthorized))
                 // Only /api gets the plain 401. Do not set a global entry point: that would switch off the generated login page.
-                .exceptionHandling(ex -> ex.defaultAuthenticationEntryPointFor(unauthorized, api))
+                .exceptionHandling(ex -> ex
+                        .defaultAuthenticationEntryPointFor(unauthorized, api)
+                        .accessDeniedHandler(accessDeniedHandler))
                 // Browser sessions are protected by a CSRF token (cookie read by the page's script and sent as a header).
                 // Requests that carry an explicit Basic header are not sent automatically by browsers, so they skip it.
                 .csrf(csrf -> csrf
-                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                        .csrfTokenRepository(csrfRepository)
                         .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
                         .ignoringRequestMatchers(basicAuthHeader))
                 .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
