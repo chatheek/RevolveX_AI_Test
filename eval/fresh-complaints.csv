@@ -1,0 +1,35 @@
+id,complaint,expected_role,expected_level
+201,Our payment kept failing in the mobile app across every branch of the chain.,Tenant Admin,5
+202,The corporate website shows the wrong opening hours for all locations.,Tenant Admin,5
+203,The menu is boring and dishes cost far more than they are worth.,Branch Manager,4
+204,I emailed the branch last month about a problem and nobody ever replied.,Branch Manager,4
+205,The duty manager shrugged and did nothing when I told him the toilets were flooded.,Assistant Branch Manager,3
+206,The shift manager let two staff shout at each other in front of customers.,Assistant Branch Manager,3
+207,We waited over an hour for our mains while other tables got served quickly.,Head Chef / Kitchen Manager,2
+208,The chef put peanuts in my dish even after I told them about my allergy.,Head Chef / Kitchen Manager,2
+209,Nobody was in charge of the dining room and tables stayed uncleared and unattended.,Floor Supervisor,2
+210,Our starters and mains were all brought out at exactly the same moment.,Floor Supervisor,2
+211,The head waiter was snobbish and sighed when we asked for the wine list.,Head Waiter,2
+212,Our waiter dropped a tray and left the mess on the floor without cleaning it up.,Head Waiter,2
+213,They had no lemons or mint left at the bar so half the cocktails were unavailable.,Bar Supervisor,2
+214,The bar had run out of clean pint glasses all evening.,Bar Supervisor,2
+215,The delivery app showed my order as delivered but it never arrived.,Delivery Supervisor,2
+216,Dispatch kept giving me different arrival times and nobody could tell me where my order was.,Delivery Supervisor,2
+217,There were cockroaches on the floor of the dining area.,Cleaning Supervisor,2
+218,The whole place smelled of drains and the floor near the entrance was dangerously slippery.,Cleaning Supervisor,2
+219,The car park had no lighting and no security staff were patrolling.,Security Supervisor / Chief Security Officer,2
+220,The CCTV at the entrance has been broken for weeks and the premises feel unprotected.,Security Supervisor / Chief Security Officer,2
+221,The hostess ignored us at the entrance and kept chatting with a colleague.,Host / Hostess,1
+222,We were promised a table in 10 minutes and no one updated us for over an hour.,Host / Hostess,1
+223,The waiter forgot our drinks and never came back to our table.,Waiter / Waitress,1
+224,Our waitress was very rude and rolled her eyes when we asked a question.,Waiter / Waitress,1
+225,The table had old food and a sticky puddle when we sat down.,Busser / Table Cleaner,1
+226,The busser snatched my glass away while I was still drinking.,Busser / Table Cleaner,1
+227,The cashier charged my card twice and did not apologise.,Cashier / POS Operator,1
+228,The bartender made my mojito with no mint and way too much sugar.,Bartender,1
+229,The barista was dismissive and rolled their eyes at my order.,Barista,1
+230,The bathroom soap dispenser was empty and the bins were overflowing.,Cleaner / Housekeeper,1
+231,The security guard at the gate was aggressive and shouted at my family.,Security Guard,1
+232,The delivery driver was impolite and left the bag in the rain.,Delivery Rider / Driver,1
+233,My pasta was bland and lukewarm.,General Chef / Line Cook,1
+234,There was a strand of hair baked into my pizza.,General Chef / Line Cook,1

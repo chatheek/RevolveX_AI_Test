@@ -15,34 +15,34 @@ public class DesignationRegistry {
     @PostConstruct
     public void init() {
         // Level 5
-        add(new Designation("Tenant Admin", "System Super Admin / Tenant Admin managing entire tenant infrastructure.", 5));
+        add(new Designation("Tenant Admin", "Handles complaints about the Branch Manager's own conduct, and franchise-wide or technology problems that no single branch can fix: the mobile app, loyalty points, gift cards, online reservation portal, corporate website or email, and system updates.", 5));
 
         // Level 4
-        add(new Designation("Branch Manager", "Responsible for overall branch operations, financial performance, staff management, and ultimate resolution of escalated customer complaints.", 4));
+        add(new Designation("Branch Manager", "Handles complaints about the overall quality of the branch over time: atmosphere, menu choices, pricing and portion sizes, understaffing, and complaints sent to management that were never answered. Also handles complaints about the Assistant Branch Manager.", 4));
 
         // Level 3
-        add(new Designation("Assistant Branch Manager", "Directly supervises shift operations, manager-level escalations, and administrative tasks.", 3));
+        add(new Designation("Assistant Branch Manager", "Handles a manager or shift leader on duty who dismissed, ignored or failed to act on a complaint or on staff misbehaviour (staff arguing, blaming staff, refusing to fix noise or temperature). Also handles complaints about any Level 2 supervisor or the Head Chef.", 3));
 
         // Level 2
-        add(new Designation("Head Waiter", "Senior service staff member responsible for assigned dining sections, guiding waiters, and handling complex customer table service requests.", 2));
-        add(new Designation("Head Chef / Kitchen Manager", "Leads overall kitchen operations, manages kitchen staff, oversees food quality, food safety standards, and kitchen inventory.", 2));
-        add(new Designation("Floor Supervisor", "Directly supervises Head Waiters, Waiters, Bussers, Cashiers, Hosts, and Valets.", 2));
-        add(new Designation("Bar Supervisor", "Directly supervises Bartenders and Baristas.", 2));
-        add(new Designation("Cleaning Supervisor", "Directly supervises Cleaners, Janitors, and Restroom Attendants.", 2));
-        add(new Designation("Security Supervisor / Chief Security Officer", "Directly supervises Security Guards and Parking Attendants.", 2));
-        add(new Designation("Delivery Supervisor", "Oversees delivery operations, manages order dispatching, coordinates delivery riders/drivers, tracks delivery timelines, and handles customer issues or delays related to takeaway and delivery orders.", 2));
+        add(new Designation("Head Waiter", "Handles the conduct of the head waiter, senior waiter or head server (arrogant, annoyed, passive-aggressive, interrupting), and waiter skill or training lapses in service standards: spills left uncleaned, dropped trays, poor wine knowledge, missing basic table-service skills.", 2));
+        add(new Designation("Head Chef / Kitchen Manager", "Handles kitchen-wide problems: long delays or uneven timing getting food out, allergen and cross-contamination failures, food-safety failures such as raw or undercooked meat, and plating or presentation standards.", 2));
+        add(new Designation("Floor Supervisor", "Handles management of the dining floor: nobody in charge, tables or servers not assigned, staff idle or running around frantically, and the pacing and coordination of courses (starters and mains arriving together, uneven service flow).", 2));
+        add(new Designation("Bar Supervisor", "Handles bar operations problems: bar supplies or ingredients running out, no clean glassware, drink menu items unavailable, dirty beer lines, and an unmanaged or unsanitary bar area.", 2));
+        add(new Designation("Cleaning Supervisor", "Handles hygiene and safety standards for cleanliness: pests and insects, strong odours, dangerously slippery floors, neglected deep cleaning (gum, grime), and cleaning done at the wrong time.", 2));
+        add(new Designation("Security Supervisor / Chief Security Officer", "Handles safety and security systems: lighting, broken cameras, missing patrols or protocols, security ignoring disruptive patrons, and valet or vehicle incidents needing a decision.", 2));
+        add(new Designation("Delivery Supervisor", "Handles delivery and dispatch operations: broken order tracking, misleading dispatch information, unhelpful dispatch calls, delivery policies, and refunds for orders that never arrived.", 2));
 
         // Level 1
-        add(new Designation("Host / Hostess", "Greets arriving guests, manages table reservations, handles floor seating arrangements, and serves as the initial point of contact at the branch entrance.", 1));
-        add(new Designation("Waiter / Waitress", "Takes customer orders, serves food and beverages, handles table billing, and directly attends to customer requests throughout their meal.", 1));
-        add(new Designation("Busser / Table Cleaner", "Clears used dishes, cleans and sanitizes dining tables, resets seating areas, and supports waiters to maintain floor efficiency.", 1));
-        add(new Designation("Cashier / POS Operator", "Processes customer payments, manages checkout billing, issues receipts, and handles cash register balancing at the front counter.", 1));
-        add(new Designation("Bartender", "Prepares and serves alcoholic and non-alcoholic beverages, manages bar inventory, and maintains cleanliness in the bar service area.", 1));
-        add(new Designation("Barista", "Specializes in preparing and serving coffee, tea, and specialized cafe beverages according to established branch standards.", 1));
-        add(new Designation("Cleaner / Housekeeper", "Maintains cleanliness across public dining areas, restrooms, corridors, and staff quarters throughout operational hours.", 1));
-        add(new Designation("Security Guard", "Ensures safety and security for customers, staff, and branch property, managing parking flow and handling disruptive incidents.", 1));
-        add(new Designation("Delivery Rider / Driver", "Transports food orders from the branch directly to customers for takeaway and delivery orders while ensuring timely transit.", 1));
-        add(new Designation("General Chef / Line Cook", "Prepares and cooks menu items at kitchen according to standardized recipes, ensuring food quality, speed, and strict hygiene standards.", 1));
+        add(new Designation("Host / Hostess", "Handles the conduct of the host or greeter at the entrance, wait times quoted at the door, lost reservations, and seating problems.", 1));
+        add(new Designation("Waiter / Waitress", "Handles the conduct and mistakes of the server at the table: forgot an order, never returned, ignored guests, wrong dish, rude attitude, slow check.", 1));
+        add(new Designation("Busser / Table Cleaner", "Handles table clearing and cleaning: dirty or wet tables, clearing plates too early, noisy handling of dishes, and conduct of the busser.", 1));
+        add(new Designation("Cashier / POS Operator", "Handles the conduct and mistakes of the cashier or register operator: overcharging, double charges, wrong change or discount, slow voids or gift card processing, rudeness.", 1));
+        add(new Designation("Bartender", "Handles the conduct and mistakes of the bartender: drinks made wrongly, wrong order, ignoring guests, poor hygiene (bare hands on ice), attitude.", 1));
+        add(new Designation("Barista", "Handles coffee and tea quality and the conduct of the barista: burnt, lukewarm or flat drinks, wrong milk, dirty or chipped cups and mugs, attitude.", 1));
+        add(new Designation("Cleaner / Housekeeper", "Handles routine upkeep tasks and conduct of the cleaner: restroom supplies (toilet paper, soap), overflowing bins, water on restroom floors, dirty mirrors, blocking walkways.", 1));
+        add(new Designation("Security Guard", "Handles the conduct of the security guard: rude, intimidating or aggressive, physical contact, asleep or distracted by a phone, missing ID checks, letting in the wrong people.", 1));
+        add(new Designation("Delivery Rider / Driver", "Handles the conduct and handling of the delivery rider: wrong address, squashed or damaged food, rudeness, demanding a tip, bad smell, leaving food outside.", 1));
+        add(new Designation("General Chef / Line Cook", "Handles the quality of a single dish and the conduct of the line cook: bland, salty, soggy, cold or burnt food, wrong ingredients, foreign objects such as hair, too much dressing.", 1));
     }
 
     private void add(Designation d) {

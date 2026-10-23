@@ -1,3 +1,25 @@
+### Secrets (never commit) ###
+.env
+.env.*
+!.env.example
+*.env
+*.pem
+*.key
+*.p12
+*.jks
+src/main/resources/application-local.*
+src/main/resources/application-secret*.*
+
+### Java / Maven build output ###
+*.class
+*.jar
+*.war
+*.ear
+hs_err_pid*
+replay_pid*
+dependency-reduced-pom.xml
+.flattened-pom.xml
+
 HELP.md
 target/
 .mvn/wrapper/maven-wrapper.jar
@@ -31,3 +53,33 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### OS ###
+.DS_Store
+Thumbs.db
+desktop.ini
+
+### Logs and temp files ###
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+
+### Python (scripts/evaluate.py) ###
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+### Generated test reports and Office temp files ###
+~$*
+*.backup.xlsx
+eval/results/
+eval/*.out
+
+### AI / IDE tool folders (generated, machine-specific) ###
+.claude/
+.github/modernize/
+.eclipse/
+*.code-workspace
