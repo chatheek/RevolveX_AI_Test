@@ -45,6 +45,8 @@ public class TypeSafeJevTriageService {
         log.info("Initiating Jev AI triage analysis for feedback: '{}'", feedback);
 
         Choice.Builder route = Choice.builder().instructions(
+                "The complaint may be written in English, Sinhala (සිංහල), Singlish (Sinhala typed in English letters) or a mix. " +
+                "Understand its meaning in any of them, then apply the same rules. " +
                 "Pick the single role that should respond first. Read each role's description and choose the best match. " +
                 "1) If the complaint is about the behaviour or mistake of a specific kind of staff member (a rude host, a waiter who " +
                 "forgot the order, a guard who was aggressive, a bartender with an attitude, a cleaner who blocked the way), route it to " +

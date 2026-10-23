@@ -21,6 +21,7 @@ Jev decides which staff role should handle it, how urgent it is, and how confide
 - [Project structure](#project-structure)
 - [Staff hierarchy](#staff-hierarchy)
 - [Improving accuracy](#improving-accuracy)
+- [Sinhala and Singlish support](#sinhala-and-singlish-support)
 - [Measuring accuracy](#measuring-accuracy)
 - [Testing](#testing)
 - [Login and security](#login-and-security)
@@ -337,6 +338,41 @@ confidence analysis, failed cases, before vs after) was generated as `ResolveX_T
 Further ideas: write more fresh complaints from real data, separate severity and urgency in the priority question,
 and agree the correct answer for the ambiguous cases with the business.
 
+## Sinhala and Singlish support
+
+Typesafe does not document which languages Jev supports, so this was measured. **Jev understands Sinhala script
+(සිංහල) and Singlish (Sinhala typed in English letters) well, with no translation step.**
+
+Test sets (all use the same expected-role convention as the 250-row English file):
+
+| File | What it is | Size |
+|------|------------|------|
+| `eval/sinhala-tune-complaints.csv` | Sinhala complaints used to choose the changes below | 40 |
+| `eval/sinhala-heldout-complaints.csv` | Different Sinhala complaints, not used to choose the changes | 40 |
+| `eval/singlish-complaints.csv` | Singlish complaints | 20 |
+
+Results (each complaint sent twice):
+
+| Set | Out of the box | After the changes |
+|-----|----------------|-------------------|
+| Sinhala, tuned-on set | 90.0% | 95.0% |
+| **Sinhala, held-out set** | **86.2%** | **90.0-91.2%** |
+| Singlish | 100% | 100% |
+| English 250-row file (regression check) | 77.6% | 76.8% |
+| English fresh set (regression check) | 97.1% | 100% |
+
+What was changed (a small gain, not a large one, because the baseline was already high):
+
+1. The routing instruction now tells Jev the complaint may be English, Sinhala, Singlish or a mix.
+2. Each role description in `DesignationRegistry` ends with a short list of the Sinhala words people use for that role and
+   its typical problems (for example ප්‍රධාන වේටර් for Head Waiter, ආරක්ෂකයා for Security Guard).
+
+How to read this: the held-out gain (about +4 points on 80 runs) is in the right direction but small enough to be partly
+noise, and English did not get worse. The remaining Sinhala misses are the same kinds as in English (a guest left in a
+closed section, a plate cleared while eating, ambiguous labels), so they are not language problems. The test sentences
+were written by an AI assistant, not by native Sinhala speakers or real customers, so real-world accuracy may differ.
+Add real complaints to the CSV files to measure it properly.
+
 ## Measuring accuracy
 
 `scripts/evaluate.py` sends every complaint in a CSV file to the running app and reports role and level accuracy.
@@ -352,6 +388,8 @@ python scripts/evaluate.py --runs 1 --file eval/restaurant-100-complaints.csv   
 python scripts/evaluate.py --runs 1 --file eval/restaurant-250-complaints.csv    # 250-row file (final check)
 python scripts/evaluate.py --runs 2 --file eval/fresh-complaints.csv             # unbiased check
 python scripts/evaluate.py --runs 2 --file eval/holdout-complaints.csv           # older held-out set
+python scripts/evaluate.py --runs 2 --file eval/sinhala-heldout-complaints.csv   # Sinhala (use PYTHONIOENCODING=utf-8 on Windows)
+python scripts/evaluate.py --runs 2 --file eval/singlish-complaints.csv          # Singlish
 ```
 
 CSV columns: `id, complaint, expected_role, expected_level`. Add your own rows to grow the test set.
@@ -381,6 +419,7 @@ eval/holdout-complaints.csv           Held-out complaints for honest measurement
 eval/restaurant-100-complaints.csv    100-row test file with expected roles
 eval/restaurant-250-complaints.csv    250-row test file with expected roles
 eval/fresh-complaints.csv             34 new complaints for an unbiased check
+eval/sinhala-*.csv, singlish-*.csv    Sinhala and Singlish test sets
 .env.example                          Template for secrets (tracked)
 .env                                  Your real secrets (git-ignored)
 ```
