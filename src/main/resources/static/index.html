@@ -14,6 +14,21 @@
     <script type="text/babel">
         const { useState, useEffect } = React;
 
+        // Sends the CSRF token on changes and returns to the login page when the session has ended.
+        const csrfToken = () => decodeURIComponent(
+            (document.cookie.split("; ").find(c => c.startsWith("XSRF-TOKEN=")) || "").split("=")[1] || "");
+
+        async function apiFetch(url, options = {}) {
+            const headers = { ...(options.headers || {}) };
+            if ((options.method || "GET").toUpperCase() !== "GET") headers["X-XSRF-TOKEN"] = csrfToken();
+            const res = await fetch(url, { ...options, headers, credentials: "same-origin" });
+            if (res.status === 401) {
+                window.location.href = "/login";
+                throw new Error("Session expired. Please sign in again.");
+            }
+            return res;
+        }
+
         function App() {
             const [hierarchy, setHierarchy] = useState({});
             const [feedback, setFeedback] = useState("");
@@ -21,19 +36,30 @@
             const [escalating, setEscalating] = useState(false);
             const [triage, setTriage] = useState(null);
 
+            const [username, setUsername] = useState("");
+
             useEffect(() => {
-                fetch("/api/v1/hierarchy")
+                apiFetch("/api/v1/hierarchy")
                     .then(res => res.json())
                     .then(data => setHierarchy(data))
                     .catch(err => console.error(err));
+                apiFetch("/api/v1/me")
+                    .then(res => res.json())
+                    .then(data => setUsername(data.username))
+                    .catch(err => console.error(err));
             }, []);
+
+            const handleSignOut = async () => {
+                try { await apiFetch("/logout", { method: "POST" }); } catch (err) { /* leave anyway */ }
+                window.location.href = "/login?logout";
+            };
 
             const handleSubmit = async (e) => {
                 e.preventDefault();
                 if (!feedback.trim()) return;
                 setLoading(true);
                 try {
-                    const res = await fetch("/api/v1/complaints/triage", {
+                    const res = await apiFetch("/api/v1/complaints/triage", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ feedback })
@@ -52,7 +78,7 @@
                 if (!triage || escalating) return;
                 setEscalating(true);
                 try {
-                    const res = await fetch("/api/v1/complaints/escalate", {
+                    const res = await apiFetch("/api/v1/complaints/escalate", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
@@ -88,9 +114,20 @@
 
             return (
                 <div className="max-w-7xl mx-auto space-y-8">
-                    <header className="border-b border-slate-800 pb-4">
-                        <h1 className="text-3xl font-bold text-sky-400">ResolveX Triage Engine</h1>
-                        <p className="text-slate-400 text-sm">Spring AI with TypeSafe Jev Model</p>
+                    <header className="border-b border-slate-800 pb-4 flex items-start justify-between gap-4">
+                        <div>
+                            <h1 className="text-3xl font-bold text-sky-400">ResolveX Triage Engine</h1>
+                            <p className="text-slate-400 text-sm">Spring AI with TypeSafe Jev Model</p>
+                        </div>
+                        <div className="text-right text-sm">
+                            {username && <p className="text-slate-400">Signed in as <span className="text-slate-200 font-semibold">{username}</span></p>}
+                            <button
+                                onClick={handleSignOut}
+                                className="mt-1 px-3 py-1 text-xs font-bold bg-slate-700 hover:bg-slate-600 rounded-lg transition"
+                            >
+                                Sign out
+                            </button>
+                        </div>
                     </header>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

@@ -23,6 +23,8 @@ Jev decides which staff role should handle it, how urgent it is, and how confide
 - [Improving accuracy](#improving-accuracy)
 - [Measuring accuracy](#measuring-accuracy)
 - [Testing](#testing)
+- [Login and security](#login-and-security)
+- [Deploying securely](#deploying-securely)
 - [Security notes](#security-notes)
 - [Troubleshooting](#troubleshooting)
 
@@ -92,15 +94,20 @@ Stack: Spring Boot 4.0.7, Spring AI Typesafe starter 0.4.0 (`org.springaicommuni
 
    Windows PowerShell: `Copy-Item .env.example .env`
 
-3. Open `.env` and set your key:
+3. Open `.env` and set your Jev key **and the login for the web page and API**:
 
    ```properties
    TYPESAFE_API_KEY=your-typesafe-api-key-here
+   APP_USERNAME=choose-a-username
+   APP_PASSWORD=choose-a-long-random-password
    ```
+
+   Make the password long and random (at least 12 characters; the app refuses to start with a shorter one), for example:
+   `python -c "import secrets; print(secrets.token_urlsafe(18))"`. There are no default credentials.
 
    The file is read automatically on startup (`spring.config.import: optional:file:.env[.properties]`
    in `application.yml`). It must be in the directory you start the app from (the project root).
-   You can alternatively set a real environment variable named `TYPESAFE_API_KEY`, which works the same way.
+   You can alternatively set real environment variables with the same names, which work the same way.
 
 `.env` is listed in `.gitignore`, so it is never committed. `.env.example` is the only env file that is tracked, and it contains no secret.
 
@@ -120,7 +127,8 @@ Windows (PowerShell / cmd):
 .\mvnw.cmd spring-boot:run
 ```
 
-Then open <http://localhost:8080> for the web UI.
+Then open <http://localhost:8080> for the web UI. You are sent to a sign-in page; use the `APP_USERNAME` and
+`APP_PASSWORD` from your `.env`. Use **Sign out** (top right) when you are done.
 
 Build a runnable jar instead:
 
@@ -129,11 +137,20 @@ Build a runnable jar instead:
 java -jar target/triage-0.0.1-SNAPSHOT.jar
 ```
 
-(Run the jar from the project root so `.env` is found, or set `TYPESAFE_API_KEY` as an environment variable.)
+(Run the jar from the project root so `.env` is found, or set the environment variables. It needs Java 17+, so make
+sure `java` is not Java 11.)
 
 ## API reference
 
 Base path: `/api/v1`
+
+**Every endpoint requires a login.** Without one you get `401`. Scripts and curl use HTTP Basic with the same
+`APP_USERNAME` / `APP_PASSWORD` (`curl -u user:password ...`). Browsers use the sign-in page; changes made from the page
+also carry a CSRF token, which the page handles automatically. See [Login and security](#login-and-security).
+
+### `GET /me`
+
+Returns `{ "username": "..." }` for the signed-in user.
 
 ### `GET /hierarchy`
 
@@ -177,7 +194,7 @@ Response:
 Example:
 
 ```bash
-curl -X POST http://localhost:8080/api/v1/complaints/triage \
+curl -u "$APP_USERNAME:$APP_PASSWORD" -X POST http://localhost:8080/api/v1/complaints/triage \
   -H "Content-Type: application/json" \
   -d '{"feedback":"The branch manager shouted at a customer"}'
 ```
@@ -233,8 +250,14 @@ Branch Manager is triaged straight to Tenant Admin and stays there.
 | `spring.ai.typesafe.base-url`| `https://api.typesafe.ai` (library default) | API root; normally leave unset.            |
 | `spring.ai.typesafe.retry.*`| library defaults (2 retries, backoff) | Retry behaviour for transient failures.          |
 | `spring.web.error.include-message` | `always`                    | Shows the error text in API error responses (Spring Boot 4 name; it was `server.error.*` in Boot 3). |
+| `app.security.username`     | `${APP_USERNAME}`                  | Login name. No default.                             |
+| `app.security.password`     | `${APP_PASSWORD}`                  | Login password, at least 12 characters (or a `{bcrypt}$2...` hash). No default. |
+| `server.servlet.session.timeout` | `30m`                         | Idle time before the browser session ends.          |
+| `server.servlet.session.cookie.secure` | `${COOKIE_SECURE:false}` | Set `COOKIE_SECURE=true` whenever the site is served over https. |
+| `server.forward-headers-strategy` | `${FORWARD_HEADERS_STRATEGY:none}` | Set to `native` or `framework` behind a trusted reverse proxy. |
 
-The app will not start without an API key (`TYPESAFE_API_KEY`), because the Jev client is only created when a key is configured.
+The app will not start without an API key (`TYPESAFE_API_KEY`), because the Jev client is only created when a key is configured,
+and it will not start without `APP_USERNAME` and a strong `APP_PASSWORD`.
 
 ## Improving accuracy
 
@@ -340,6 +363,11 @@ Each run calls the Jev API (billed per token), so keep `--runs` small. Jev answe
 src/main/java/resolvex_triage/
   TriageApplication.java              Spring Boot entry point
   controller/TriageController.java    REST endpoints
+  controller/AccountController.java   GET /me (who is signed in)
+  security/SecurityConfig.java        Login, CSRF, API 401s, headers, the single account
+  security/LoginAttemptService.java   Brute-force lockout (5 failures -> 15 min block per address)
+  security/LoginAttemptFilter.java    Applies the lockout to the login form and Basic requests
+  security/CsrfCookieFilter.java      Writes the CSRF cookie the page reads
   service/TypeSafeJevTriageService.java   Jev AI triage (Typesafe client)
   service/EscalationEngine.java       AI escalation (Jev) with hierarchy guardrails
   repository/DesignationRegistry.java In-memory staff roles
@@ -381,6 +409,51 @@ escalation guardrails: the ceiling at Tenant Admin and Branch Manager, no AI cal
 that Jev is only offered roles above the current level, that Tenant Admin is offered only for Branch Manager
 complaints, and that a role Jev returns outside the allowed list is rejected.
 
+`SecurityIntegrationTest` and `LoginAttemptServiceTest` check the login rules against the real filter chain: anonymous
+API calls get 401 without a browser popup, pages redirect to `/login`, wrong passwords are refused, a browser session
+cannot change anything without a CSRF token, scripts with Basic auth can, repeated wrong passwords are blocked with 429
+(and unblock after 15 minutes), security headers are present, and the app refuses a weak or missing password.
+
+The accuracy script `scripts/evaluate.py` signs in with `APP_USERNAME` / `APP_PASSWORD` (from the environment or `.env`).
+
+## Login and security
+
+The whole app, page and API, is behind a login. There is a single account taken from `APP_USERNAME` / `APP_PASSWORD`.
+
+| Protection | How it works |
+|------------|--------------|
+| No open access | Everything except `/login` needs a login. Anonymous API calls get `401`; anonymous page visits go to `/login`. |
+| No default password | The app will not start without `APP_USERNAME` and a password of 12+ characters. The password is hashed (bcrypt) in memory. A ready-made `{bcrypt}$2...` hash is accepted too. |
+| Browser login | Form login with a session cookie that is `HttpOnly`, `SameSite=Lax` (and `Secure` when `COOKIE_SECURE=true`), expires after 30 idle minutes, and is renewed at login. |
+| CSRF protection | Changes made from a signed-in browser need a CSRF token (cookie plus `X-XSRF-TOKEN` header); the page does this automatically. |
+| Scripts / curl | HTTP Basic on the API. These requests do not need a CSRF token because browsers do not send a Basic header on their own. A bad Basic login returns a plain `401` with no browser popup. |
+| Brute-force limit | 5 wrong passwords from one address block that address for 15 minutes (`429` with `Retry-After`), even for the right password. |
+| Browser hardening | Content-Security-Policy, `X-Frame-Options: DENY`, `X-Content-Type-Options`, `Referrer-Policy: no-referrer` and HSTS (HSTS only takes effect over https). |
+| No cross-site API access | The earlier `@CrossOrigin("*")` was removed; the API answers only the page it serves. |
+| Jev credit protection | Every call that uses your Jev credit requires a login. |
+
+Limits to know about:
+
+- **One shared account**, no roles, no password reset and no multi-factor authentication. For several people or stronger needs,
+  put the app behind your identity provider or a reverse proxy that handles sign-in.
+- **Lockout and sessions are in memory.** They reset when the app restarts and are not shared between several instances.
+- **The Content-Security-Policy is loose** (`unsafe-inline` / `unsafe-eval` and three CDN hosts) because the page loads React,
+  Babel and Tailwind from CDNs and compiles its script in the browser. Bundling those into the app would allow a strict policy.
+- **Use https.** Passwords are sent in the clear over plain http. See below.
+
+## Deploying securely
+
+Checklist for any host (Render, an aaPanel VPS, etc.):
+
+1. **Serve it over https only** (Render does this for you; on a VPS add a free Let's Encrypt certificate in the panel and redirect http to https).
+2. Set the secrets as **environment variables in the host's settings**, not in the repository: `TYPESAFE_API_KEY`, `APP_USERNAME`,
+   `APP_PASSWORD` (long and random, different from your local one).
+3. Set `COOKIE_SECURE=true`.
+4. Behind a reverse proxy (Render, Nginx, aaPanel), set `FORWARD_HEADERS_STRATEGY=native` so the app sees the real client address
+   (for the lockout) and the https scheme. Only do this when a trusted proxy is really in front; otherwise a client could fake the header.
+5. Do not expose port 8080 directly on a VPS; let the proxy on 80/443 reach it (bind or firewall it to localhost).
+6. Rotate the passwords and the Jev key if they are ever shared or leaked, and keep `.env` out of the repository and out of Docker images.
+
 ## Security notes
 
 - Never commit `.env` or paste the key into source files, issues or chat logs.
@@ -388,7 +461,7 @@ complaints, and that a role Jev returns outside the allowed list is rejected.
   and `application.yml`. It remains in the git history. If that key is still active, revoke it in the
   provider console.
 - If your current key is ever exposed, rotate it at <https://console.typesafe.ai/keys> and update `.env`.
-- `@CrossOrigin(origins = "*")` on the controller is fine for a prototype but should be restricted before any real deployment.
+- The API is no longer open: see [Login and security](#login-and-security). The earlier wildcard CORS setting has been removed.
 
 ## Troubleshooting
 
@@ -398,3 +471,8 @@ complaints, and that a role Jev returns outside the allowed list is rejected.
 | App fails with "No qualifying bean of type TypeSafeClient" or an unresolved `TYPESAFE_API_KEY` placeholder | `.env` is missing, in the wrong folder, or the key is empty. Start the app from the project root. |
 | HTTP 502 "Jev AI service call failed" with an authentication error | The key is wrong, revoked or has stray spaces/line breaks. Re-copy it into `.env` on a single line. |
 | 502 with a rate-limit or timeout error | Retry later; retries are configurable under `spring.ai.typesafe.retry`. |
+| App will not start: "Could not resolve placeholder 'APP_USERNAME'" or "APP_PASSWORD must be at least 12 characters" | Add `APP_USERNAME` and a 12+ character `APP_PASSWORD` to `.env` (or the environment). |
+| `401` from the API or script | Not signed in or wrong login. Use `curl -u user:password`, or set `APP_USERNAME` / `APP_PASSWORD` for `scripts/evaluate.py`. |
+| `429 Too many failed sign-in attempts` | Five wrong passwords from your address. Wait 15 minutes, or restart the app. |
+| `403` when posting from the page | The CSRF cookie is missing or expired. Reload the page (sign in again if asked). |
+| After deploying, login works but you are logged out at once, or redirects go to `http://` | Set `COOKIE_SECURE=true` only over https, and `FORWARD_HEADERS_STRATEGY=native` behind the proxy. |

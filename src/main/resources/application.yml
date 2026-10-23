@@ -1,5 +1,16 @@
 server:
   port: 8080
+  # Set to "framework" or "native" when running behind a trusted reverse proxy (Render, Nginx, aaPanel) so the app
+  # sees the real client address and https. Leave as "none" when clients connect directly.
+  forward-headers-strategy: ${FORWARD_HEADERS_STRATEGY:none}
+  servlet:
+    session:
+      timeout: 30m
+      cookie:
+        http-only: true
+        same-site: lax
+        # Set COOKIE_SECURE=true when the site is served over https (always, for a real deployment).
+        secure: ${COOKIE_SECURE:false}
 
 spring:
   application:
@@ -8,10 +19,16 @@ spring:
     error:
       include-message: always
   config:
-    # Loads TYPESAFE_API_KEY from a local .env file (git-ignored) if present.
-    # A real OS environment variable of the same name works too.
+    # Loads TYPESAFE_API_KEY, APP_USERNAME and APP_PASSWORD from a local .env file (git-ignored) if present.
+    # Real OS environment variables of the same names work too.
     import: optional:file:.env[.properties]
   ai:
     typesafe:
       api-key: ${TYPESAFE_API_KEY}
       model: jev-latest
+
+app:
+  security:
+    # Login for the web page and the API. No defaults on purpose: the app will not start without them.
+    username: ${APP_USERNAME}
+    password: ${APP_PASSWORD}

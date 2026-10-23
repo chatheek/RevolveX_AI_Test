@@ -14,7 +14,6 @@ import java.util.*;
 @Slf4j
 @RestController
 @RequestMapping("/api/v1")
-@CrossOrigin(origins = "*")
 public class TriageController {
 
     /** Below this Jev confidence (%) a decision is flagged for human review. */

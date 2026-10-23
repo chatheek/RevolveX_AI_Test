@@ -4,8 +4,26 @@
 Usage:  python scripts/evaluate.py [--runs 3] [--url http://localhost:8080]
 Needs only the Python standard library. Start the app first (./mvnw spring-boot:run).
 """
-import argparse, csv, json, urllib.request
+import argparse, base64, csv, json, os, urllib.request
 from collections import Counter
+
+
+def credentials():
+    """Login for the app: APP_USERNAME / APP_PASSWORD from the environment, else from a local .env file."""
+    user, password = os.environ.get("APP_USERNAME"), os.environ.get("APP_PASSWORD")
+    if not (user and password) and os.path.exists(".env"):
+        for line in open(".env", encoding="utf-8"):
+            key, _, value = line.strip().partition("=")
+            if key == "APP_USERNAME" and not user:
+                user = value
+            elif key == "APP_PASSWORD" and not password:
+                password = value
+    if not (user and password):
+        raise SystemExit("Set APP_USERNAME and APP_PASSWORD (environment or .env) to sign in to the app.")
+    return user, password
+
+
+AUTH = "Basic " + base64.b64encode(":".join(credentials()).encode("utf-8")).decode("ascii")
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--runs", type=int, default=3, help="times each complaint is sent (Jev answers can vary)")
@@ -21,7 +39,7 @@ for row in rows:
     for _ in range(args.runs):
         req = urllib.request.Request(args.url + "/api/v1/complaints/triage",
                                      json.dumps({"feedback": row["complaint"]}).encode(),
-                                     {"Content-Type": "application/json"})
+                                     {"Content-Type": "application/json", "Authorization": AUTH})
         d = json.load(urllib.request.urlopen(req, timeout=60))
         answers.append((d["routedTo"], str(d["routedLevel"])))
         confs.append(d["confidence"])
