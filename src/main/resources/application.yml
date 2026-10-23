@@ -1,5 +1,6 @@
 server:
-  port: 8080
+  # Hosting platforms (SnapDeploy, Render, Heroku...) tell the app which port to use through PORT.
+  port: ${PORT:8080}
   # Set to "framework" or "native" when running behind a trusted reverse proxy (Render, Nginx, aaPanel) so the app
   # sees the real client address and https. Leave as "none" when clients connect directly.
   forward-headers-strategy: ${FORWARD_HEADERS_STRATEGY:none}

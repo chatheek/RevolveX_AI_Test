@@ -244,7 +244,7 @@ Branch Manager is triaged straight to Tenant Admin and stays there.
 
 | Property                    | Default / value                    | Description                                         |
 |-----------------------------|------------------------------------|-----------------------------------------------------|
-| `server.port`               | `8080`                             | HTTP port.                                          |
+| `server.port`               | `${PORT:8080}`                     | HTTP port: the `PORT` variable set by hosting platforms, else 8080. |
 | `spring.ai.typesafe.api-key`| `${TYPESAFE_API_KEY}`              | Typesafe API key, from `.env` or the environment.   |
 | `spring.ai.typesafe.model`  | `jev-latest`                       | Jev model name or alias.                            |
 | `spring.ai.typesafe.base-url`| `https://api.typesafe.ai` (library default) | API root; normally leave unset.            |
