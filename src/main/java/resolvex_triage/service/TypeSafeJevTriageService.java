@@ -51,16 +51,16 @@ public class TypeSafeJevTriageService {
                 "1) CONDUCT complaints go ONE LEVEL ABOVE the person they are about. Conduct means attitude or behaviour: rude, insulting, " +
                 "aggressive, mocking, dismissive, arrogant, shouting, swearing, lying, harassing, refusing to help, ignoring guests, " +
                 "failing to act on a complaint, breaking rules, or unprofessional or unhygienic behaviour. Who is above whom: " +
-                "host, waiter, busser or cashier -> Floor Supervisor; bartender or barista -> Bar Supervisor; cleaner -> Cleaning Supervisor; " +
+                "waiter -> Head Waiter; host, busser or cashier -> Floor Supervisor; bartender or barista -> Bar Supervisor; cleaner -> Cleaning Supervisor; " +
                 "security guard or bouncer -> Security Supervisor / Chief Security Officer; delivery rider or driver -> Delivery Supervisor; " +
                 "line cook or kitchen staff -> Head Chef / Kitchen Manager. " +
-                "Level 2 people (head waiter, senior waiter, any supervisor, the bar manager, kitchen manager, dispatch manager, head of security, " +
+                "Level 2 people (the Head Waiter or senior waiter, any supervisor, the bar manager, kitchen manager, dispatch manager, head of security, " +
                 "security head, head guard, chief security officer, the Head Chef) -> Assistant Branch Manager. " +
                 "Level 3 people (assistant branch manager, assistant manager, shift manager, duty manager, shift leader, or simply 'the manager' / " +
                 "'the manager on duty') -> Branch Manager. " +
                 "Level 4 people (branch manager, general manager, GM, owner) -> Tenant Admin. " +
                 "If conduct is described but no one is named (for example 'they were rude'), assume the frontline employee who does that work " +
-                "and send it to that person's supervisor. " +
+                "(service at the table is the waiter) and send it to that person's supervisor. " +
                 "2) A MISTAKE or poor QUALITY of someone's work is not conduct. A mistake is an error or carelessness (forgot, wrong item, wrong bill, " +
                 "spilled, dropped, cleared too early, handed over crumpled, did not offer, left dirty, drink or dish made badly). It stays with the Level 1 " +
                 "role that does that work, even when written with 'they'. Routine one-off tasks also stay at Level 1 even if no person is named " +

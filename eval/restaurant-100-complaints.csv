@@ -27,7 +27,7 @@ id,complaint,expected_role,expected_level,old_expected_role,uncertain
 26,The senior waiter was extremely arrogant when I asked about wine pairings.,Assistant Branch Manager,3,Head Waiter,
 27,Our head server seemed annoyed that we took time to order.,Assistant Branch Manager,3,Head Waiter,
 28,The waiter spilled sauce on the table and didn't bother to wipe it up.,Waiter / Waitress,1,Head Waiter,
-29,I asked for recommendations and got a very passive-aggressive response.,Floor Supervisor,2,Head Waiter,yes
+29,I asked for recommendations and got a very passive-aggressive response.,Head Waiter,2,Head Waiter,yes
 30,The head waiter interrupted our conversation multiple times unnecessarily.,Assistant Branch Manager,3,Head Waiter,
 31,The bar ran out of standard vodka on a Friday night.,Bar Supervisor,2,Bar Supervisor,
 32,"There were no clean glasses at the bar, so we were served in plastic cups.",Bar Supervisor,2,Bar Supervisor,
@@ -56,8 +56,8 @@ id,complaint,expected_role,expected_level,old_expected_role,uncertain
 55,The greeter was texting on her phone and didn't even look up when we entered.,Floor Supervisor,2,Host / Hostess,
 56,Our server forgot to put in our appetizer order entirely.,Waiter / Waitress,1,Waiter / Waitress,
 57,The waiter never came back to ask if we needed drink refills.,Waiter / Waitress,1,Waiter / Waitress,
-58,Our waitress had a terrible attitude and slammed plates on the table.,Floor Supervisor,2,Waiter / Waitress,
-59,The server brought the wrong dish and tried to convince me it was what I ordered.,Floor Supervisor,2,Waiter / Waitress,
+58,Our waitress had a terrible attitude and slammed plates on the table.,Head Waiter,2,Waiter / Waitress,
+59,The server brought the wrong dish and tried to convince me it was what I ordered.,Head Waiter,2,Waiter / Waitress,
 60,We had to flag down another staff member just to get our check.,Waiter / Waitress,1,Waiter / Waitress,
 61,The busser dropped a dirty fork on my shoe and didn't apologize.,Busser / Table Cleaner,1,Busser / Table Cleaner,
 62,Our table was wiped with a foul-smelling rag.,Busser / Table Cleaner,1,Busser / Table Cleaner,

@@ -1,6 +1,6 @@
 id,complaint,expected_role,expected_level,old_expected_role,uncertain
 101,The cleaner shouted at me when I asked him to mop the spill near our table.,Cleaning Supervisor,2,Cleaner / Housekeeper,
-102,The waiter yelled at my child and threw the menu on the table.,Floor Supervisor,2,Waiter / Waitress,
+102,The waiter yelled at my child and threw the menu on the table.,Head Waiter,2,Waiter / Waitress,
 103,The security guard was extremely rude and argued with me about where I parked.,Security Supervisor / Chief Security Officer,2,Security Guard,
 104,The branch manager insulted my family and refused to listen to my complaint.,Tenant Admin,5,Tenant Admin,
 105,The assistant branch manager lied to us about a refund and was very dismissive.,Branch Manager,4,Branch Manager,

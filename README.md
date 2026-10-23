@@ -59,7 +59,10 @@ Jev decides which staff role should handle it, how urgent it is, and how confide
 | The complaint is about... | It goes to |
 |---------------------------|------------|
 | A person's **conduct** (rude, aggressive, dismissive, lying, ignoring a complaint...) | **One level above that person** |
-| &nbsp;&nbsp;a Level 1 person (host, waiter, busser, cashier / bartender, barista / cleaner / guard / rider / cook) | their Level 2 supervisor (Floor / Bar / Cleaning / Security / Delivery Supervisor / Head Chef) |
+| &nbsp;&nbsp;a waiter | Head Waiter |
+| &nbsp;&nbsp;a host, busser or cashier | Floor Supervisor |
+| &nbsp;&nbsp;a bartender or barista | Bar Supervisor |
+| &nbsp;&nbsp;a cleaner / security guard / delivery rider / line cook | Cleaning / Security / Delivery Supervisor / Head Chef |
 | &nbsp;&nbsp;a Level 2 person (head waiter, any supervisor, Head Chef) | Assistant Branch Manager (Level 3) |
 | &nbsp;&nbsp;a Level 3 person (assistant / shift / duty manager) | Branch Manager (Level 4) |
 | &nbsp;&nbsp;a Level 4 person (branch / general manager) | Tenant Admin (Level 5) |
@@ -290,6 +293,11 @@ and it will not start without `APP_USERNAME` and a strong `APP_PASSWORD`.
 > | `eval/chain-rule-2-complaints.csv` (30 new, tricky cases, written before the second refinement) | 86.7% | **96.7%** |
 > | `eval/fresh-complaints.csv` | 73.5% | **97.1%** |
 > | Sinhala held-out / Singlish | - | 87.5% / 100% |
+>
+> **Round 3b: waiters now go to the Head Waiter** (not the Floor Supervisor); hosts, bussers and cashiers still go to the Floor
+> Supervisor. Re-measured on the same labels: 250 rows 83.2% -> **85.2%**, unseen rule set 97.6% -> **100%**, 100 rows 87%,
+> tricky set 90%, fresh 94.1%, Sinhala held-out 85%, Singlish 100% (single runs, so a point or two of noise). The table above was
+> measured before this change.
 >
 > What changed: the routing instruction and all 20 role descriptions. Level 1 descriptions now cover mistakes only; each
 > Level 2 supervisor's description says it receives conduct complaints about its Level 1 roles; Level 3, 4 and 5 descriptions

@@ -22,7 +22,7 @@ id,complaint,expected_role,expected_level,old_expected_role,uncertain
 221,The hostess ignored us at the entrance and kept chatting with a colleague.,Floor Supervisor,2,Host / Hostess,
 222,We were promised a table in 10 minutes and no one updated us for over an hour.,Host / Hostess,1,Host / Hostess,
 223,The waiter forgot our drinks and never came back to our table.,Waiter / Waitress,1,Waiter / Waitress,
-224,Our waitress was very rude and rolled her eyes when we asked a question.,Floor Supervisor,2,Waiter / Waitress,
+224,Our waitress was very rude and rolled her eyes when we asked a question.,Head Waiter,2,Waiter / Waitress,
 225,The table had old food and a sticky puddle when we sat down.,Busser / Table Cleaner,1,Busser / Table Cleaner,
 226,The busser snatched my glass away while I was still drinking.,Busser / Table Cleaner,1,Busser / Table Cleaner,
 227,The cashier charged my card twice and did not apologise.,Cashier / POS Operator,1,Cashier / POS Operator,

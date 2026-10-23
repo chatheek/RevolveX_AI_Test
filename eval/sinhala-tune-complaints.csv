@@ -22,7 +22,7 @@ id,complaint,expected_role,expected_level,old_expected_role,uncertain
 21,පිළිගන්නා කාන්තාව අප ඇතුල් වෙද්දී අපව නොසලකා හැරියා.,Floor Supervisor,2,Host / Hostess,
 22,අපේ වෙන්කිරීම නැති වුණා; සමාවක් ඉල්ලුවේත් නැහැ.,Host / Hostess,1,Host / Hostess,
 23,වේටර් අපේ ඇණවුම සම්පූර්ණයෙන්ම අමතක කළා.,Waiter / Waitress,1,Waiter / Waitress,
-24,වේටර් අපට ඉතා නරක ආකල්පයකින් කතා කළා.,Floor Supervisor,2,Waiter / Waitress,
+24,වේටර් අපට ඉතා නරක ආකල්පයකින් කතා කළා.,Head Waiter,2,Waiter / Waitress,
 25,මේසය කලින් පාරිභෝගිකයන්ගේ සිරප් ගෑවී ඇලෙන සුළුව තිබුණා.,Busser / Table Cleaner,1,Busser / Table Cleaner,
 26,මේසය පිරිසිදු කරන්නා අප කමින් සිටිද්දී පිඟන් ඉවත් කළා.,Busser / Table Cleaner,1,Busser / Table Cleaner,
 27,කැෂියර් අපෙන් ඇණවුම් නොකළ දේවල් සඳහා වැඩි මුදලක් අය කළා.,Cashier / POS Operator,1,Cashier / POS Operator,

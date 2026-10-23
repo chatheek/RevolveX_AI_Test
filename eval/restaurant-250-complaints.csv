@@ -53,7 +53,7 @@ id,complaint,expected_role,expected_level,old_expected_role,uncertain
 52,The kitchen alarm kept beeping loudly for 30 minutes straight.,Head Chef / Kitchen Manager,2,Head Chef / Kitchen Manager,
 53,"No one was directing the servers, leaving half the room ignored.",Floor Supervisor,2,Floor Supervisor,
 54,The host stand was empty for 15 minutes while supervisors did nothing.,Assistant Branch Manager,3,Floor Supervisor,
-55,Waitstaff were arguing over tables right in front of us.,Floor Supervisor,2,Floor Supervisor,
+55,Waitstaff were arguing over tables right in front of us.,Head Waiter,2,Floor Supervisor,yes
 56,The floor plan was crammed so tight we couldn't push our chairs back.,Floor Supervisor,2,Floor Supervisor,
 57,Nobody checked on us after the food was dropped off.,Floor Supervisor,2,Floor Supervisor,yes
 58,The flow of the restaurant is chaotic; staff keep bumping into guests.,Floor Supervisor,2,Floor Supervisor,
@@ -68,15 +68,15 @@ id,complaint,expected_role,expected_level,old_expected_role,uncertain
 67,The head waiter rushed us through our meal to turn the table.,Assistant Branch Manager,3,Head Waiter,
 68,They dropped a tray of drinks near us and didn't even apologize.,Waiter / Waitress,1,Head Waiter,yes
 69,The senior staff member had terrible body odor.,Assistant Branch Manager,3,Head Waiter,
-70,They completely ignored the women at the table and only spoke to my husband.,Floor Supervisor,2,Head Waiter,yes
+70,They completely ignored the women at the table and only spoke to my husband.,Head Waiter,2,Head Waiter,yes
 71,The head waiter recommended a dish and then admitted they'd never tried it.,Head Waiter,2,Head Waiter,yes
-72,They forgot to put in our appetizers and lied saying the kitchen was backed up.,Floor Supervisor,2,Head Waiter,
+72,They forgot to put in our appetizers and lied saying the kitchen was backed up.,Head Waiter,2,Head Waiter,
 73,The head waiter was incredibly condescending when we asked for ketchup.,Assistant Branch Manager,3,Head Waiter,
-74,They rolled their eyes when we asked to split the bill.,Floor Supervisor,2,Head Waiter,
+74,They rolled their eyes when we asked to split the bill.,Head Waiter,2,Head Waiter,
 75,The senior waiter kept up-selling aggressively after we said no three times.,Assistant Branch Manager,3,Head Waiter,
-76,They brought the wrong vintage of wine and tried to pass it off as what we ordered.,Floor Supervisor,2,Head Waiter,
+76,They brought the wrong vintage of wine and tried to pass it off as what we ordered.,Head Waiter,2,Head Waiter,
 77,The head waiter was visibly intoxicated during service.,Assistant Branch Manager,3,Head Waiter,
-78,They hovered over us uncomfortably while we were paying the tip.,Floor Supervisor,2,Head Waiter,
+78,They hovered over us uncomfortably while we were paying the tip.,Head Waiter,2,Head Waiter,
 79,The bar area was completely out of clean glasses by 9 PM.,Bar Supervisor,2,Bar Supervisor,
 80,The draft beer selection was mostly tapped out.,Bar Supervisor,2,Bar Supervisor,
 81,The bar supervisor was taking shots with patrons behind the bar.,Assistant Branch Manager,3,Bar Supervisor,
@@ -142,15 +142,15 @@ id,complaint,expected_role,expected_level,old_expected_role,uncertain
 141,They dragged the menus across the floor before handing them to us.,Host / Hostess,1,Host / Hostess,yes
 142,The host stand looked like a disaster area with papers everywhere.,Host / Hostess,1,Host / Hostess,
 143,Our server disappeared for 40 minutes after dropping off the food.,Waiter / Waitress,1,Waiter / Waitress,
-144,The waitress spilled hot soup on my lap and just walked away.,Floor Supervisor,2,Waiter / Waitress,yes
+144,The waitress spilled hot soup on my lap and just walked away.,Head Waiter,2,Waiter / Waitress,yes
 145,The waiter completely forgot to put in my wife's order.,Waiter / Waitress,1,Waiter / Waitress,
-146,Our server had a massive attitude when we asked for extra napkins.,Floor Supervisor,2,Waiter / Waitress,
+146,Our server had a massive attitude when we asked for extra napkins.,Head Waiter,2,Waiter / Waitress,
 147,The waitress brought out dairy milk instead of almond milk.,Waiter / Waitress,1,Waiter / Waitress,
-148,The server kept calling my elderly mother 'sweetheart' condescendingly.,Floor Supervisor,2,Waiter / Waitress,
-149,Our waiter sneezed into his hands before carrying our plates.,Floor Supervisor,2,Waiter / Waitress,
+148,The server kept calling my elderly mother 'sweetheart' condescendingly.,Head Waiter,2,Waiter / Waitress,
+149,Our waiter sneezed into his hands before carrying our plates.,Head Waiter,2,Waiter / Waitress,
 150,The server dropped my credit card on the floor and left it there.,Waiter / Waitress,1,Waiter / Waitress,
 151,They cleared my plate while I was literally still chewing.,Waiter / Waitress,1,Waiter / Waitress,
-152,Our waitress loudly complained about her tips to another table.,Floor Supervisor,2,Waiter / Waitress,
+152,Our waitress loudly complained about her tips to another table.,Head Waiter,2,Waiter / Waitress,
 153,The waiter brought the wrong check and overcharged us by $50.,Waiter / Waitress,1,Waiter / Waitress,
 154,They never offered a dessert menu or asked if we wanted coffee.,Waiter / Waitress,1,Waiter / Waitress,
 155,The busser aggressively slammed dishes into the tub next to our table.,Floor Supervisor,2,Busser / Table Cleaner,
